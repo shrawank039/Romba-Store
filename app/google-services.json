@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "875470939079",
+    "firebase_url": "https://romba-676cf.firebaseio.com",
+    "project_id": "romba-676cf",
+    "storage_bucket": "romba-676cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875470939079:android:f1c4c7e9025c52fadeafe2",
+        "android_client_info": {
+          "package_name": "in.rombashop.romba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875470939079-84pg74fl5gfjvqd6he2k3hhmo7ss37sf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.rombashop.romba",
+            "certificate_hash": "94dd796dfb944f2fd9391256977fb365b5ac5ccb"
+          }
+        },
+        {
+          "client_id": "875470939079-4r60qfd8iuvo5tibtnfdsn7god92vmgb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.rombashop.romba",
+            "certificate_hash": "4134c32671b597ba0c4b6ee68298f4ffb9a262f1"
+          }
+        },
+        {
+          "client_id": "875470939079-2g4pj8k6grv0f7vgchnub5cpqf375pbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiNPtZSWIITQCcB2EBOgHqwaBdJx8TtBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875470939079-2g4pj8k6grv0f7vgchnub5cpqf375pbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
