@@ -14,11 +14,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.ads.AdRequest;
-import in.rombashop.romba.Config;
 
+import java.util.List;
+
+import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
-
 import in.rombashop.romba.databinding.FragmentBasketListBinding;
 import in.rombashop.romba.ui.basket.adapter.BasketAdapter;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
@@ -30,8 +31,6 @@ import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewmodel.product.BasketViewModel;
 import in.rombashop.romba.viewobject.Basket;
 import in.rombashop.romba.viewobject.common.Status;
-
-import java.util.List;
 
 /**
  * Created by Panacea-Soft
@@ -83,7 +82,7 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
 
         binding.get().checkoutButton.setOnClickListener(view -> {
 
-            doCheckOut();
+          //  doCheckOut();
 
         });
     }

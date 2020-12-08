@@ -1,8 +1,6 @@
 package in.rombashop.romba.di;
 
-import android.app.Application;
-
-import in.rombashop.romba.PSApp;
+import in.rombashop.romba.Application;
 
 import javax.inject.Singleton;
 
@@ -25,9 +23,9 @@ public interface AppComponent {
 
     @Component.Builder
     interface Builder {
-        @BindsInstance Builder application(Application application);
+        @BindsInstance Builder application(android.app.Application application);
         AppComponent build();
     }
-    void inject(PSApp MShop);
+    void inject(Application MShop);
 
 }

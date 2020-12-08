@@ -100,7 +100,7 @@
     <string name="comment__comment">Kommentar</string>
 
 
-    <string name="basket__list">Basket List</string>
+    <string name="basket__list">Cart List</string>
     <string name="basket__no_item_title">Einkaufswagen ist leer</string>
     <string name="basket__total">Gesamt</string>
     <string name="basket__items">Artikel</string>

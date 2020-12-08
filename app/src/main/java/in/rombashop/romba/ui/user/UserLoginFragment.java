@@ -202,6 +202,7 @@ public class UserLoginFragment extends PSFragment {
                     doSubmit(userEmail, userPassword);
 
                 }
+
             } else {
 
                 psDialogMsg.showWarningDialog(getString(R.string.no_internet_error), getString(R.string.app__ok));
@@ -210,8 +211,15 @@ public class UserLoginFragment extends PSFragment {
 
         });
 
-        binding.get().registerButton.setOnClickListener(view -> Utils.navigateAfterRegister(UserLoginFragment.this.getActivity(), navigationController));
+     //   binding.get().registerButton.setOnClickListener(view -> Utils.navigateAfterRegister(UserLoginFragment.this.getActivity(), navigationController));
 
+        binding.get().registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         binding.get().forgotPasswordButton.setOnClickListener(view ->  Utils.navigateAfterForgotPassword(UserLoginFragment.this.getActivity(), navigationController));
 
         if (Config.ENABLE_FACEBOOK_LOGIN) {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.rombashop.romba.ImageViewActivity">
+
+    <!-- viewpager to show images -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:onClick="backPress"
+        android:layout_width="30dp"
+        android:src="@drawable/back_button"
+        android:layout_height="30dp"
+        android:layout_margin="15dp" />
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:background="#4D000000"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        app:ci_drawable="@drawable/ic_baseline_selected"
+        app:ci_drawable_unselected="@drawable/ic_baseline_unselected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

@@ -26,8 +26,8 @@
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:contentDescription="@string/image_default__image"
-                android:scaleType="centerCrop"
-                android:src="@drawable/default_profile"
+                android:scaleType="center"
+                android:src="@drawable/app_icon"
                 app:imageProfileUrl="@{user.userProfilePhoto}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,13 +38,14 @@
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:contentDescription="@string/image_default__image"
-                android:scaleType="fitXY"
-                android:src="@drawable/blur"
+                android:scaleType="centerInside"
+                android:src="@drawable/app_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/profileImageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -57,6 +58,7 @@
                 app:layout_constraintTop_toTopOf="@+id/userCoverBlurImageView" />
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/profileEditImageView"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -112,7 +114,7 @@
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileImageView">
+                app:layout_constraintTop_toBottomOf="@+id/userCoverBlurImageView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -290,6 +292,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:visibility="gone"
                 android:id="@+id/shippingCardView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -444,7 +447,6 @@
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginBottom="8dp"
                                 android:contentDescription="@string/image_default__image"
-                                android:tint="@color/md_grey_400"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -515,7 +517,6 @@
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginBottom="8dp"
                                 android:contentDescription="@string/image_default__image"
-                                android:tint="@color/md_grey_400"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -804,6 +805,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:visibility="gone"
                 android:id="@+id/card2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

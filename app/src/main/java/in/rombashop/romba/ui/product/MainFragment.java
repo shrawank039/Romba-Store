@@ -2,6 +2,7 @@ package in.rombashop.romba.ui.product;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +24,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.request.RequestOptions;
+import com.glide.slider.library.SliderLayout;
+import com.glide.slider.library.slidertypes.BaseSliderView;
+import com.glide.slider.library.slidertypes.TextSliderView;
 import com.google.android.gms.ads.AdRequest;
 import com.like.LikeButton;
 
@@ -108,6 +113,7 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
     private AutoClearedValue<ProductHorizontalListAdapter> trendingAdapter, latestAdapter;
     private AutoClearedValue<TrendingCategoryAdapter> categoryAdapter;
     private AutoClearedValue<ProductCollectionRowAdapter> verticalRowAdapter;
+    SliderLayout homeSlider;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -115,6 +121,10 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
 
         // Inflate the layout for this fragment
         FragmentMainBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false, dataBindingComponent);
+
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        homeSlider = view.findViewById(R.id.slider);
+
 
         binding = new AutoClearedValue<>(this, dataBinding);
 
@@ -133,10 +143,10 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.basket_menu, menu);
-        inflater.inflate(R.menu.blog_menu, menu);
+        inflater.inflate(R.menu.favorite_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
         basketMenuItem = menu.findItem(R.id.action_basket);
-        MenuItem blogMenuItem = menu.findItem(R.id.action_blog);
+        MenuItem blogMenuItem = menu.findItem(R.id.action_favorite);
         blogMenuItem.setVisible(true);
 
         if (basketViewModel != null) {
@@ -154,8 +164,8 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
         if (item.getItemId() == R.id.action_basket) {
             navigationController.navigateToBasketList(getActivity());
         }
-        if (item.getItemId() == R.id.action_blog) {
-            navigationController.navigateToBlogList(getActivity());
+        if (item.getItemId() == R.id.action_favorite) {
+            navigationController.navigateToFavouriteActivity(getActivity());
         }
 
         return super.onOptionsItemSelected(item);
@@ -234,6 +244,41 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
         shopViewModel = ViewModelProviders.of(this, viewModelFactory).get(ShopViewModel.class);
         psAppInfoViewModel = ViewModelProviders.of(this, viewModelFactory).get(AppLoadingViewModel.class);
         clearAllDataViewModel = ViewModelProviders.of(this, viewModelFactory).get(ClearAllDataViewModel.class);
+
+    }
+
+    private void getBannerImage(List<ProductCollectionHeader> productCollectionHeaders) {
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.centerCrop();
+
+        for (int i = 0; i < productCollectionHeaders.size(); i++) {
+            //  Log.d("TAG", "image : "+c.optString("image_url"));
+          //  final Collections collections = productCollectionHeaders.get(i);
+            Log.i("banner_img", "banner "+productCollectionHeaders.get(i).defaultPhoto.imgPath);
+            TextSliderView sliderView = new TextSliderView(getContext());
+            sliderView
+                   // .image(ServiceNames.IMAGE_URL+productCollectionHeaders.get(i).defaultPhoto.imgPath)
+                    .image("http://adminarea8199.rombashop.in/uploads/electronic_17.png")
+                    .setRequestOption(requestOptions)
+                    .setProgressBarVisible(true)
+                    .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                        @Override
+                        public void onSliderClick(BaseSliderView slider) {
+//                            Global.productLists = new ArrayList<>();
+//                            Global.productLists = Global.collectionsList.get(Integer.parseInt(slider.getBundle().getString("extra"))).getProductLists();
+//                            startActivity(new Intent(getContext(), ProductsActivity.class)
+//                                    .putExtra("index", slider.getBundle().getString("extra"))
+//                                    .putExtra("type", "collection"));
+                        }
+                    });
+
+            //add your extra information
+            sliderView.bundle(new Bundle());
+            sliderView.getBundle().putString("extra", String.valueOf(i));
+            homeSlider.addSlider(sliderView);
+
+        }
 
     }
 
@@ -427,6 +472,7 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
     }
 
     private void replaceCollection(List<ProductCollectionHeader> productCollectionHeaders) {
+        getBannerImage(productCollectionHeaders);
         verticalRowAdapter.get().replaceCollectionHeader(productCollectionHeaders);
         binding.get().executePendingBindings();
     }
@@ -1069,6 +1115,7 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
                                 // Update the data
 
                                 replaceCollection(listResource.data);
+
                             }
 
                             productCollectionViewModel.setLoadingState(false);

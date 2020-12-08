@@ -370,7 +370,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/baseline_empty_basket_grey_200" />
+                    app:srcCompat="@drawable/empty_cart" />
 
                 <TextView
                     android:id="@+id/noItemTitleTextView"

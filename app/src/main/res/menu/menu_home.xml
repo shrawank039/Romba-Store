@@ -8,9 +8,10 @@
 
     <item
         android:id="@+id/shop_profile_menu"
-        android:icon="@drawable/baseline_shop_profile_grey_24"
-        android:title="@string/menu__shop_profile"
+        android:icon="@drawable/baseline_trending_grey_24"
+        android:title="Trending"
         />
+
     <item
         android:id="@+id/me_menu"
         android:icon="@drawable/baseline_profile_grey_24"

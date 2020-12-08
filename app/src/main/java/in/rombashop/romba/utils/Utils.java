@@ -30,17 +30,17 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Toast;
-import com.like.LikeButton;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import in.rombashop.romba.Config;
-import in.rombashop.romba.MainActivity;
-import in.rombashop.romba.R;
-import in.rombashop.romba.ui.common.NavigationController;
-import in.rombashop.romba.viewobject.User;
+import com.like.LikeButton;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,9 +61,11 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+import in.rombashop.romba.Config;
+import in.rombashop.romba.MainActivity;
+import in.rombashop.romba.R;
+import in.rombashop.romba.ui.common.NavigationController;
+import in.rombashop.romba.viewobject.User;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -982,7 +984,7 @@ public class Utils {
 
     public static void navigateAfterRegister(Activity activity, NavigationController navigationController){
         if (activity instanceof MainActivity) {
-            navigationController.navigateToUserRegister((MainActivity) activity);
+            navigationController.navigateToUserRegisterActivity(activity);
         } else {
 
             navigationController.navigateToUserRegisterActivity(activity);
@@ -1004,8 +1006,8 @@ public class Utils {
         if (fragmentType!= null && fragmentType.isEmpty()) {
             if (user == null) {
 
-                activity.setToolbarText(activity.binding.toolbar, activity.getString(R.string.login__login));
-                navigationController.navigateToUserLogin(activity);
+               // activity.setToolbarText(activity.binding.toolbar, activity.getString(R.string.login__login));
+                navigationController.navigateToUserLoginActivity(activity);
             } else {
 
                 activity.setToolbarText(activity.binding.toolbar, activity.getString(R.string.profile__title));
@@ -1013,7 +1015,7 @@ public class Utils {
             }
         } else {
             activity.setToolbarText(activity.binding.toolbar, activity.getString(R.string.verify_email));
-            navigationController.navigateToVerifyEmail(activity);
+           // navigationController.navigateToVerifyEmail(activity);
         }
 
     }

@@ -85,20 +85,20 @@
                         <!--android:icon="@drawable/baseline_noti_white_24"-->
                         <!--android:title="@string/menu__notification_setting" />-->
 
-                    <item
-                        android:id="@+id/nav_language"
-                        android:icon="@drawable/baseline_language_24"
-                        android:title="@string/menu__language" />
+<!--                    <item-->
+<!--                        android:id="@+id/nav_language"-->
+<!--                        android:icon="@drawable/baseline_language_24"-->
+<!--                        android:title="@string/menu__language" />-->
 
                     <item
                         android:id="@+id/nav_contact_us"
                         android:icon="@drawable/baseline_mail"
                         android:title="@string/menu__contact_us" />
 
-                    <item
-                        android:id="@+id/nav_setting"
-                        android:icon="@drawable/ic_setting"
-                        android:title="@string/menu__setting" />
+<!--                    <item-->
+<!--                        android:id="@+id/nav_setting"-->
+<!--                        android:icon="@drawable/ic_setting"-->
+<!--                        android:title="@string/menu__setting" />-->
 
                     <item
                         android:id="@+id/nav_privacy_policy"
@@ -189,10 +189,10 @@
                         android:icon="@drawable/baseline_menu_transcation_24"
                         android:title="@string/menu__transaction" />
 
-                    <item
-                        android:id="@+id/nav_user_history_login"
-                        android:icon="@drawable/baseline_menu_history_grey_24"
-                        android:title="@string/menu__user_history" />
+<!--                    <item-->
+<!--                        android:id="@+id/nav_user_history_login"-->
+<!--                        android:icon="@drawable/baseline_menu_history_grey_24"-->
+<!--                        android:title="@string/menu__user_history" />-->
 
                     <item
                         android:id="@+id/nav_logout_login"
@@ -223,18 +223,18 @@
                         <!--android:icon="@drawable/baseline_noti_white_24"-->
                         <!--android:title="@string/menu__notification_setting" />-->
 
-                    <item
-                        android:id="@+id/nav_language_login"
-                        android:icon="@drawable/baseline_language_24"
-                        android:title="@string/menu__language" />
+<!--                    <item-->
+<!--                        android:id="@+id/nav_language_login"-->
+<!--                        android:icon="@drawable/baseline_language_24"-->
+<!--                        android:title="@string/menu__language" />-->
                     <item
                         android:id="@+id/nav_contact_us_login"
                         android:icon="@drawable/baseline_mail"
                         android:title="@string/menu__contact_us" />
-                    <item
-                        android:id="@+id/nav_setting_login"
-                        android:icon="@drawable/ic_setting"
-                        android:title="@string/menu__setting" />
+<!--                    <item-->
+<!--                        android:id="@+id/nav_setting_login"-->
+<!--                        android:icon="@drawable/ic_setting"-->
+<!--                        android:title="@string/menu__setting" />-->
                     <item
                         android:id="@+id/nav_privacy_policy_login"
                         android:icon="@drawable/baseline_info_white_24"

@@ -1,5 +1,9 @@
 package in.rombashop.romba.api;
 
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
+
 import in.rombashop.romba.viewobject.AboutUs;
 import in.rombashop.romba.viewobject.ApiStatus;
 import in.rombashop.romba.viewobject.Blog;
@@ -16,19 +20,14 @@ import in.rombashop.romba.viewobject.Product;
 import in.rombashop.romba.viewobject.ProductCollectionHeader;
 import in.rombashop.romba.viewobject.Rating;
 import in.rombashop.romba.viewobject.ShippingCost;
-import in.rombashop.romba.viewobject.ShippingMethod;
 import in.rombashop.romba.viewobject.ShippingCostContainer;
+import in.rombashop.romba.viewobject.ShippingMethod;
 import in.rombashop.romba.viewobject.Shop;
 import in.rombashop.romba.viewobject.SubCategory;
 import in.rombashop.romba.viewobject.TransactionDetail;
 import in.rombashop.romba.viewobject.TransactionHeaderUpload;
 import in.rombashop.romba.viewobject.TransactionObject;
 import in.rombashop.romba.viewobject.User;
-
-import java.util.List;
-
-import androidx.lifecycle.LiveData;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -302,7 +301,7 @@ public interface PSApiService {
     //region POST User for Login
     @FormUrlEncoded
     @POST("rest/users/login/api_key/{API_KEY}")
-    LiveData<ApiResponse<User>> postUserLogin(@Path("API_KEY") String apiKey, @Field("user_email") String userEmail, @Field("user_password") String userPassword);
+    LiveData<ApiResponse<User>> postUserLogin(@Path("API_KEY") String apiKey, @Field("user_phone") String userEmail, @Field("user_password") String userPassword);
     //endregion
 
     //region POST User for Register
@@ -313,7 +312,7 @@ public interface PSApiService {
 
     @FormUrlEncoded
     @POST("rest/users/add/api_key/{API_KEY}")
-    Call<User> postUser(@Path("API_KEY") String apiKey, @Field("user_id") String userId, @Field("user_name") String userName, @Field("user_email") String userEmail, @Field("user_password") String userPassword, @Field("user_phone") String userPhone, @Field("device_token") String deviceToken);
+    Call<User> postUser(@Path("API_KEY") String apiKey, @Field("user_id") String userId, @Field("user_name") String userName, @Field("user_phone") String userEmail, @Field("user_password") String userPassword, @Field("user_phone") String userPhone, @Field("device_token") String deviceToken);
     //endregion
 
     //region POST Forgot Password

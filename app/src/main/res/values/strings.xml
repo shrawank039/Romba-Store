@@ -84,7 +84,7 @@
     <string name="login__not_a_member_join_now">New here? Sign Up</string>
     <string name="login__forgot_your_password">Forgot password ?</string>
     <string name="login__login">SignIn</string>
-    <string name="login__welcome_title">Welcome To PS Market Place</string>
+    <string name="login__welcome_title">Welcome To Romba</string>
     <string name="login__choice_text">OR</string>
 
     <!-- Contact Us -->
@@ -119,7 +119,7 @@
     <string name="comment__comment">Comment</string>
 
     <!-- Basket -->
-    <string name="basket__list">Basket List</string>
+    <string name="basket__list">Cart List</string>
     <string name="basket__no_item_title">Cart is Empty</string>
     <string name="basket__total">Total</string>
     <string name="basket__items">Items</string>
@@ -225,7 +225,7 @@
     <string name="message__register_success">Successfully Register.</string>
     <string name="message__loading">Loading…</string>
     <string name="message__please_wait">Please wait…</string>
-    <string name="message__welcome">Welcome form PS Market Place</string>
+    <string name="message__welcome">Welcome form Romba</string>
     <string name="message__want_to_quit">Do you really want to quit?</string>
     <string name="message__ok_close">OK</string>
     <string name="message__cancel_close">Cancel</string>
@@ -386,7 +386,7 @@
     <string name="menu__setting">Setting</string>
     <string name="menu__shop_profile">Shop</string>
     <string name="menu__me">Me</string>
-    <string name="menu__basket">Basket</string>
+    <string name="menu__basket">Cart</string>
     <string name="menu__app_setting">App</string>
     <string name="menu__user_info">User Info</string>
     <string name="menu__save">Save</string>
@@ -442,8 +442,8 @@
     <string name="product_detail__similar_products_un">Related products</string>
     <string name="product_detail__related_tags">Related Tags</string>
     <string name="product_detail__related_product">Related Products</string>
-    <string name="product_detail__add_to_busket"> Add to basket</string>
-    <string name="product_detail__buy">Buy</string>
+    <string name="product_detail__add_to_busket"> Add to Cart</string>
+    <string name="product_detail__buy">Buy Now</string>
     <string name="product_detail__successfully_added">Successfully added to basket</string>
     <string name="product_detail__like">Like</string>
     <string name="product_detail__comment">Comments</string>
@@ -617,6 +617,8 @@
 
     <!--Phone Login Text Hint-->
     <string name="phone_login_phone_hint" translatable="false">+959121212121</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
 

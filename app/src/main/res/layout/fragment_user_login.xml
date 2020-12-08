@@ -100,7 +100,7 @@
                     android:paddingStart="@dimen/space_16"
                     android:paddingEnd="@dimen/space_16"
                     android:singleLine="true"
-                    android:text="admin@ps.com"
+                    android:text="9576361391"
                     android:textColor="@color/text__primary"
                     app:font='@{"normal"}'
                     app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +123,7 @@
                     android:paddingStart="@dimen/space_16"
                     android:paddingEnd="@dimen/space_16"
                     android:singleLine="true"
-                    android:text="admin"
+                    android:text="qwerty"
                     android:textColor="@color/text__primary"
                     app:font='@{"normal"}'
                     app:layout_constraintEnd_toEndOf="parent"

@@ -1,5 +1,6 @@
 package in.rombashop.romba.ui.user.verifyphone;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +31,6 @@ import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.PSDialogMsg;
 import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewmodel.user.UserViewModel;
-import in.rombashop.romba.viewobject.common.Status;
 
 public class VerifyMobileFragment extends PSFragment {
 
@@ -89,7 +89,7 @@ public class VerifyMobileFragment extends PSFragment {
                 no,
                 60,
                 TimeUnit.SECONDS,
-                TaskExecutors.MAIN_THREAD,
+                (Activity) TaskExecutors.MAIN_THREAD,
                 mCallbacks);
     }
 

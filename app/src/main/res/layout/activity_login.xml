@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="fill_parent">
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="55.0dip"-->
+<!--        android:elevation="25dp"-->
+<!--        android:fontFamily="@font/muli_extrabold"-->
+<!--        android:text="Welcome  to  Romba"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
+<!--        android:textColor="@color/colorPrimary"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:textSize="18.0sp"-->
+<!--        android:textStyle="bold"-->
+<!--        tools:targetApi="lollipop" />-->
+
+
+
+    <LinearLayout
+        android:id="@+id/card_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/app_icon" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10.0dip"
+                android:orientation="vertical"
+                android:padding="24.0dip">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone"
+                        android:text="9576361391"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Mobile Number"
+                        android:maxLength="10"
+                        android:inputType="phone"
+                        android:paddingLeft="7.0dip"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/etPasswordLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8.0dip"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:text="qwerty"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:paddingLeft="7.0dip"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardRL">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="15.0dip">
+
+                        <TextView
+                            android:id="@+id/forgotpass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Forgot Password?" />
+
+                        <TextView
+                            android:id="@+id/resetnow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5.0dip"
+                            android:layout_toRightOf="@+id/forgotpass"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:text="Reset Now"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/cardRL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/signinbtncard"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16.0dip"
+                        android:elevation="2.0dip"
+                        card_view:cardCornerRadius="2.0dip"
+                        card_view:cardPreventCornerOverlap="true"
+                        tools:targetApi="lollipop">
+
+                        <Button
+                            android:id="@+id/signinbtn"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_button"
+                            android:minHeight="50px"
+                            android:padding="10dip"
+                            android:text="Sign In"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/material_cyan_500"
+                            android:visibility="visible" />
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:elevation="5.0dip"
+                    card_view:cardPreventCornerOverlap="true"
+                    tools:targetApi="lollipop">
+
+                    <Button
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/registerFromLogin"
+                        android:onClick="signUpClick"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_button"
+                        android:minHeight="50px"
+                        android:padding="10dip"
+                        android:text="Sign Up"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/material_cyan_500"
+                        android:visibility="visible" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

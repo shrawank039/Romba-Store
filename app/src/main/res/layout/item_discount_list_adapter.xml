@@ -46,7 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="164dp"
                     android:contentDescription="@string/image_default__image"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitCenter"
                     app:imageUrl="@{product.defaultPhoto.imgPath}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

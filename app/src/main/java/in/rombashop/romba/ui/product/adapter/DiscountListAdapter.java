@@ -15,12 +15,9 @@ import java.util.List;
 
 import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.ItemDiscountListAdapterBinding;
-import in.rombashop.romba.databinding.ItemDiscountListAdapterViewAllBinding;
 import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewobject.Product;
-
-import static androidx.databinding.DataBindingUtil.inflate;
 
 public class DiscountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -39,15 +36,15 @@ public class DiscountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    public class MyViewAllHolder extends RecyclerView.ViewHolder {
-        final ItemDiscountListAdapterViewAllBinding viewAllBinding;
-
-        private MyViewAllHolder(ItemDiscountListAdapterViewAllBinding viewAllBinding) {
-
-            super(viewAllBinding.getRoot());
-            this.viewAllBinding = viewAllBinding;
-        }
-    }
+//    public class MyViewAllHolder extends RecyclerView.ViewHolder {
+//        final ItemDiscountListAdapterViewAllBinding viewAllBinding;
+//
+//        private MyViewAllHolder(ItemDiscountListAdapterViewAllBinding viewAllBinding) {
+//
+//            super(viewAllBinding.getRoot());
+//            this.viewAllBinding = viewAllBinding;
+//        }
+//    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final ItemDiscountListAdapterBinding binding;
@@ -76,32 +73,35 @@ public class DiscountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        if (viewType == 0) {
+     //   if (viewType == 0) {
             ItemDiscountListAdapterBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_discount_list_adapter, parent, false, dataBindingComponent);
 
             binding.originalPriceTextView.setPaintFlags(binding.originalPriceTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
             return new MyViewHolder(binding);
 
-        } else {
-            ItemDiscountListAdapterViewAllBinding viewAllBinding = inflate(LayoutInflater.from(parent.getContext()), R.layout.item_discount_list_adapter_view_all, parent, false, dataBindingComponent);
-
-            return new MyViewAllHolder(viewAllBinding);
-
-
-        }
+    //    }
+//        else {
+//            ItemDiscountListAdapterViewAllBinding viewAllBinding = inflate(LayoutInflater.from(parent.getContext()), R.layout.item_discount_list_adapter_view_all, parent, false, dataBindingComponent);
+//
+//            return new MyViewAllHolder(viewAllBinding);
+//
+//        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (holder instanceof MyViewAllHolder) {
-
-            holder.itemView.setOnClickListener(view -> callback.onViewAllClick());
-
-        } else if (holder instanceof MyViewHolder) {
+//        if (holder instanceof MyViewAllHolder) {
+//
+//            holder.itemView.setOnClickListener(view -> callback.onViewAllClick());
+//
+//        } else
+            if (holder instanceof MyViewHolder) {
             if (discountList != null && discountList.size() > 0) {
-                Product product = discountList.get(position - 1);
+
+              //  Product product = discountList.get(position - 1);
+                Product product = discountList.get(position);
 
                 ((MyViewHolder) holder).binding.ratingBar.setRating(product.ratingDetails.totalRatingValue);
 
@@ -186,7 +186,8 @@ public class DiscountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemCount() {
         if (discountList != null && discountList.size() > 0) {
-            return discountList.size() + 1;
+          //  return discountList.size() + 1;
+            return discountList.size();
         } else {
             return 0;
         }

@@ -102,7 +102,7 @@
                     android:contentDescription="@string/image_default__image"
                     android:focusable="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/baselien_minus_grey_24"
+                    android:src="@drawable/minus"
                     app:backgroundTint="@color/md_white_1000"
                     app:elevation="4dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -121,7 +121,7 @@
                     android:contentDescription="@string/image_default__image"
                     android:focusable="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/baseline_add_green_24"
+                    android:src="@drawable/add"
                     app:backgroundTint="@color/md_white_1000"
                     app:elevation="1dp"
                     app:layout_constraintBottom_toBottomOf="@+id/qtyEditText"
@@ -203,7 +203,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/deleteBgImageView"
                     app:layout_constraintTop_toTopOf="@+id/deleteBgImageView"
-                    app:srcCompat="@android:drawable/ic_menu_delete"
+                    android:src="@drawable/baseline_delete_grey_24"
                     tools:ignore="MissingConstraints" />
 
                 <ImageView

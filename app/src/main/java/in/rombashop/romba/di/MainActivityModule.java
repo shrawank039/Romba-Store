@@ -1,6 +1,11 @@
 package in.rombashop.romba.di;
 
 
+import com.facebook.login.LoginFragment;
+
+import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
+import in.rombashop.romba.ImageViewActivity;
 import in.rombashop.romba.MainActivity;
 import in.rombashop.romba.ui.apploading.AppLoadingActivity;
 import in.rombashop.romba.ui.apploading.AppLoadingFragment;
@@ -33,14 +38,14 @@ import in.rombashop.romba.ui.gallery.GalleryFragment;
 import in.rombashop.romba.ui.gallery.detail.GalleryDetailActivity;
 import in.rombashop.romba.ui.gallery.detail.GalleryDetailFragment;
 import in.rombashop.romba.ui.language.LanguageFragment;
-import in.rombashop.romba.ui.privacyandpolicy.PrivacyPolicyActivity;
-import in.rombashop.romba.ui.privacyandpolicy.PrivacyPolicyFragment;
-import in.rombashop.romba.ui.product.MainFragment;
 import in.rombashop.romba.ui.notification.detail.NotificationActivity;
 import in.rombashop.romba.ui.notification.detail.NotificationFragment;
 import in.rombashop.romba.ui.notification.list.NotificationListActivity;
 import in.rombashop.romba.ui.notification.list.NotificationListFragment;
 import in.rombashop.romba.ui.notification.setting.NotificationSettingFragment;
+import in.rombashop.romba.ui.privacyandpolicy.PrivacyPolicyActivity;
+import in.rombashop.romba.ui.privacyandpolicy.PrivacyPolicyFragment;
+import in.rombashop.romba.ui.product.MainFragment;
 import in.rombashop.romba.ui.product.detail.ProductActivity;
 import in.rombashop.romba.ui.product.detail.ProductDetailFragment;
 import in.rombashop.romba.ui.product.favourite.FavouriteListActivity;
@@ -76,6 +81,7 @@ import in.rombashop.romba.ui.transaction.detail.TransactionActivity;
 import in.rombashop.romba.ui.transaction.detail.TransactionFragment;
 import in.rombashop.romba.ui.transaction.list.TransactionListActivity;
 import in.rombashop.romba.ui.transaction.list.TransactionListFragment;
+import in.rombashop.romba.ui.user.MobileVerifyActivity;
 import in.rombashop.romba.ui.user.PasswordChangeActivity;
 import in.rombashop.romba.ui.user.PasswordChangeFragment;
 import in.rombashop.romba.ui.user.ProfileEditActivity;
@@ -87,15 +93,13 @@ import in.rombashop.romba.ui.user.UserLoginActivity;
 import in.rombashop.romba.ui.user.UserLoginFragment;
 import in.rombashop.romba.ui.user.UserRegisterActivity;
 import in.rombashop.romba.ui.user.UserRegisterFragment;
+import in.rombashop.romba.ui.user.phonelogin.LoginActivity;
 import in.rombashop.romba.ui.user.phonelogin.PhoneLoginActivity;
 import in.rombashop.romba.ui.user.phonelogin.PhoneLoginFragment;
 import in.rombashop.romba.ui.user.verifyemail.VerifyEmailActivity;
 import in.rombashop.romba.ui.user.verifyemail.VerifyEmailFragment;
 import in.rombashop.romba.ui.user.verifyphone.VerifyMobileActivity;
 import in.rombashop.romba.ui.user.verifyphone.VerifyMobileFragment;
-
-import dagger.Module;
-import dagger.android.ContributesAndroidInjector;
 
 /**
  * Created by Panacea-Soft on 11/15/17.
@@ -126,6 +130,12 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector(modules = UserLoginModule.class)
     abstract UserLoginActivity contributeUserLoginActivity();
+
+    @ContributesAndroidInjector(modules = LoginModule.class)
+    abstract LoginActivity contributeLoginActivity();
+
+    @ContributesAndroidInjector(modules = UserRegisterModule.class)
+    abstract MobileVerifyActivity contributeRegisterActivity();
 
     @ContributesAndroidInjector(modules = PasswordChangeModule.class)
     abstract PasswordChangeActivity contributePasswordChangeActivity();
@@ -168,6 +178,9 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector(modules = GalleryActivityModule.class)
     abstract GalleryActivity galleryActivity();
+
+    @ContributesAndroidInjector(modules = GalleryActivityModule.class)
+    abstract ImageViewActivity imageViewActivity();
 
     @ContributesAndroidInjector(modules = SearchByCategoryActivityModule.class)
     abstract SearchByCategoryActivity searchByCategoryActivity();
@@ -358,6 +371,12 @@ abstract class UserForgotPasswordModule {
 abstract class UserLoginModule {
     @ContributesAndroidInjector
     abstract UserLoginFragment contributeUserLoginFragment();
+}
+
+@Module
+abstract class LoginModule {
+    @ContributesAndroidInjector
+    abstract LoginFragment contributeLoginFragment();
 }
 
 @Module

@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.dagger:dagger-android-support:2.16@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c337d85915ac1f8a2685a5ee07d9a8dc/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c337d85915ac1f8a2685a5ee07d9a8dc/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c337d85915ac1f8a2685a5ee07d9a8dc/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da6d263f20c2f16a437ab3b6d5b9e4cb/jetified-dagger-android-support-2.16/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da6d263f20c2f16a437ab3b6d5b9e4cb/jetified-dagger-android-support-2.16/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da6d263f20c2f16a437ab3b6d5b9e4cb/jetified-dagger-android-support-2.16/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android-support/2.16/76f188dac223040df5fc22889800de606529745e/dagger-android-support-2.16-javadoc.jar!/" />

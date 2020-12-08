@@ -15,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "875470939079-84pg74fl5gfjvqd6he2k3hhmo7ss37sf.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "in.rombashop.romba",
-            "certificate_hash": "94dd796dfb944f2fd9391256977fb365b5ac5ccb"
-          }
-        },
-        {
           "client_id": "875470939079-4r60qfd8iuvo5tibtnfdsn7god92vmgb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "in.rombashop.romba",
             "certificate_hash": "4134c32671b597ba0c4b6ee68298f4ffb9a262f1"
+          }
+        },
+        {
+          "client_id": "875470939079-84pg74fl5gfjvqd6he2k3hhmo7ss37sf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.rombashop.romba",
+            "certificate_hash": "94dd796dfb944f2fd9391256977fb365b5ac5ccb"
           }
         },
         {

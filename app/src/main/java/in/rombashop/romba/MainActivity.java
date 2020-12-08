@@ -11,7 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.facebook.login.LoginManager;
 import com.google.ads.consent.ConsentForm;
@@ -28,7 +37,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.inject.Inject;
+
 import in.rombashop.romba.databinding.ActivityMainBinding;
+import in.rombashop.romba.net.PrefManager;
 import in.rombashop.romba.ui.common.NavigationController;
 import in.rombashop.romba.ui.common.PSAppCompactActivity;
 import in.rombashop.romba.ui.product.MainFragment;
@@ -45,19 +60,6 @@ import in.rombashop.romba.viewobject.Shop;
 import in.rombashop.romba.viewobject.User;
 import in.rombashop.romba.viewobject.common.Resource;
 import in.rombashop.romba.viewobject.holder.ProductParameterHolder;
-
-import javax.inject.Inject;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * MainActivity of Panacea-Soft
@@ -92,6 +94,8 @@ public class MainActivity extends PSAppCompactActivity {
     private ConsentForm form;
     private TextView basketNotificationTextView;
     private String loginUserId;
+    PrefManager prf;
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
@@ -99,6 +103,7 @@ public class MainActivity extends PSAppCompactActivity {
     NavigationController navigationController;
 
     public ActivityMainBinding binding;
+    LinearLayout ll_search;
 
     //endregion
 
@@ -112,12 +117,14 @@ public class MainActivity extends PSAppCompactActivity {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ll_search = findViewById(R.id.ll_search);
+        prf = new PrefManager(this);
 
         initUIAndActions();
-
         initModels();
         initData();
         checkConsentStatus();
+
     }
 
     @Override
@@ -137,11 +144,13 @@ public class MainActivity extends PSAppCompactActivity {
                 && resultCode == Constants.RESULT_CODE__RESTART_MAIN_ACTIVITY) {
 
             finish();
+            showBottomNavigation();
             startActivity(new Intent(this, MainActivity.class));
 
         } else {
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
             if (fragment != null) {
+                showBottomNavigation();
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }
@@ -150,6 +159,8 @@ public class MainActivity extends PSAppCompactActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+      //  showBottomNavigation();
 
         refreshBasketCount();
 
@@ -206,6 +217,7 @@ public class MainActivity extends PSAppCompactActivity {
                     setSelectMenu(R.id.nav_home);
                     navigationController.navigateToHome(this);
                     setToolbarText(binding.toolbar, getString(R.string.app__app_name));
+                    showBottomNavigation();
                     binding.bottomNavigationView.setSelectedItemId(R.id.home_menu);
 
                 }
@@ -297,38 +309,44 @@ public class MainActivity extends PSAppCompactActivity {
                     navigationController.navigateToHome(this);
 
                     setToolbarText(binding.toolbar, getString(R.string.app__app_name));
+                    ll_search.setVisibility(View.VISIBLE);
 
                     break;
                 case R.id.shop_profile_menu:
 
-                    navigationController.navigateToShopProfile(this);
-                    setToolbarText(binding.toolbar, getString(R.string.menu__shop_profile));
+//                    navigationController.navigateToShopProfile(this);
+//                    setToolbarText(binding.toolbar, getString(R.string.menu__shop_profile));
+                    setToolbarText(binding.toolbar, getString(R.string.menu__trending_products));
+                    navigationController.navigateToTrendingProducts(this, new ProductParameterHolder().getTrendingParameterHolder());
+                    Utils.psLog("nav_trending_products");
+                    hideBottomNavigation();
                     break;
 
                 case R.id.me_menu:
 
-                    Utils.navigateOnUserVerificationFragment(pref, user,navigationController,this);
+                    chooseProfileFragment();
+                   // Utils.navigateOnUserVerificationFragment(pref, user,navigationController,this);
                     break;
 
                 case R.id.basket_menu:
 
                     navigationController.navigateToBasket(this);
                     setToolbarText(binding.toolbar, getString(R.string.menu__basket));
-
+                    ll_search.setVisibility(View.GONE);
                     break;
 
                 case R.id.search_menu:
 
                     navigationController.navigateToSearch(this);
                     setToolbarText(binding.toolbar, getString(R.string.menu__search));
-
+                    ll_search.setVisibility(View.GONE);
                     break;
 
                 default:
 
                     navigationController.navigateToShopProfile(this);
                     setToolbarText(binding.toolbar, getString(R.string.app__app_name));
-
+                    ll_search.setVisibility(View.GONE);
                     break;
             }
 
@@ -442,10 +460,12 @@ public class MainActivity extends PSAppCompactActivity {
 
     private void hideBottomNavigation() {
         binding.bottomNavigationView.setVisibility(View.GONE);
+        ll_search.setVisibility(View.GONE);
     }
 
     private void showBottomNavigation() {
         binding.bottomNavigationView.setVisibility(View.VISIBLE);
+        ll_search.setVisibility(View.VISIBLE);
     }
 
     private void navigationMenuChanged(MenuItem menuItem) {
@@ -541,10 +561,11 @@ public class MainActivity extends PSAppCompactActivity {
             case R.id.nav_profile:
             case R.id.nav_profile_login:
 
-                Utils.navigateOnUserVerificationFragment(pref,user,navigationController,this);
-                Utils.psLog("nav_profile");
+                chooseProfileFragment();
+//                Utils.navigateOnUserVerificationFragment(pref,user,navigationController,this);
+//                Utils.psLog("nav_profile");
 
-                hideBottomNavigation();
+              //  hideBottomNavigation();
 
                 break;
 
@@ -565,13 +586,13 @@ public class MainActivity extends PSAppCompactActivity {
                 hideBottomNavigation();
                 break;
 
-            case R.id.nav_user_history_login:
-                setToolbarText(binding.toolbar, getString(R.string.menu__user_history));
-                navigationController.navigateToHistory(this);
-                Utils.psLog("nav_history");
-
-                hideBottomNavigation();
-                break;
+//            case R.id.nav_user_history_login:
+//                setToolbarText(binding.toolbar, getString(R.string.menu__user_history));
+//                navigationController.navigateToHistory(this);
+//                Utils.psLog("nav_history");
+//
+//                hideBottomNavigation();
+//                break;
 
             case R.id.nav_logout_login:
 
@@ -646,25 +667,25 @@ public class MainActivity extends PSAppCompactActivity {
 //                hideBottomNavigation();
 //                break;
 
-            case R.id.nav_setting:
-            case R.id.nav_setting_login:
+//            case R.id.nav_setting:
+//            case R.id.nav_setting_login:
+//
+//                setToolbarText(binding.toolbar, getString(R.string.menu__setting));
+//                navigationController.navigateToSetting(this);
+//                Utils.psLog("nav_setting");
+//
+//                hideBottomNavigation();
+//                break;
 
-                setToolbarText(binding.toolbar, getString(R.string.menu__setting));
-                navigationController.navigateToSetting(this);
-                Utils.psLog("nav_setting");
-
-                hideBottomNavigation();
-                break;
-
-            case R.id.nav_language:
-            case R.id.nav_language_login:
-
-                setToolbarText(binding.toolbar, getString(R.string.menu__language));
-                navigationController.navigateToLanguageSetting(this);
-                Utils.psLog("nav_language");
-                hideBottomNavigation();
-
-                break;
+//            case R.id.nav_language:
+//            case R.id.nav_language_login:
+//
+//                setToolbarText(binding.toolbar, getString(R.string.menu__language));
+//                navigationController.navigateToLanguageSetting(this);
+//                Utils.psLog("nav_language");
+//                hideBottomNavigation();
+//
+//                break;
 
             case R.id.nav_rate_this_app:
             case R.id.nav_rate_this_app_login:
@@ -702,13 +723,16 @@ public class MainActivity extends PSAppCompactActivity {
 
         if (fragmentType.isEmpty()) {
             if (user == null) {
-                navigationController.navigateToUserLogin(this);
+                navigationController.navigateToUserLoginActivity(this);
             } else {
                 navigationController.navigateToUserProfile(this);
+                setToolbarText(binding.toolbar, getString(R.string.profile__title));
+                ll_search.setVisibility(View.GONE);
             }
-        } else {
-            navigationController.navigateToVerifyEmail(this);
         }
+//        else {
+//            navigationController.navigateToVerifyEmail(this);
+//        }
 
     }
 
@@ -738,8 +762,6 @@ public class MainActivity extends PSAppCompactActivity {
                     user = data.get(0).user;
 
                     pref.edit().putString(Constants.USER_ID, user.userId).apply();
-                    pref.edit().putString(Constants.USER_NAME, user.userName).apply();
-                    pref.edit().putString(Constants.USER_EMAIL, user.userEmail).apply();
 
                 } else {
                     user = null;
@@ -761,7 +783,6 @@ public class MainActivity extends PSAppCompactActivity {
 
             if (isLogout) {
                 setToolbarText(binding.toolbar, getString(R.string.app__app_name));
-//                showBottomNavigation();
                 navigationController.navigateToHome(MainActivity.this);
                 showBottomNavigation();
                 isLogout = false;
@@ -997,8 +1018,20 @@ public class MainActivity extends PSAppCompactActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.notification_menu, menu);
+        getMenuInflater().inflate(R.menu.pincode_menu, menu);
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_pincode);
+        if (prf.getString("pincode").equals("")) {
+            item.setTitle("PINCODE");
+        } else {
+            item.setTitle(prf.getString("pincode"));
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
 
@@ -1006,11 +1039,17 @@ public class MainActivity extends PSAppCompactActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
-        } else if (item.getItemId() == R.id.action_notification) {
-
-            navigationController.navigateToNotificationList(this);
+        } else if (item.getItemId() == R.id.action_pincode) {
+            startActivity(new Intent(getApplicationContext(), PincodeActivity.class)
+                    .putExtra("activity", "MainActivity"));
+           // navigationController.navigateToNotificationList(this);
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public void searchClick(View view) {
+        navigationController.navigateToSearch(this);
+        setToolbarText(binding.toolbar, getString(R.string.menu__search));
+        hideBottomNavigation();
+    }
 }

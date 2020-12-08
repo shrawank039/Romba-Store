@@ -11,7 +11,7 @@ public class Config {
      * AppVersion
      * For your app, you need to change according based on your app version
      */
-    public static String APP_VERSION = "2.5";
+    public static String APP_VERSION = "1.0.15";
 
     /**
      * APP Setting
@@ -28,9 +28,10 @@ public class Config {
     // http://adminarea8199.rombashop.in/index.php/
     // https://www.matrixdeveloper.com/romba/index.php/
     // http://www.panacea-soft.com/ps-store-admin/index.php/
-    public static final String APP_API_URL = "http://www.zaykapoint.com/flutter-multi-store-admin/index.php/";
-    public static final String APP_IMAGES_URL = "http://www.zaykapoint.com/flutter-multi-store-admin/uploads/";
-    public static final String APP_IMAGES_THUMB_URL = "http://www.zaykapoint.com/flutter-multi-store-admin/uploads/thumbnail/";
+            // http://www.zaykapoint.com/flutter-multi-store-admin/index.php/
+    public static final String APP_API_URL = "http://adminarea8199.rombashop.in/index.php/";
+    public static final String APP_IMAGES_URL = "http://adminarea8199.rombashop.in/uploads/";
+    public static final String APP_IMAGES_THUMB_URL = "http://adminarea8199.rombashop.in/uploads/thumbnail/";
 
     /**
      * API Key

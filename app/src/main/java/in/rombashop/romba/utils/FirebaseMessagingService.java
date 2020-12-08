@@ -54,7 +54,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         Utils.psLog("Message From Server : " + message);
         if(message == null || message.equals("")) {
             i.putExtra(Constants.NOTI_EXISTS_TO_SHOW, false);
-            displayMessage = "Welcome from PSApp";
+            displayMessage = "Welcome from ROMBA";
         } else {
             i.putExtra(Constants.NOTI_EXISTS_TO_SHOW, true);
             displayMessage = message; //"You've received new message.";

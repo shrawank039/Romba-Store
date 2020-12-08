@@ -92,48 +92,44 @@
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomconstraint"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="#fff"
+            android:layout_marginTop="5dp"
+            android:elevation="5dp"
             android:padding="@dimen/space_8">
+
+            <LinearLayout
+                android:id="@+id/bottomconstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
 
             <Button
                 android:id="@+id/addToBasketButton"
                 android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/space_44"
-                android:layout_marginStart="@dimen/space_4"
-                android:background="@drawable/grey_button_bg"
+                android:background="@color/white"
                 android:text="@string/product_detail__add_to_busket"
-                android:textAllCaps="false"
-                android:textColor="@color/md_white_1000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/buyNowButton"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                 />
 
             <!--app:font='@{"normal"}'-->
 
             <Button
                 android:id="@+id/buyNowButton"
                 android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/space_44"
-                android:layout_marginStart="@dimen/space_4"
-                android:background="@drawable/rounded_corner_shape_button"
+                android:background="@color/colorPrimary"
                 android:text="@string/product_detail__buy"
-                android:textAllCaps="false"
-                android:textColor="@color/md_white_1000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/addToBasketButton"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textAllCaps="true"
+                android:textColor="@color/md_white_1000" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

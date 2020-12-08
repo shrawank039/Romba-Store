@@ -136,6 +136,7 @@ public interface Constants {
     String USER_NAME = "USER_NAME";
     String USER_EMAIL = "USER_EMAIL";
     String USER_PASSWORD = "password";
+    String USER_PHONE = "USER_PHONE";
 
     String USER_NO_USER = "nologinuser";
 
@@ -148,7 +149,6 @@ public interface Constants {
 
     String FACEBOOK_ID = "FACEBOOK_ID";
     String GOOGLE_ID = "GOOGLE_ID";
-    String USER_PHONE = "USER_PHONE";
     //endregion
 
     //region Product

@@ -7,9 +7,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import in.rombashop.romba.Config;
-import in.rombashop.romba.MainActivity;
+import androidx.fragment.app.FragmentActivity;
 
+import javax.inject.Inject;
+
+import in.rombashop.romba.Config;
+import in.rombashop.romba.ImageViewActivity;
+import in.rombashop.romba.MainActivity;
 import in.rombashop.romba.R;
 import in.rombashop.romba.ui.basket.BasketListActivity;
 import in.rombashop.romba.ui.basket.BasketListFragment;
@@ -24,7 +28,6 @@ import in.rombashop.romba.ui.comment.detail.CommentDetailActivity;
 import in.rombashop.romba.ui.comment.list.CommentListActivity;
 import in.rombashop.romba.ui.contactus.ContactUsFragment;
 import in.rombashop.romba.ui.forceupdate.ForceUpdateActivity;
-import in.rombashop.romba.ui.gallery.GalleryActivity;
 import in.rombashop.romba.ui.gallery.detail.GalleryDetailActivity;
 import in.rombashop.romba.ui.language.LanguageFragment;
 import in.rombashop.romba.ui.notification.detail.NotificationActivity;
@@ -56,12 +59,12 @@ import in.rombashop.romba.ui.transaction.list.TransactionListFragment;
 import in.rombashop.romba.ui.user.PasswordChangeActivity;
 import in.rombashop.romba.ui.user.ProfileEditActivity;
 import in.rombashop.romba.ui.user.ProfileFragment;
+import in.rombashop.romba.ui.user.RegisterActivity;
 import in.rombashop.romba.ui.user.UserForgotPasswordActivity;
 import in.rombashop.romba.ui.user.UserForgotPasswordFragment;
-import in.rombashop.romba.ui.user.UserLoginActivity;
 import in.rombashop.romba.ui.user.UserLoginFragment;
-import in.rombashop.romba.ui.user.UserRegisterActivity;
 import in.rombashop.romba.ui.user.UserRegisterFragment;
+import in.rombashop.romba.ui.user.phonelogin.LoginActivity;
 import in.rombashop.romba.ui.user.phonelogin.PhoneLoginActivity;
 import in.rombashop.romba.ui.user.phonelogin.PhoneLoginFragment;
 import in.rombashop.romba.ui.user.verifyemail.VerifyEmailActivity;
@@ -77,10 +80,6 @@ import in.rombashop.romba.viewobject.Noti;
 import in.rombashop.romba.viewobject.Product;
 import in.rombashop.romba.viewobject.TransactionObject;
 import in.rombashop.romba.viewobject.holder.ProductParameterHolder;
-
-import javax.inject.Inject;
-
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Panacea-Soft on 11/17/17.
@@ -112,6 +111,11 @@ public class NavigationController {
 
     public void navigateToMainActivity(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public void navigateToLoginActivity(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
     }
 
@@ -382,7 +386,7 @@ public class NavigationController {
     }
 
     public void navigateToGalleryActivity(Activity activity, String imgType, String imgParentId) {
-        Intent intent = new Intent(activity, GalleryActivity.class);
+        Intent intent = new Intent(activity, ImageViewActivity.class);
 
         if (!imgType.equals("")) {
             intent.putExtra(Constants.IMAGE_TYPE, imgType);
@@ -476,12 +480,12 @@ public class NavigationController {
     }
 
     public void navigateToUserLoginActivity(Activity activity) {
-        Intent intent = new Intent(activity, UserLoginActivity.class);
+        Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
     }
 
     public void navigateToUserRegisterActivity(Activity activity) {
-        Intent intent = new Intent(activity, UserRegisterActivity.class);
+        Intent intent = new Intent(activity, RegisterActivity.class);
         activity.startActivity(intent);
     }
 
@@ -763,7 +767,7 @@ public class NavigationController {
         fragmentActivity.startActivity(intent);
     }
 
-    public void navigateToForceUpdateActivity(FragmentActivity fragmentActivity, String title, String msg) {
+    public void navigateToForceUpdateActivity(Activity fragmentActivity, String title, String msg) {
 
         Intent intent = new Intent(fragmentActivity, ForceUpdateActivity.class);
 
@@ -773,7 +777,7 @@ public class NavigationController {
         fragmentActivity.startActivity(intent);
     }
 
-    public void navigateToPlayStore(FragmentActivity fragmentActivity) {
+    public void navigateToPlayStore(Activity fragmentActivity) {
 //        try {
 //            fragmentActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Config.PLAYSTORE_MARKET_URL)));
 //        } catch (android.content.ActivityNotFoundException anfe) {

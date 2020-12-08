@@ -27,7 +27,7 @@
                 android:layout_height="0dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                app:layout_constraintBottom_toTopOf="@+id/bottomConstraint"
+                app:layout_constraintBottom_toTopOf="@+id/card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -40,12 +40,11 @@
                         android:id="@+id/newsHolderCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
+                        android:layout_marginStart="0dp"
                         android:layout_marginTop="@dimen/space_8"
-                        android:layout_marginEnd="@dimen/space_8"
+                        android:layout_marginEnd="0dp"
                         android:clipToPadding="false"
                         android:focusable="true"
-                        app:cardUseCompatPadding="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -326,6 +325,7 @@
                                 tools:text="Desc" />
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:visibility="gone"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -562,7 +562,7 @@
                                 android:contentDescription="@string/image_default__image"
                                 android:focusable="true"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/baselien_minus_grey_24"
+                                android:src="@drawable/minus"
                                 android:visibility="gone"
                                 app:backgroundTint="@color/md_white_1000"
                                 app:elevation="4dp"
@@ -580,7 +580,7 @@
                                 android:contentDescription="@string/image_default__image"
                                 android:focusable="true"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/baseline_add_green_24"
+                                android:src="@drawable/add"
                                 android:visibility="gone"
                                 app:backgroundTint="@color/md_white_1000"
                                 app:elevation="1dp"
@@ -646,6 +646,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:visibility="gone"
                         android:id="@+id/forthCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -758,11 +759,8 @@
                         android:id="@+id/fifthCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:layout_marginEnd="@dimen/space_8"
                         android:clipToPadding="false"
                         app:cardCornerRadius="@dimen/space_4"
-                        app:cardUseCompatPadding="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -885,12 +883,9 @@
                         android:id="@+id/sixCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:layout_marginEnd="@dimen/space_8"
                         android:layout_marginBottom="@dimen/space_8"
                         android:clipToPadding="false"
                         app:cardCornerRadius="@dimen/space_4"
-                        app:cardUseCompatPadding="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -1010,11 +1005,8 @@
                         android:id="@+id/secCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:layout_marginEnd="@dimen/space_8"
                         android:clipToPadding="false"
                         app:cardCornerRadius="@dimen/space_4"
-                        app:cardUseCompatPadding="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -1301,12 +1293,14 @@
 
             </androidx.core.widget.NestedScrollView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/bottomConstraint"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:minHeight="0dp"
+                android:layout_marginTop="5dp"
+                android:elevation="5dp"
                 android:padding="@dimen/space_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1314,41 +1308,35 @@
                 app:layout_constraintHorizontal_weight="2"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <LinearLayout
+                    android:id="@+id/bottomConstraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/addToBasketButton"
                     android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="@dimen/space_44"
-                    android:layout_marginEnd="@dimen/space_4"
-                    android:background="@drawable/grey_button_bg"
+                    android:background="@color/white"
                     android:text="@string/product_detail__add_to_busket"
-                    android:textAllCaps="false"
-                    android:textColor="@color/md_white_1000"
-                    app:font='@{"normal"}'
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/buyButton"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    app:font='@{"normal"}' />
 
                 <Button
                     android:id="@+id/buyButton"
                     android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="@dimen/space_44"
-                    android:layout_marginStart="@dimen/space_4"
-                    android:background="@drawable/rounded_corner_shape_button"
+                    android:background="@color/colorPrimary"
                     android:text="@string/product_detail__buy"
-                    android:textAllCaps="false"
-                    android:textColor="@color/md_white_1000"
-                    app:font='@{"normal"}'
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toEndOf="@+id/addToBasketButton"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    app:font='@{"normal"}' />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1364,6 +1352,7 @@
             tools:layout_editor_absoluteY="403dp">
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/phoneTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1378,6 +1367,7 @@
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:visibility="gone"
                 android:id="@+id/phoneFloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1396,6 +1386,7 @@
                 app:srcCompat="@drawable/common_full_open_on_phone" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/messengerTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1410,6 +1401,7 @@
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:visibility="gone"
                 android:id="@+id/messengerFloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1429,6 +1421,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/whatsAppTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -1443,6 +1436,7 @@
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:visibility="gone"
                 android:id="@+id/whatsappFloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1461,6 +1455,7 @@
                 app:srcCompat="@drawable/baseline_whatsapp_grey_24" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:visibility="gone"
                 android:id="@+id/mainFloatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
