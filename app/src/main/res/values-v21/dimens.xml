@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- App Bar -->
+    <dimen name="design_navigation_separator_vertical_padding" tools:override="true">0dp</dimen>
+
 
 </resources>

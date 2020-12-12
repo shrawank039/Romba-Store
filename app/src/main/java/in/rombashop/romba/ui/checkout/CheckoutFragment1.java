@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -254,7 +253,7 @@ public class CheckoutFragment1 extends PSFragment implements DataBoundListAdapte
                             if (CheckoutFragment1.this.getActivity() != null && CheckoutFragment1.this.getActivity() instanceof CheckoutActivity) {
                                 ((CheckoutActivity) CheckoutFragment1.this.getActivity()).progressDialog.hide();
                             }
-                            Toast.makeText(CheckoutFragment1.this.getActivity(), CheckoutFragment1.this.getString(R.string.success), Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(CheckoutFragment1.this.getActivity(), CheckoutFragment1.this.getString(R.string.success), Toast.LENGTH_SHORT).show();
                             userViewModel.setLoginUser();
                             //Toast.makeText(getActivity(), getString(R.string.success), Toast.LENGTH_SHORT).show();
                             if (CheckoutFragment1.this.getActivity() != null) {

@@ -78,7 +78,7 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
     private static final String TAG_USERNAME = "firstname";
     private static final String TAG_LASTNAME = "lastname";
     private static final String TAG_EMAIL = "user_email";
-    private static final String TAG_MOBILE = "USER_PHONE";
+    private static final String TAG_PHONE = "phone";
     private static final String TAG_PASSWORD = "password";
 
     //Textbox
@@ -220,13 +220,14 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                 if (fabbutton.getTag().equals("send")) {
                     if (!phoneed.getText().toString().trim().isEmpty() && phoneed.getText().toString().trim().length() >= 10) {
                       //  Toast.makeText(MobileVerifyActivity.this, ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim(), Toast.LENGTH_SHORT).show();
-//                        startPhoneNumberVerification(ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim());
-//                        mVerified = false;
-//                        starttimer();
-//                        codeed.setVisibility(View.VISIBLE);
-//                        fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
-//                        fabbutton.setTag("verify");
-                        checkNumber();
+                        startPhoneNumberVerification(ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim());
+                        mVerified = false;
+                        starttimer();
+                        codeed.setVisibility(View.VISIBLE);
+                        fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
+                        fabbutton.setTag("verify");
+
+                      //  checkNumber();
                     }
                     else {
                         phoneed.setError("Please enter valid mobile number");
@@ -255,7 +256,8 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                         if(!ispass) {
                            // new OneLoadAllProducts().execute();
                             Log.d(TAG,"Verified : registerSubmit()");
-                            registerSubmit();
+                         //   registerSubmit();
+                            registerUser();
                         } else {
                             ((LinearLayout) findViewById(R.id.entermobile)).setVisibility(View.GONE);
                             ((LinearLayout) findViewById(R.id.resetpass)).setVisibility(View.VISIBLE);
@@ -330,7 +332,20 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
 
     @Override
     protected void initData() {
-        userViewModel.getRegisterUser().observe(this, listResource -> {
+
+        userViewModel.getLoadingState().observe(this, loadingState -> {
+
+            if (loadingState != null && loadingState) {
+                pDialog.show();
+            } else {
+                pDialog.dismiss();
+            }
+//
+//            updateLoginBtnStatus();
+
+        });
+
+        userViewModel.getUserLoginStatus().observe(this, listResource -> {
 
             if (listResource != null) {
 
@@ -340,16 +355,17 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                     case LOADING:
                         // Loading State
                         // Data are from Local DB
-                        pDialog.show();
+
                         break;
                     case SUCCESS:
                         // Success State
                         // Data are from Server
 
-                        if(listResource.data != null) {
+                        if (listResource.data != null) {
                             try {
-                                Utils.registerUserLoginData(pref,listResource.data, password);
-                                Utils.navigateAfterUserRegister(this,navigationController);
+
+                                Utils.updateUserLoginData(pref, listResource.data.user);
+                                Utils.navigateAfterUserLogin(this,navigationController);
 
                             } catch (NullPointerException ne) {
                                 Utils.psErrorLog("Null Pointer Exception.", ne);
@@ -357,8 +373,7 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                                 Utils.psErrorLog("Error in getting notification flag data.", e);
                             }
 
-                            userViewModel.isLoading = false;
-pDialog.dismiss();
+                            userViewModel.setLoadingState(false);
 
                         }
 
@@ -366,15 +381,16 @@ pDialog.dismiss();
                     case ERROR:
                         // Error State
 
-                        psDialogMsg.showWarningDialog(listResource.message, getString(R.string.app__ok));
+                        psDialogMsg.showErrorDialog(listResource.message, getString(R.string.app__ok));
                         psDialogMsg.show();
 
-                        userViewModel.isLoading = false;
-                        pDialog.dismiss();
+                        userViewModel.setLoadingState(false);
 
                         break;
                     default:
                         // Default
+
+                        userViewModel.setLoadingState(false);
 
                         break;
                 }
@@ -384,18 +400,6 @@ pDialog.dismiss();
                 // Init Object or Empty Data
                 Utils.psLog("Empty Data");
 
-
-            }
-
-
-            // we don't need any null checks here for the adapter since LiveData guarantees that
-            // it won't call us if fragment is stopped or not started.
-            if (listResource != null) {
-                Utils.psLog("Got Data Of About Us.");
-
-            } else {
-                //noinspection Constant Conditions
-                Utils.psLog("No Data of About Us.");
             }
         });
     }
@@ -465,7 +469,7 @@ pDialog.dismiss();
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(response);
-                            if (jsonObject.optString("status").equals("success")) {
+                            if (jsonObject.optString("msg").equalsIgnoreCase("Phone Number is valid")) {
 
                                 if (fabbutton.getTag().equals("reset")) {
                                     startPhoneNumberVerification(ccp.getSelectedCountryCodeWithPlus() + phoneed.getText().toString().trim());
@@ -517,7 +521,7 @@ pDialog.dismiss();
                     JSONObject jsonObject = null;
                     try {
                         jsonObject = new JSONObject(response);
-                        if (jsonObject.optString("status").equals("success")) {
+                        if (jsonObject.optString("msg").equalsIgnoreCase("Phone Number is valid")) {
                             Toast.makeText(MobileVerifyActivity.this, "This number already exists. Please user different phone.", Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
@@ -662,24 +666,24 @@ pDialog.dismiss();
                     @Override
                     public void onResponse(String response) {
                         pDialog.dismiss();
-                        JSONObject jsonObject = null;
+                        JSONObject data = null;
                         try {
-                            jsonObject = new JSONObject(response);
-                            success = jsonObject.optString("status");
-                            if (success.equals("success")) {
-                                JSONObject data = jsonObject.optJSONObject("message");
+                            data = new JSONObject(response);
+//                            success = jsonObject.optString("status");
+//                            if (success.equals("success")) {
+//                                JSONObject data = jsonObject.optJSONObject("message");
                                 // preference and set username for session
 
                                 prf.setString(TAG_USERID, data.optString(TAG_USERID));
                                 prf.setString(TAG_USERNAME, data.optString(TAG_USERNAME));
                                 prf.setString(TAG_EMAIL, data.optString(TAG_EMAIL));
-                                prf.setString(TAG_MOBILE, data.optString("user_phone"));
+                                prf.setString(TAG_PHONE, data.optString("user_phone"));
 
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class)
                                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                                 finish();
 
-                                  }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -704,7 +708,7 @@ pDialog.dismiss();
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(TAG_MOBILE, mobile);
+                params.put(TAG_PHONE, mobile);
                 params.put(TAG_PASSWORD, password);
                 return params;
             }
@@ -756,7 +760,7 @@ pDialog.dismiss();
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(TAG_MOBILE, phoneed.getText().toString().trim());
+                params.put(TAG_PHONE, phoneed.getText().toString().trim());
                 params.put(TAG_PASSWORD, newPass.getText().toString());
                 return params;
             }
@@ -769,30 +773,8 @@ pDialog.dismiss();
         Utils.hideKeyboard(this);
 
 
-      //  String userEmail = binding.get().emailEditText.getText().toString().trim();
-        if (mobile.equals("")) {
-
-            psDialogMsg.showWarningDialog( getString(R.string.error_message__blank_email),getString(R.string.app__ok));
-
-            psDialogMsg.show();
-            return;
-        }
-
-      //  String userPassword = binding.get().passwordEditText.getText().toString().trim();
-        if (password.equals("")) {
-
-            psDialogMsg.showWarningDialog(getString(R.string.error_message__blank_password), getString(R.string.app__ok));
-
-            psDialogMsg.show();
-            return;
-        }
-
-
-        userViewModel.isLoading = true;
-      //  updateRegisterBtnStatus();
-
         String token = pref.getString(Constants.NOTI_TOKEN,Constants.USER_NO_DEVICE_TOKEN);
-        userViewModel.setRegisterUser(new User(
+        userViewModel.setUserLogin(new User(
                 "",
                 "",
                 "",
@@ -835,6 +817,8 @@ pDialog.dismiss();
                 "",
                 "",
                 "",null,null));
+
+        userViewModel.isLoading = true;
 
     }
 

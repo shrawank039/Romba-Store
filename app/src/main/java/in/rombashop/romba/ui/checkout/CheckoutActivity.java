@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+
 import in.rombashop.romba.Config;
 import in.rombashop.romba.MainActivity;
 import in.rombashop.romba.R;
@@ -20,9 +23,6 @@ import in.rombashop.romba.utils.PSDialogMsg;
 import in.rombashop.romba.viewobject.TransactionObject;
 import in.rombashop.romba.viewobject.User;
 import in.rombashop.romba.viewobject.holder.TransactionValueHolder;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 
 
 public class CheckoutActivity extends PSAppCompactActivity {
@@ -96,30 +96,39 @@ public class CheckoutActivity extends PSAppCompactActivity {
                 number++;
                 if (number == 3) {
 
-                    navigateFragment(binding, number);
+                    if (((CheckoutFragment2) fragment).clicked) {
+                        navigateFragment(binding, number);
+                    }else {
+                        number--;
+                        psDialogMsg.showErrorDialog(getString(R.string.checkout__choose_ship_method), getString(R.string.app__ok));
+                        psDialogMsg.show();
+                    }
+
 
                 } else if (number == 2) {
 
-                    if (user.city.id.isEmpty()) {
-                        psDialogMsg.showErrorDialog(getString(R.string.error_message__select_city), getString(R.string.app__ok));
-                        psDialogMsg.show();
-                        number--;
-                    }else if (((CheckoutFragment1)fragment).checkShippingAddressEditTextIsEmpty()) {
-                        psDialogMsg.showErrorDialog(getString(R.string.shipping_address_one_error_message), getString(R.string.app__ok));
-                        psDialogMsg.show();
-                        number--;
-                    } else if (((CheckoutFragment1)fragment).checkBillingAddressEditTextIsEmpty()) {
-                        psDialogMsg.showErrorDialog(getString(R.string.billing_address_one_error_message), getString(R.string.app__ok));
-                        psDialogMsg.show();
-                        number--;
-                    } else if (((CheckoutFragment1)fragment).checkUserEmailEditTextIsEmpty()) {
-                        psDialogMsg.showErrorDialog(getString(R.string.checkout__user_email_empty), getString(R.string.app__ok));
-                        psDialogMsg.show();
-                        number--;
-                    }
-                    else {
-                        ((CheckoutFragment1) fragment).updateUserProfile();
-                    }
+//                    if (user.city.id.isEmpty()) {
+//                        psDialogMsg.showErrorDialog(getString(R.string.error_message__select_city), getString(R.string.app__ok));
+//                        psDialogMsg.show();
+//                        number--;
+//                    }else
+//                        if (((CheckoutFragment1)fragment).checkShippingAddressEditTextIsEmpty()) {
+//                        psDialogMsg.showErrorDialog(getString(R.string.shipping_address_one_error_message), getString(R.string.app__ok));
+//                        psDialogMsg.show();
+//                        number--;
+//                    } else if (((CheckoutFragment1)fragment).checkBillingAddressEditTextIsEmpty()) {
+//                        psDialogMsg.showErrorDialog(getString(R.string.billing_address_one_error_message), getString(R.string.app__ok));
+//                        psDialogMsg.show();
+//                        number--;
+//                    }
+//                        else if (((CheckoutFragment1)fragment).checkUserEmailEditTextIsEmpty()) {
+//                        psDialogMsg.showErrorDialog(getString(R.string.checkout__user_email_empty), getString(R.string.app__ok));
+//                        psDialogMsg.show();
+//                        number--;
+//                    }
+//                    else {
+                        ((AddressSelectionFragment) fragment).updateUserProfile();
+                 //   }
 
 
                 } else if (number == 4) {
@@ -211,7 +220,8 @@ public class CheckoutActivity extends PSAppCompactActivity {
 
         if (position == 1) {
 
-            CheckoutFragment1 fragment = new CheckoutFragment1();
+         //   CheckoutFragment1 fragment = new CheckoutFragment1();
+            AddressSelectionFragment fragment = new AddressSelectionFragment();
             this.fragment = fragment;
             setupFragment(fragment);
 

@@ -125,6 +125,7 @@ public class MainActivity extends PSAppCompactActivity {
         initData();
         checkConsentStatus();
 
+
     }
 
     @Override
@@ -578,6 +579,11 @@ public class MainActivity extends PSAppCompactActivity {
                 hideBottomNavigation();
                 break;
 
+            case R.id.nav_address_login:
+
+                startActivity(new Intent(getApplicationContext(), AddressActivity.class));
+                break;
+
             case R.id.nav_transaction_login:
                 setToolbarText(binding.toolbar, getString(R.string.menu__transaction));
                 navigationController.navigateToTransaction(this);
@@ -800,7 +806,7 @@ public class MainActivity extends PSAppCompactActivity {
 
                 if (resource != null) {
 
-                    Utils.psLog("Got Data" + resource.message + resource.toString());
+                    Utils.psLog("Got Dataa" + resource.message + resource.toString());
 
                     switch (resource.status) {
                         case SUCCESS:

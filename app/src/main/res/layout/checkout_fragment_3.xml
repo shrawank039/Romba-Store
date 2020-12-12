@@ -98,7 +98,7 @@
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/cashCardView"
                             app:layout_constraintTop_toTopOf="parent">
@@ -128,7 +128,7 @@
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="8dp"
                                     android:layout_marginBottom="16dp"
-                                    android:text="@string/checkout__bank"
+                                    android:text="upcoming"
                                     android:textColor="@color/text__primary"
                                     android:textSize="@dimen/font_body_size"
                                     app:font='@{"normal"}'
@@ -140,13 +140,13 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:visibility="gone"
                             android:id="@+id/cardCardView"
                             android:layout_width="130dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
-                            android:visibility="visible"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/paypalCardView"
                             app:layout_constraintTop_toTopOf="parent">
@@ -293,6 +293,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/memoTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -309,6 +310,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/warningTitleTextView" />
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/memoEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -340,6 +342,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <CheckBox
+            android:checked="true"
             android:id="@+id/checkBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

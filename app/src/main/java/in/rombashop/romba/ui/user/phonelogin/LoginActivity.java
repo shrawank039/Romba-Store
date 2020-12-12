@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,9 +81,7 @@ public class LoginActivity extends RombaAppCompactActivity {
         setContentView(R.layout.activity_login);
 
         prf = new PrefManager(LoginActivity.this);
-      //  pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        // Hashmap for ListView
         offersList = new ArrayList<>();
 
 
@@ -93,7 +90,7 @@ public class LoginActivity extends RombaAppCompactActivity {
         resetnow = (TextView) findViewById(R.id.resetnow);
         activity = getIntent().getStringExtra("activity");
 
-                pDialog = new ProgressDialog(LoginActivity.this);
+        pDialog = new ProgressDialog(LoginActivity.this);
         pDialog.setMessage("Loading Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
@@ -112,7 +109,12 @@ public class LoginActivity extends RombaAppCompactActivity {
             @Override
             public void onClick(View v) {
                 if (checkdetails()) {
-                    loginSubmit();
+                  //  loginSubmit();
+                    Intent intent = new Intent(LoginActivity.this, MobileVerifyActivity.class);
+                    intent.putExtra(Constants.USER_PHONE, phone.getText().toString().trim());
+                    intent.putExtra(Constants.USER_PASSWORD, "romba@123");
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -245,15 +247,17 @@ public class LoginActivity extends RombaAppCompactActivity {
 
     private boolean checkdetails() {
 
-        if (phone.getText().toString().trim().isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(phone.getText().toString().trim()).matches()) {
-            Toast.makeText(LoginActivity.this, "Enter Value for E-mail", Toast.LENGTH_SHORT).show();
+        String p = phone.getText().toString().trim();
+        if (p.isEmpty() || p.length()<10) {
+            Toast.makeText(LoginActivity.this, "Please enter valid phone.", Toast.LENGTH_SHORT).show();
             phone.requestFocus();
             return false;
-        } else if (password.getText().toString().trim().isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Enter Value for Password", Toast.LENGTH_SHORT).show();
-            password.requestFocus();
-            return false;
         }
+//        else if (password.getText().toString().trim().isEmpty()) {
+//            Toast.makeText(LoginActivity.this, "Enter Value for Password", Toast.LENGTH_SHORT).show();
+//            password.requestFocus();
+//            return false;
+//        }
 
 
         return true;

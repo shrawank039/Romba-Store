@@ -5,8 +5,12 @@ import com.facebook.login.LoginFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import in.rombashop.romba.AddAdress;
+import in.rombashop.romba.AddressActivity;
 import in.rombashop.romba.ImageViewActivity;
 import in.rombashop.romba.MainActivity;
+import in.rombashop.romba.PaymentAddressFragment;
+import in.rombashop.romba.ShippingAddressFragment;
 import in.rombashop.romba.ui.apploading.AppLoadingActivity;
 import in.rombashop.romba.ui.apploading.AppLoadingFragment;
 import in.rombashop.romba.ui.basket.BasketListActivity;
@@ -18,6 +22,7 @@ import in.rombashop.romba.ui.blog.list.BlogListFragment;
 import in.rombashop.romba.ui.category.CategoryListActivity;
 import in.rombashop.romba.ui.category.CategoryListFragment;
 import in.rombashop.romba.ui.category.TrendingCategoryFragment;
+import in.rombashop.romba.ui.checkout.AddressSelectionFragment;
 import in.rombashop.romba.ui.checkout.CheckoutActivity;
 import in.rombashop.romba.ui.checkout.CheckoutFragment1;
 import in.rombashop.romba.ui.checkout.CheckoutFragment2;
@@ -133,6 +138,12 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector(modules = LoginModule.class)
     abstract LoginActivity contributeLoginActivity();
+
+    @ContributesAndroidInjector(modules = CheckoutActivityModule.class)
+    abstract AddressActivity contributeAddressActivity();
+
+    @ContributesAndroidInjector(modules = CheckoutActivityModule.class)
+    abstract AddAdress contributeAddAddressActivity();
 
     @ContributesAndroidInjector(modules = UserRegisterModule.class)
     abstract MobileVerifyActivity contributeRegisterActivity();
@@ -254,6 +265,15 @@ abstract class CheckoutActivityModule {
 
     @ContributesAndroidInjector
     abstract CheckoutStatusFragment checkoutStatusFragment();
+
+    @ContributesAndroidInjector
+    abstract ShippingAddressFragment contributeShippingAddressFragment();
+
+    @ContributesAndroidInjector
+    abstract PaymentAddressFragment contributePaymentAddressFragment();
+
+    @ContributesAndroidInjector
+    abstract AddressSelectionFragment contributeAddressSelectionFragment();
 }
 
 @Module

@@ -176,6 +176,7 @@
     <string name="checkout__information__STRIPE" />
     <string name="checkout__no_payment_method">No Payment Method Available</string>
     <string name="checkout__choose_a_method">You need to choose a payment method</string>
+    <string name="checkout__choose_ship_method">You need to choose a shipping method</string>
     <string name="checkout__stripe">Pay with Stripe</string>
     <string name="checkout__bank_transfer">Bank</string>
 
@@ -545,9 +546,9 @@
     <string name="coupon_discount_text">Coupon Discount : </string>
 
     <string name="sub_total">Sub Total : </string>
-    <string name="tax">Tax (%1$s%%):</string>
+    <string name="tax">Tax (incl):</string>
     <string name="shipping_cost">Shipping Cost: </string>
-    <string name="shipping_tax">Shipping Tax (%1$s%%):</string>
+    <string name="shipping_tax">Shipping Tax (incl):</string>
     <string name="days">Days </string>
 
     <string name="error_coupon">Coupon Code is not valid</string>

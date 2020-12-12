@@ -1,16 +1,19 @@
 package in.rombashop.romba.viewobject;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
-import androidx.room.Entity;
 
 @Entity
 public class TransactionHeaderUpload {
 
     @SerializedName("user_id")
     public final String userId;
+
+    @SerializedName("shop_id")
+    public final String shopId;
 
     @SerializedName("sub_total_amount")
     public final String sub_total_amount;
@@ -153,8 +156,9 @@ public class TransactionHeaderUpload {
     @SerializedName("details")
     public final List<BasketProductToServer> details;
 
-    public TransactionHeaderUpload(String userId, String sub_total_amount, String discountAmount, String coupon_discount_amount, String tax_amount, String shipping_amount, String balance_amount, String total_item_amount, String contact_name, String contact_phone, String is_cod, String is_paypal, String is_stripe, String is_bank, String payment_method_nonce, String trans_status_id, String currencySymbol, String currencyShortForm, String billing_first_name, String billing_last_name, String billing_company, String billing_address_1, String billing_address_2, String billing_country, String billing_state, String billing_city, String billing_postal_code, String billing_email, String billing_phone, String shipping_first_name, String shipping_last_name, String shipping_company, String shipping_address_1, String shipping_address_2, String shipping_country, String shipping_state, String shipping_city, String shipping_postal_code, String shipping_email, String shipping_phone, String shipping_tax_percent, String tax_percent, String shipping_method_amount, String shipping_method_name, String memo, String totalItemCount, String zoneShippingEnable, List<BasketProductToServer> details) {
+    public TransactionHeaderUpload(String userId, String shopId, String sub_total_amount, String discountAmount, String coupon_discount_amount, String tax_amount, String shipping_amount, String balance_amount, String total_item_amount, String contact_name, String contact_phone, String is_cod, String is_paypal, String is_stripe, String is_bank, String payment_method_nonce, String trans_status_id, String currencySymbol, String currencyShortForm, String billing_first_name, String billing_last_name, String billing_company, String billing_address_1, String billing_address_2, String billing_country, String billing_state, String billing_city, String billing_postal_code, String billing_email, String billing_phone, String shipping_first_name, String shipping_last_name, String shipping_company, String shipping_address_1, String shipping_address_2, String shipping_country, String shipping_state, String shipping_city, String shipping_postal_code, String shipping_email, String shipping_phone, String shipping_tax_percent, String tax_percent, String shipping_method_amount, String shipping_method_name, String memo, String totalItemCount, String zoneShippingEnable, List<BasketProductToServer> details) {
         this.userId = userId;
+        this.shopId = shopId;
         this.sub_total_amount = sub_total_amount;
         this.discountAmount = discountAmount;
         this.coupon_discount_amount = coupon_discount_amount;

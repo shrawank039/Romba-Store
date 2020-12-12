@@ -174,6 +174,11 @@
                         android:icon="@drawable/baseline_profile_grey_24"
                         android:title="@string/menu__profile" />
 
+                    <item
+                        android:id="@+id/nav_address_login"
+                        android:icon="@drawable/address"
+                        android:title="Address" />
+
                     <!--<item-->
                         <!--android:id="@+id/nav_like_login"-->
                         <!--android:icon="@drawable/baseline_menu_like_grey_24"-->

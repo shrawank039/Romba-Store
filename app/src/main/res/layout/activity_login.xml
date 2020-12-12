@@ -54,7 +54,6 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phone"
-                        android:text="9576361391"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mobile Number"
@@ -64,7 +63,9 @@
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/etPasswordLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -73,7 +74,6 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password"
-                        android:text="qwerty"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"
@@ -89,6 +89,7 @@
                     android:layout_below="@+id/cardRL">
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -136,8 +137,8 @@
                             android:background="@drawable/round_button"
                             android:minHeight="50px"
                             android:padding="10dip"
-                            android:text="Sign In"
-                            android:textAllCaps="false"
+                            android:text="Login / Register"
+                            android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textColorHint="@color/material_cyan_500"
                             android:visibility="visible" />
@@ -145,6 +146,7 @@
                 </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
+                    android:visibility="gone"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

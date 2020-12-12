@@ -82,7 +82,7 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
 
         binding.get().checkoutButton.setOnClickListener(view -> {
 
-          //  doCheckOut();
+            doCheckOut();
 
         });
     }

@@ -28,7 +28,8 @@ public class Config {
     // http://adminarea8199.rombashop.in/index.php/
     // https://www.matrixdeveloper.com/romba/index.php/
     // http://www.panacea-soft.com/ps-store-admin/index.php/
-            // http://www.zaykapoint.com/flutter-multi-store-admin/index.php/
+    // http://www.zaykapoint.com/flutter-multi-store-admin/index.php/
+
     public static final String APP_API_URL = "http://adminarea8199.rombashop.in/index.php/";
     public static final String APP_IMAGES_URL = "http://adminarea8199.rombashop.in/uploads/";
     public static final String APP_IMAGES_THUMB_URL = "http://adminarea8199.rombashop.in/uploads/thumbnail/";

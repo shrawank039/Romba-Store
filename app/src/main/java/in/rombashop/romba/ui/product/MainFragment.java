@@ -43,6 +43,7 @@ import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.FragmentMainBinding;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.category.adapter.CategoryIconListAdapter;
 import in.rombashop.romba.ui.category.adapter.TrendingCategoryAdapter;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
@@ -253,30 +254,25 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
         requestOptions.centerCrop();
 
         for (int i = 0; i < productCollectionHeaders.size(); i++) {
-            //  Log.d("TAG", "image : "+c.optString("image_url"));
-          //  final Collections collections = productCollectionHeaders.get(i);
+
+            ProductCollectionHeader productCollectionHeader= productCollectionHeaders.get(i);
             Log.i("banner_img", "banner "+productCollectionHeaders.get(i).defaultPhoto.imgPath);
             TextSliderView sliderView = new TextSliderView(getContext());
             sliderView
-                   // .image(ServiceNames.IMAGE_URL+productCollectionHeaders.get(i).defaultPhoto.imgPath)
-                    .image("http://adminarea8199.rombashop.in/uploads/electronic_17.png")
+                    .image(ServiceNames.IMAGE_URL+productCollectionHeaders.get(i).defaultPhoto.imgPath)
                     .setRequestOption(requestOptions)
                     .setProgressBarVisible(true)
                     .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
-//                            Global.productLists = new ArrayList<>();
-//                            Global.productLists = Global.collectionsList.get(Integer.parseInt(slider.getBundle().getString("extra"))).getProductLists();
-//                            startActivity(new Intent(getContext(), ProductsActivity.class)
-//                                    .putExtra("index", slider.getBundle().getString("extra"))
-//                                    .putExtra("type", "collection"));
+                            navigationController.navigateToCollectionProductList(MainFragment.this.getActivity(), productCollectionHeader.id, productCollectionHeader.name, productCollectionHeader.defaultPhoto.imgPath);
                         }
                     });
 
             //add your extra information
             sliderView.bundle(new Bundle());
             sliderView.getBundle().putString("extra", String.valueOf(i));
-            homeSlider.addSlider(sliderView);
+            binding.get().slider.addSlider(sliderView);
 
         }
 
@@ -472,9 +468,10 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
     }
 
     private void replaceCollection(List<ProductCollectionHeader> productCollectionHeaders) {
-        getBannerImage(productCollectionHeaders);
+
         verticalRowAdapter.get().replaceCollectionHeader(productCollectionHeaders);
         binding.get().executePendingBindings();
+
     }
 
 
@@ -1115,6 +1112,7 @@ public class MainFragment extends PSFragment implements DataBoundListAdapter.Dif
                                 // Update the data
 
                                 replaceCollection(listResource.data);
+                                getBannerImage(listResource.data);
 
                             }
 

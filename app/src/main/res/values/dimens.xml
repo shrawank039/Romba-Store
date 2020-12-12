@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 
     <!-- TextView -->
@@ -10,6 +10,8 @@
     <dimen name="item_space">8dp</dimen>
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="design_navigation_separator_vertical_padding" tools:override="true">0dp</dimen>
 
     <!-- EditText -->
     <dimen name="edit_text__size">@dimen/font_body_size</dimen>

@@ -248,11 +248,12 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
 
         if (getActivity() != null) {
             user = ((CheckoutActivity) CheckoutFragment3.this.getActivity()).getCurrentUser();
-            if (user.city.id.isEmpty()) {
-                psDialogMsg.showErrorDialog(getString(R.string.error_message__select_city), getString(R.string.app__ok));
-                psDialogMsg.show();
-                return;
-            }else if (user.shippingAddress1.isEmpty()) {
+//            if (user.city.id.isEmpty()) {
+//                psDialogMsg.showErrorDialog(getString(R.string.error_message__select_city), getString(R.string.app__ok));
+//                psDialogMsg.show();
+//                return;
+//            }else
+                if (user.shippingAddress1.isEmpty()) {
                 psDialogMsg.showErrorDialog(getString(R.string.shipping_address_one_error_message), getString(R.string.app__ok));
                 psDialogMsg.show();
                 return;
@@ -275,6 +276,7 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
 
                             transactionListViewModel.setSendTransactionDetailDataObj(new TransactionHeaderUpload(
                                             user.userId,
+                                            shopId,
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.discount),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.coupon_discount),
@@ -330,6 +332,7 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
 
                             transactionListViewModel.setSendTransactionDetailDataObj(new TransactionHeaderUpload(
                                             user.userId,
+                                            shopId,
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.discount),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.coupon_discount),
@@ -385,6 +388,7 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
 
                             transactionListViewModel.setSendTransactionDetailDataObj(new TransactionHeaderUpload(
                                             user.userId,
+                                            shopId,
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.discount),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.coupon_discount),
@@ -440,6 +444,7 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
 
                             transactionListViewModel.setSendTransactionDetailDataObj(new TransactionHeaderUpload(
                                             user.userId,
+                                            shopId,
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.discount),
                                             String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.coupon_discount),

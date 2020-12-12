@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.CheckoutFragment2Binding;
+import in.rombashop.romba.ui.basket.BasketListActivity;
+import in.rombashop.romba.ui.checkout.adapter.CheckoutBasketAdapter;
 import in.rombashop.romba.ui.checkout.adapter.ShippingMethodsAdapter;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
@@ -38,12 +41,14 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
     private BasketViewModel basketViewModel;
     private ShippingMethodViewModel shippingMethodViewModel;
     private CouponDiscountViewModel couponDiscountViewModel;
+    private AutoClearedValue<CheckoutBasketAdapter> checkoutBasketAdapter;
 
     @VisibleForTesting
     private AutoClearedValue<CheckoutFragment2Binding> binding;
     private AutoClearedValue<ShippingMethodsAdapter> adapter;
 
     private PSDialogMsg psDialogMsg;
+    boolean clicked = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,11 +88,11 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
         });
 
         if (!overAllTaxLabel.isEmpty()) {
-            binding.get().overAllTaxTextView.setText(getString(R.string.tax, overAllTaxLabel));
+            binding.get().overAllTaxTextView.setText(getString(R.string.tax));
         }
 
         if (!shippingTaxLabel.isEmpty()) {
-            binding.get().shippingTaxTextView.setText(getString(R.string.shipping_tax, shippingTaxLabel));
+            binding.get().shippingTaxTextView.setText(getString(R.string.shipping_tax));
         }
 
     }
@@ -120,10 +125,54 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
             binding.get().shippingMethodsRecyclerView.setAdapter(adapter.get());
         }
 
+        CheckoutBasketAdapter basketAdapter1 = new CheckoutBasketAdapter(dataBindingComponent, new CheckoutBasketAdapter.BasketClickCallBack() {
+            @Override
+            public void onMinusClick(Basket basket) {
+              //  basketViewModel.setUpdateToBasketListObj(basket.id, basket.count);
+
+            }
+
+            @Override
+            public void onAddClick(Basket basket) {
+              //  basketViewModel.setUpdateToBasketListObj(basket.id, basket.count);
+            }
+
+            @Override
+            public void onDeleteConfirm(Basket basket) {
+
+//                psDialogMsg.showConfirmDialog(getString(R.string.delete_item_from_basket), getString(R.string.app__ok), getString(R.string.app__cancel));
+//
+//                psDialogMsg.show();
+//
+//                psDialogMsg.okButton.setOnClickListener(view -> {
+//                    basketViewModel.setDeleteToBasketListObj(basket.id);
+//                    psDialogMsg.cancel();
+//                });
+//                psDialogMsg.cancelButton.setOnClickListener(view -> psDialogMsg.cancel());
+
+            }
+
+            @Override
+            public void onClick(Basket basket) {
+               // navigationController.navigateToProductDetailActivity(getActivity(), basket);
+            }
+
+        }, this);
+        checkoutBasketAdapter = new AutoClearedValue<>(this, basketAdapter1);
+        bindingBasketAdapter(checkoutBasketAdapter.get());
+
+    }
+
+    private void bindingBasketAdapter(CheckoutBasketAdapter nvbasketAdapter) {
+        this.checkoutBasketAdapter = new AutoClearedValue<>(this, nvbasketAdapter);
+//        binding.get().basketRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.get().basketRecycler.setAdapter(checkoutBasketAdapter.get());
     }
 
     @Override
     protected void initData() {
+
+        Utils.psLog("shipping : " + shopStandardShippingEnable + shopNoShippingEnable);
 
         if (shopNoShippingEnable.equals(Constants.ONE)) {
             binding.get().shippingMethodsCardView.setVisibility(View.GONE);
@@ -144,6 +193,8 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                     }
 
                     if (result.data != null) {
+
+                        Utils.psLog("shippingMethods"+result.data);
 
                         if (CheckoutFragment2.this.getActivity() != null) {
                             ((CheckoutActivity) CheckoutFragment2.this.getActivity()).transactionValueHolder.shippingMethodName = result.data.shippingZone.shippingZonePackageName;
@@ -169,6 +220,8 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
 
                     case SUCCESS:
                         CheckoutFragment2.this.replaceShippingMethods(result.data);
+
+                        Utils.psLog("shippingMethods"+result.data);
 
                         for (ShippingMethod shippingMethod : result.data) {
 
@@ -309,6 +362,116 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                 }
             }
         });
+
+        LoadData();
+    }
+
+    private void LoadData() {
+        //load basket
+
+        basketViewModel.setBasketListWithProductObj();
+        LiveData<List<Basket>> basketData = basketViewModel.getAllBasketWithProductList();
+        if (basketData != null) {
+            basketData.observe(this, listResource -> {
+                if (listResource != null) {
+                    if (listResource.size() > 0) {
+
+//                        binding.get().noItemConstraintLayout.setVisibility(View.GONE);
+//                        binding.get().checkoutConstraintLayout.setVisibility(View.VISIBLE);
+
+                    } else {
+
+//                        binding.get().checkoutConstraintLayout.setVisibility(View.GONE);
+//                        binding.get().noItemConstraintLayout.setVisibility(View.VISIBLE);
+
+                        if (getActivity() instanceof BasketListActivity) {
+                            getActivity().finish();
+                        }
+
+                    }
+
+                    replaceProductSpecsData(listResource);
+
+                } else {
+                    if(basketViewModel.getAllBasketWithProductList() != null) {
+                        if (basketViewModel.getAllBasketWithProductList().getValue() != null) {
+                            if (basketViewModel.getAllBasketWithProductList().getValue().size() == 0) {
+//                                binding.get().checkoutConstraintLayout.setVisibility(View.GONE);
+//                                binding.get().noItemConstraintLayout.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                }
+
+            });
+        }
+
+        basketViewModel.getBasketUpdateData().observe(this, resourse -> {
+            if (resourse != null) {
+                if (resourse.status == Status.SUCCESS) {
+
+                    basketViewModel.totalPrice = 0;
+                    basketViewModel.basketCount = 0;
+
+                    basketViewModel.setBasketListWithProductObj();
+
+                }
+            }
+        });
+
+        basketViewModel.getBasketDeleteData().observe(this, resource -> {
+            if (resource != null) {
+                if (resource.status == Status.SUCCESS) {
+
+                    basketViewModel.totalPrice = 0;
+                    basketViewModel.basketCount = 0;
+
+                    basketViewModel.setBasketListWithProductObj();
+
+                }
+            }
+        });
+
+
+    }
+
+    private void replaceProductSpecsData(List<Basket> basketList) {
+
+        checkoutBasketAdapter.get().replace(basketList);
+
+        if (basketList != null) {
+            checkoutBasketAdapter.get().replace(basketList);
+
+            if (basketList.size() > 0) {
+                basketViewModel.totalPrice = 0;
+
+                for (int i = 0; i < basketList.size(); i++) {
+                    basketViewModel.totalPrice += basketList.get(i).basketPrice * basketList.get(i).count;
+                }
+
+                basketViewModel.basketCount = 0;
+
+                for (int i = 0; i < basketList.size(); i++) {
+                    basketViewModel.basketCount += basketList.get(i).count;
+                }
+
+                String totalPriceString = basketList.get(0).product.currencySymbol + Constants.SPACE_STRING + Utils.format(Utils.round(basketViewModel.totalPrice, 2));
+
+//                binding.get().totalPriceTextView.setText(totalPriceString);
+//                binding.get().countTextView.setText(String.valueOf(basketViewModel.basketCount));
+            } else {
+//                binding.get().totalPriceTextView.setText(Constants.ZERO);
+//                binding.get().countTextView.setText(Constants.ZERO);
+
+                basketViewModel.totalPrice = 0;
+                basketViewModel.basketCount = 0;
+
+                basketList.size();
+
+                binding.get().executePendingBindings();
+
+            }
+        }
     }
 
     private void replaceShippingMethods(List<ShippingMethod> shippingMethods) {
@@ -393,6 +556,10 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
             if (((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost > 0) {
                 String shippingCostValueString = ((CheckoutActivity) getActivity()).transactionValueHolder.currencySymbol + " " + Utils.format(((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost);
                 binding.get().shippingCostValueTextView.setText(shippingCostValueString);
+
+                if (!shippingId.isEmpty()){
+                    clicked =true;
+                }
             }
 
         }

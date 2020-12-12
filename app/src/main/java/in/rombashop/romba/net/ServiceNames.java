@@ -1,11 +1,13 @@
 package in.rombashop.romba.net;
 
 
+import in.rombashop.romba.AddressList;
+
 public class ServiceNames {
     // http://adminarea8199.rombashop.in/index.php/
     // https://www.matrixdeveloper.com/romba/index.php/
 
-    public static String PRODUCTION_API = "https://www.matrixdeveloper.com/romba/index.php/";
+    public static String PRODUCTION_API = "http://adminarea8199.rombashop.in/index.php/";
 
     public static final String API_VERSION = "rest/";
 
@@ -39,6 +41,8 @@ public class ServiceNames {
     public static final String SUB_CATEGORIES = API +"subcategories/get?shop_id=shopd8b59013d41510b0b78483e477286803&cat_id=";
     public static final String TRANSACTION_DETAILS = API +"transactiondetails/get?shop_id=shopd8b59013d41510b0b78483e477286803&transactions_header_id=";
     public static final String TRANSACTION_HEADER = API +"transactionheaders/get?shop_id=shopd8b59013d41510b0b78483e477286803&user_id=";
+
+    public static AddressList addressList;
 
     // http://adminarea8199.rombashop.in/uploads/51nsuV9Kh7L._SL1500_.jpg
 }

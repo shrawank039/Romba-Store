@@ -278,6 +278,11 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
             binding.get().subtotalValueTextView.setText(subTotalValueString);
         }
 
+        if (!transactionObject.invoiceUrl.equals(Constants.EMPTY_STRING)) {
+            String invoiceValueString = transactionObject.invoiceUrl;
+            binding.get().invoiceUrl.setText(invoiceValueString);
+        }
+
         if (!transactionObject.taxAmount.equals(Constants.ZERO)) {
             String taxValueString = transactionObject.currencySymbol + Constants.SPACE_STRING + Utils.format(Double.parseDouble(transactionObject.taxAmount));
             binding.get().taxValueTextView.setText(taxValueString);

@@ -192,6 +192,9 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".ImageViewActivity" />
         <activity android:name=".PincodeActivity" />
+        <activity android:name=".AddressSelectionActivity" />
+        <activity android:name=".AddressActivity" />
+        <activity android:name=".AddAdress" />
 
         <activity
             android:name=".MainActivity"
