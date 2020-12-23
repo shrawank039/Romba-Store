@@ -26,6 +26,12 @@ public class Basket {
 
     public float basketPrice;
 
+    public float taxPrice;
+
+    public float basePrice;
+
+    public String sameDayDelivery;
+
     public float basketOriginalPrice;
 
     public String shopId;
@@ -33,7 +39,7 @@ public class Basket {
     @Ignore
     public Product product;
 
-    public Basket(String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributeTotalPrice, float basketPrice, float basketOriginalPrice, String shopId, String selectedAttributesPrice) {
+    public Basket(String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributeTotalPrice, float basketPrice, float basketOriginalPrice, String shopId, String selectedAttributesPrice, float taxPrice, float basePrice, String sameDayDelivery) {
         this.productId = productId;
         this.count = count;
         this.selectedAttributes = selectedAttributes;
@@ -44,5 +50,8 @@ public class Basket {
         this.basketOriginalPrice = basketOriginalPrice;
         this.shopId = shopId;
         this.selectedAttributesPrice = selectedAttributesPrice;
+        this.taxPrice = taxPrice;
+        this.basePrice = basePrice;
+        this.sameDayDelivery = sameDayDelivery;
     }
 }

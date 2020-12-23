@@ -45,6 +45,8 @@ import in.rombashop.romba.ui.product.list.ProductListActivity;
 import in.rombashop.romba.ui.product.list.ProductListFragment;
 import in.rombashop.romba.ui.product.search.SearchByCategoryActivity;
 import in.rombashop.romba.ui.product.search.SearchFragment;
+import in.rombashop.romba.ui.product.search.SearchProductListActivity;
+import in.rombashop.romba.ui.product.search.SearchProductListFragment;
 import in.rombashop.romba.ui.rating.RatingListActivity;
 import in.rombashop.romba.ui.setting.AppInfoActivity;
 import in.rombashop.romba.ui.setting.NotificationSettingActivity;
@@ -385,6 +387,19 @@ public class NavigationController {
         }
     }
 
+    public void navigateToProductSearch(MainActivity mainActivity) {
+        if (checkFragmentChange(RegFragments.HOME_SEARCH)) {
+            try {
+                SearchProductListFragment fragment = new SearchProductListFragment();
+                mainActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(containerId, fragment)
+                        .commitAllowingStateLoss();
+            } catch (Exception e) {
+                Utils.psErrorLog("Error! Can't replace fragment.", e);
+            }
+        }
+    }
+
     public void navigateToGalleryActivity(Activity activity, String imgType, String imgParentId) {
         Intent intent = new Intent(activity, ImageViewActivity.class);
 
@@ -685,6 +700,15 @@ public class NavigationController {
     public void navigateToHomeFilteringActivity(FragmentActivity mainActivity, ProductParameterHolder productParameterHolder, String title) {
 
         Intent intent = new Intent(mainActivity, ProductListActivity.class);
+
+        intent.putExtra(Constants.SHOP_TITLE, title);
+        intent.putExtra(Constants.PRODUCT_PARAM_HOLDER_KEY, productParameterHolder);
+        mainActivity.startActivity(intent);
+    }
+
+    public void navigateToProductSearchActivity(FragmentActivity mainActivity, ProductParameterHolder productParameterHolder, String title) {
+
+        Intent intent = new Intent(mainActivity, SearchProductListActivity.class);
 
         intent.putExtra(Constants.SHOP_TITLE, title);
         intent.putExtra(Constants.PRODUCT_PARAM_HOLDER_KEY, productParameterHolder);

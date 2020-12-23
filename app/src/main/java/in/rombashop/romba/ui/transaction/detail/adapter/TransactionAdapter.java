@@ -7,8 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import in.rombashop.romba.Config;
+import androidx.databinding.DataBindingUtil;
 
+import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.ItemTransactionAdapterBinding;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
@@ -17,8 +18,6 @@ import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.Objects;
 import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewobject.TransactionDetail;
-
-import androidx.databinding.DataBindingUtil;
 
 public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, ItemTransactionAdapterBinding> {
 
@@ -92,13 +91,14 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
             binding.attributesView.setVisibility(View.VISIBLE);
         }
 
-        if (item.shippingCost != null) {
+        if (item.taxAmount != null) {
             if (transactionIsZoneShipping.equals(Constants.ONE)) {
                 binding.shippingCostTextView.setVisibility(View.VISIBLE);
+                String a = item.currencySymbol + " " +item.taxAmount;
                 if (item.shippingCost.equals("")) {
-                    binding.shippingCostValueText.setText(("$ " + Utils.format(Integer.parseInt(Constants.ZERO))));
+                    binding.shippingCostValueText.setText(a);
                 } else {
-                    binding.shippingCostValueText.setText(("$ " + Utils.format(Integer.parseInt(item.shippingCost))));
+                    binding.shippingCostValueText.setText(a);
                 }
 
             } else {
@@ -134,11 +134,11 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
         if (item.originalPrice != 0 && item.discountAvailableAmount != 0) {
             int originalPrice = (int) item.originalPrice - (int) item.discountAvailableAmount;
             String balanceString = item.currencySymbol + " " + originalPrice;
-            binding.balanceValueTextView.setText(balanceString);
+            binding.balanceValueTextView.setText(item.taxPercent+"%");
             subTotal = originalPrice * qty;
         } else {
             String balanceString = item.currencySymbol + " " + Utils.format(item.originalPrice);
-            binding.balanceValueTextView.setText(balanceString);
+            binding.balanceValueTextView.setText(item.taxPercent+"%");
 
             subTotal = item.originalPrice * qty;
         }

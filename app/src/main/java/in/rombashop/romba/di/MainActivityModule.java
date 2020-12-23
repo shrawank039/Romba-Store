@@ -69,6 +69,8 @@ import in.rombashop.romba.ui.product.search.SearchCategoryFragment;
 import in.rombashop.romba.ui.product.search.SearchCityListFragment;
 import in.rombashop.romba.ui.product.search.SearchCountryListFragment;
 import in.rombashop.romba.ui.product.search.SearchFragment;
+import in.rombashop.romba.ui.product.search.SearchProductListActivity;
+import in.rombashop.romba.ui.product.search.SearchProductListFragment;
 import in.rombashop.romba.ui.product.search.SearchSubCategoryFragment;
 import in.rombashop.romba.ui.rating.RatingListActivity;
 import in.rombashop.romba.ui.rating.RatingListFragment;
@@ -168,6 +170,9 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector(modules = HomeFilteringActivityModule.class)
     abstract ProductListActivity contributehomeFilteringActivity();
+
+    @ContributesAndroidInjector(modules = HomeFilteringActivityModule.class)
+    abstract SearchProductListActivity contributehomeSearchFilteringActivity();
 
     @ContributesAndroidInjector(modules = NotificationDetailModule.class)
     abstract NotificationActivity notificationDetailActivity();
@@ -335,6 +340,9 @@ abstract class MainModule {
 
     @ContributesAndroidInjector
     abstract SearchFragment contributeSearchFragment();
+
+    @ContributesAndroidInjector
+    abstract SearchProductListFragment contributeSearchProductListFragment();
 
     @ContributesAndroidInjector
     abstract NotificationListFragment contributeNotificationFragment();
@@ -510,6 +518,9 @@ abstract class FilteringModule {
 abstract class HomeFilteringActivityModule {
     @ContributesAndroidInjector
     abstract ProductListFragment contributefeaturedProductFragment();
+
+    @ContributesAndroidInjector
+    abstract SearchProductListFragment contributesearchProductListFragment();
 
     @ContributesAndroidInjector
     abstract CategoryListFragment contributeCategoryFragment();

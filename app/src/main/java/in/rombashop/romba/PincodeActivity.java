@@ -75,7 +75,8 @@ public class PincodeActivity extends AppCompatActivity {
                                     JSONObject msgObject = jsonObject.optJSONObject("message");
                                     JSONObject shippingObj = msgObject.optJSONObject("shipping");
                                     prf.setString("pincode", pin);
-                                    prf.setInt("shipping_cost",shippingObj.optInt("shipping_cost"));
+                                    assert shippingObj != null;
+                                    prf.setInt("shipping_cost",Integer.parseInt(shippingObj.optString("shipping_cost")));
 
                                     if (activity.equalsIgnoreCase("MainActivity")) {
                                         Intent intent = new Intent(PincodeActivity.this, MainActivity.class);
@@ -119,5 +120,7 @@ public class PincodeActivity extends AppCompatActivity {
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
 
     }
+
+
 
 }

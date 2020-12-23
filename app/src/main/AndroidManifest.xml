@@ -308,6 +308,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
         <activity
+            android:name=".ui.product.search.SearchProductListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.PSTheme" />
+        <activity
             android:name=".ui.comment.list.CommentListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />

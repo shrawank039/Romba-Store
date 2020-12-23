@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -18,9 +19,11 @@ import com.google.android.gms.ads.AdRequest;
 import java.util.List;
 
 import in.rombashop.romba.Config;
+import in.rombashop.romba.PincodeActivity;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.FragmentBasketListBinding;
+import in.rombashop.romba.net.PrefManager;
 import in.rombashop.romba.ui.basket.adapter.BasketAdapter;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
@@ -44,6 +47,7 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
     private final androidx.databinding.DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
     private PSDialogMsg psDialogMsg;
     private BasketViewModel basketViewModel;
+    private static PrefManager prf;
 
     @VisibleForTesting
     private AutoClearedValue<FragmentBasketListBinding> binding;
@@ -69,6 +73,7 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
     protected void initUIAndActions() {
 
         psDialogMsg = new PSDialogMsg(getActivity(), false);
+        prf = new PrefManager(getContext());
 
         if (Config.SHOW_ADMOB && connectivity.isConnected()) {
             AdRequest adRequest = new AdRequest.Builder()
@@ -82,6 +87,10 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
 
         binding.get().checkoutButton.setOnClickListener(view -> {
 
+            if (prf.getString("pincode").isEmpty())
+                startActivity(new Intent(getActivity(), PincodeActivity.class)
+                .putExtra("activity", "BasketActivity"));
+            else
             doCheckOut();
 
         });
@@ -196,6 +205,9 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
             basketData.observe(this, listResource -> {
                 if (listResource != null) {
                     if (listResource.size() > 0) {
+
+                        String a = listResource.get(0).sameDayDelivery;
+                        Toast.makeText(getContext(), a, Toast.LENGTH_SHORT).show();
 
                         binding.get().noItemConstraintLayout.setVisibility(View.GONE);
                         binding.get().checkoutConstraintLayout.setVisibility(View.VISIBLE);

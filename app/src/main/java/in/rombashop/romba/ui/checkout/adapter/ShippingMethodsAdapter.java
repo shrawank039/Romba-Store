@@ -54,6 +54,7 @@ public class ShippingMethodsAdapter extends DataBoundListAdapter<ShippingMethod,
 
                 ShippingMethodsAdapter.this.changeToWhite(oldItem);
                 ShippingMethodsAdapter.this.changeToOrange(newItem);
+
             } else {
                 newItem = binding;
                 oldItem = binding;

@@ -1,5 +1,13 @@
 package in.rombashop.romba.repository.basket;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import in.rombashop.romba.AppExecutors;
 import in.rombashop.romba.api.PSApiService;
 import in.rombashop.romba.db.BasketDao;
@@ -8,14 +16,6 @@ import in.rombashop.romba.repository.common.PSRepository;
 import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewobject.Basket;
 import in.rombashop.romba.viewobject.common.Resource;
-
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 @Singleton
 public class BasketRepository extends PSRepository {
@@ -43,7 +43,7 @@ public class BasketRepository extends PSRepository {
 
     //    region Basket Repository Functions for ViewModel
     // insert Product
-    public LiveData<Resource<Boolean>> saveProduct(int basketId, String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributePrice, float basketPrice, float basketOriginalPrice, String shopId, String priceStr) {
+    public LiveData<Resource<Boolean>> saveProduct(int basketId, String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributePrice, float basketPrice, float basketOriginalPrice, String shopId, String priceStr, float taxPrice, float basePrice, String sameDayDelivery) {
 
         final MutableLiveData<Resource<Boolean>> statusLiveData = new MutableLiveData<>();
 
@@ -57,10 +57,10 @@ public class BasketRepository extends PSRepository {
                     if (id > 0) {
                         basketDao.updateBasketById(id, count);
                     } else {
-                        basketDao.insert(new Basket(productId, count, selectedAttributes, selectedColorId, selectedColorValue, selectedAttributePrice, basketPrice, basketOriginalPrice,shopId, priceStr));
+                        basketDao.insert(new Basket(productId, count, selectedAttributes, selectedColorId, selectedColorValue, selectedAttributePrice, basketPrice, basketOriginalPrice,shopId, priceStr, taxPrice, basePrice, sameDayDelivery));
                     }
                 }else {
-                    Basket basket = new Basket(productId, count, selectedAttributes, selectedColorId, selectedColorValue, selectedAttributePrice, basketPrice, basketOriginalPrice,shopId, priceStr);
+                    Basket basket = new Basket(productId, count, selectedAttributes, selectedColorId, selectedColorValue, selectedAttributePrice, basketPrice, basketOriginalPrice,shopId, priceStr, taxPrice, basePrice, sameDayDelivery);
                     basket.id = basketId;
                     basketDao.update(basket);
                 }

@@ -40,8 +40,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/transactionOrderProductNameTextView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/transactionOrderProductNameTextView"
-                    app:srcCompat="@drawable/baseline_tag_black_24"
-                    android:tint="@color/md_grey_800"/>
+                    app:srcCompat="@drawable/baseline_tag_black_24" />
 
                 <TextView
                     android:id="@+id/transactionOrderProductNameTextView"
@@ -113,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
-                    android:text="@string/transaction_detail_list__shipping_cost"
+                    android:text="@string/tax"
                     android:textColor="@color/text__primary"
                     android:textSize="@dimen/font_body_size"
                     app:font='@{"normal"}'
@@ -183,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
-                    android:text="@string/transaction_order__balance"
+                    android:text="Tax (%)"
                     android:textColor="@color/text__primary"
                     android:textSize="@dimen/font_body_size"
                     app:font='@{"normal"}'

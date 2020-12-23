@@ -1,9 +1,9 @@
 package in.rombashop.romba.viewobject;
 
-import com.google.gson.annotations.SerializedName;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+
+import com.google.gson.annotations.SerializedName;
 
 @Entity(primaryKeys = "id")
 public class TransactionDetail {
@@ -90,7 +90,13 @@ public class TransactionDetail {
     @SerializedName("product_color_code")
     public String productColorCode;
 
-    public TransactionDetail(@NonNull String id, String transactionsHeaderId, String productId, String productName, String productUnit, String productMeasurement, String shippingCost, String productAttributeId, String productAttributeName, float originalPrice, float price, float discountAvailableAmount, String qty, String colorId, float discountValue, float discountPercent, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String currencySymbol, String currencyShortForm, String addedDateStr, String updatedDateStr, String productColorId, String productColorCode) {
+    @SerializedName("tax_amount")
+    public String taxAmount;
+
+    @SerializedName("tax_percent")
+    public String taxPercent;
+
+    public TransactionDetail(@NonNull String id, String transactionsHeaderId, String productId, String productName, String productUnit, String productMeasurement, String shippingCost, String productAttributeId, String productAttributeName, float originalPrice, float price, float discountAvailableAmount, String qty, String colorId, float discountValue, float discountPercent, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String currencySymbol, String currencyShortForm, String addedDateStr, String updatedDateStr, String productColorId, String productColorCode, String taxAmount, String taxPercent) {
         this.id = id;
         this.transactionsHeaderId = transactionsHeaderId;
         this.productId = productId;
@@ -118,5 +124,7 @@ public class TransactionDetail {
         this.updatedDateStr = updatedDateStr;
         this.productColorId = productColorId;
         this.productColorCode = productColorCode;
+        this.taxAmount = taxAmount;
+        this.taxPercent = taxPercent;
     }
 }

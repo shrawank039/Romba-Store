@@ -173,8 +173,10 @@ public class CheckoutBasketAdapter extends DataBoundListAdapter<Basket, ItemChek
     private void TotalPriceUpdate(ItemChekoutBasketAdapterBinding binding, Basket item) {
 
 
-        String priceString = item.product.currencySymbol + Constants.SPACE_STRING + Utils.format(item.basketPrice);
+        String priceString = item.product.currencySymbol + Constants.SPACE_STRING + Utils.format(item.basePrice);
         binding.priceTextView.setText(priceString);
+        String taxString = item.product.currencySymbol + Constants.SPACE_STRING + Utils.format(item.taxPrice);
+        binding.taxTextView.setText(taxString);
         float subTotalPrice = Utils.round(item.count * item.basketPrice, 2);
         String subTotalString = item.product.currencySymbol + Constants.SPACE_STRING + Utils.format(subTotalPrice);
 

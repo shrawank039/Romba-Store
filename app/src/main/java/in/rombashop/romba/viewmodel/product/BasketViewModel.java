@@ -1,18 +1,18 @@
 package in.rombashop.romba.viewmodel.product;
 
-import in.rombashop.romba.repository.basket.BasketRepository;
-import in.rombashop.romba.utils.AbsentLiveData;
-import in.rombashop.romba.viewmodel.common.PSViewModel;
-import in.rombashop.romba.viewobject.Basket;
-import in.rombashop.romba.viewobject.common.Resource;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
+import in.rombashop.romba.repository.basket.BasketRepository;
+import in.rombashop.romba.utils.AbsentLiveData;
+import in.rombashop.romba.viewmodel.common.PSViewModel;
+import in.rombashop.romba.viewobject.Basket;
+import in.rombashop.romba.viewobject.common.Resource;
 
 public class BasketViewModel extends PSViewModel {
 
@@ -69,7 +69,7 @@ public class BasketViewModel extends PSViewModel {
                 return AbsentLiveData.create();
             }
 
-            return basketRepository.saveProduct(obj.id, obj.productId, obj.count, obj.selectedAttributes, obj.selectedColorId,obj.selectedColorValue,obj.selectedAttributeTotalPrice, obj.basketPrice, obj.basketOriginalPrice, obj.shopId, obj.selectedAttributesPrice);
+            return basketRepository.saveProduct(obj.id, obj.productId, obj.count, obj.selectedAttributes, obj.selectedColorId,obj.selectedColorValue,obj.selectedAttributeTotalPrice, obj.basketPrice, obj.basketOriginalPrice, obj.shopId, obj.selectedAttributesPrice, obj.taxPrice, obj.basePrice, obj.sameDayDelivery);
         });
 
         //update
@@ -137,7 +137,7 @@ public class BasketViewModel extends PSViewModel {
     //endregion
 
     //save basket
-    public void setSaveToBasketListObj(int id, String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributeTotalPrice, float basketPrice, float basketOriginalPrice, String shopId, String priceStr) {
+    public void setSaveToBasketListObj(int id, String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributeTotalPrice, float basketPrice, float basketOriginalPrice, String shopId, String priceStr, float taxPrice, float basePrice) {
 
         BasketViewModel.TmpDataHolder tmpDataHolder = new BasketViewModel.TmpDataHolder();
         tmpDataHolder.id = id;
@@ -148,6 +148,8 @@ public class BasketViewModel extends PSViewModel {
         tmpDataHolder.selectedColorValue = selectedColorValue;
         tmpDataHolder.basketPrice = basketPrice;
         tmpDataHolder.basketOriginalPrice = basketOriginalPrice;
+        tmpDataHolder.taxPrice = taxPrice;
+        tmpDataHolder.basePrice = basePrice;
         tmpDataHolder.shopId = shopId;
         tmpDataHolder.selectedAttributeTotalPrice = selectedAttributeTotalPrice;
         tmpDataHolder.selectedAttributesPrice = priceStr;
@@ -201,6 +203,9 @@ public class BasketViewModel extends PSViewModel {
         public String selectedColorId = "";
         public String selectedColorValue ="";
         public float basketPrice = 0;
+        public float basePrice = 0;
+        public float taxPrice = 0;
+        public String sameDayDelivery ="no";
         private float basketOriginalPrice = 0;
         public Boolean isConnected = false;
         private String selectedAttributeTotalPrice = "";

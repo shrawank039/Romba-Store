@@ -12,7 +12,7 @@ public class TransactionValueHolder {
             coupon_discount = 0,
             sub_total = 0,
             tax = 0,
-            shipping_cost = 0,
+            shipping_cost = -1,
             shipping_tax = 0,
             final_total = 0;
     public int total_item_count = 0;

@@ -281,7 +281,7 @@ public class AddAdress extends RombaAppCompactActivity {
                 data.put("phone",edtPhone.getText().toString().trim());
                 data.put("alt_phone",edtAltPhone.getText().toString().trim());
                 data.put("type",addType);
-                data.put("user_id",prf.getString("user_id"));
+                data.put("user_id",pref.getString(Constants.USER_ID,""));
                 return data;
             }
 

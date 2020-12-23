@@ -76,6 +76,33 @@
                     tools:text="0.000" />
 
                 <TextView
+                    android:id="@+id/taxTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Tax"
+                    android:textColor="@color/text__primary_light"
+                    android:textSize="@dimen/font_body_size"
+                    app:font='@{"normal"}'
+                    app:layout_constraintBottom_toBottomOf="@+id/priceTextView"
+                    app:layout_constraintStart_toEndOf="@+id/priceTextView"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/taxTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/text__primary"
+                    android:textSize="@dimen/font_body_size"
+                    android:textStyle="bold"
+                    app:font='@{"normal"}'
+                    app:layout_constraintBottom_toBottomOf="@+id/taxTitleTextView"
+                    app:layout_constraintStart_toEndOf="@+id/taxTitleTextView"
+                    tools:text="0.000" />
+
+                <TextView
                     android:id="@+id/subTotalTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,14 +185,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/basket_card_view__price"
+                    android:text="Base Price"
                     android:textColor="@color/text__primary_light"
                     android:textSize="@dimen/font_body_size"
                     app:font='@{"normal"}'
                     app:layout_constraintStart_toEndOf="@+id/itemImageView"
                     app:layout_constraintTop_toBottomOf="@+id/basketNameTextView"
-                    tools:ignore="MissingConstraints"
-                    tools:text="Price" />
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/subTotalTitleTextView"

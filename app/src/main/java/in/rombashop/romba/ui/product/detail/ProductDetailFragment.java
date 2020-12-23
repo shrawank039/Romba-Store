@@ -1290,6 +1290,8 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
         binding.get().touchCountTextView.setText(Utils.numberFormat(product.touchCount));
 
         productAttributeHeaderViewModel.price = product.unitPrice;
+        productAttributeHeaderViewModel.taxPrice = product.taxPrice;
+        productAttributeHeaderViewModel.basePrice = product.basePrice;
         productAttributeHeaderViewModel.originalPrice = product.originalPrice;
 
 
@@ -1480,7 +1482,9 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
                         productAttributeHeaderViewModel.price,
                         productAttributeHeaderViewModel.originalPrice,
                         "",
-                        priceStr
+                        priceStr,
+                        productAttributeHeaderViewModel.taxPrice,
+                        productAttributeHeaderViewModel.basePrice
                 );
             } else {
                 basketViewModel.setSaveToBasketListObj(
@@ -1494,7 +1498,10 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
                         productAttributeHeaderViewModel.priceAfterAttribute,
                         productAttributeHeaderViewModel.originalPriceAfterAttribute,
                         "",
-                        priceStr);
+                        priceStr,
+                        productAttributeHeaderViewModel.taxPrice,
+                        productAttributeHeaderViewModel.basePrice
+                );
             }
 
         }

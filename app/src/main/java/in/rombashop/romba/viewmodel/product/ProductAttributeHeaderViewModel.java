@@ -1,11 +1,8 @@
 package in.rombashop.romba.viewmodel.product;
 
-import in.rombashop.romba.repository.product.ProductRepository;
-import in.rombashop.romba.utils.AbsentLiveData;
-import in.rombashop.romba.utils.Utils;
-import in.rombashop.romba.viewmodel.common.PSViewModel;
-import in.rombashop.romba.viewobject.ProductAttributeDetail;
-import in.rombashop.romba.viewobject.ProductAttributeHeader;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +11,12 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
+import in.rombashop.romba.repository.product.ProductRepository;
+import in.rombashop.romba.utils.AbsentLiveData;
+import in.rombashop.romba.utils.Utils;
+import in.rombashop.romba.viewmodel.common.PSViewModel;
+import in.rombashop.romba.viewobject.ProductAttributeDetail;
+import in.rombashop.romba.viewobject.ProductAttributeHeader;
 
 public class ProductAttributeHeaderViewModel extends PSViewModel {
     //for product attribute detail list
@@ -29,6 +29,8 @@ public class ProductAttributeHeaderViewModel extends PSViewModel {
     public ProductAttributeDetail productAttributeDetail;
     public float price = 0;
     public float originalPrice = 0;
+    public float taxPrice = 0;
+    public float basePrice = 0;
 
     public List<String> headerIdList = new ArrayList<>();
 

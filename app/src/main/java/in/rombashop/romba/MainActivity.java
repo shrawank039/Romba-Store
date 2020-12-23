@@ -53,6 +53,7 @@ import in.rombashop.romba.utils.MyContextWrapper;
 import in.rombashop.romba.utils.PSDialogMsg;
 import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewmodel.common.NotificationViewModel;
+import in.rombashop.romba.viewmodel.homelist.HomeSearchProductViewModel;
 import in.rombashop.romba.viewmodel.product.BasketViewModel;
 import in.rombashop.romba.viewmodel.shop.ShopViewModel;
 import in.rombashop.romba.viewmodel.user.UserViewModel;
@@ -87,6 +88,7 @@ public class MainActivity extends PSAppCompactActivity {
     private ShopViewModel shopViewModel;
     private BasketViewModel basketViewModel;
     private NotificationViewModel notificationViewModel;
+    private HomeSearchProductViewModel homeSearchProductViewModel;
     private User user;
     private PSDialogMsg psDialogMsg;
     private boolean isLogout = false;
@@ -240,6 +242,7 @@ public class MainActivity extends PSAppCompactActivity {
 
         userViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel.class);
         notificationViewModel = ViewModelProviders.of(this, viewModelFactory).get(NotificationViewModel.class);
+        homeSearchProductViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeSearchProductViewModel.class);
         shopViewModel = ViewModelProviders.of(this, viewModelFactory).get(ShopViewModel.class);
         basketViewModel = ViewModelProviders.of(this, viewModelFactory).get(BasketViewModel.class);
     }
@@ -1054,8 +1057,25 @@ public class MainActivity extends PSAppCompactActivity {
     }
 
     public void searchClick(View view) {
-        navigationController.navigateToSearch(this);
-        setToolbarText(binding.toolbar, getString(R.string.menu__search));
-        hideBottomNavigation();
+        // Get Name
+        homeSearchProductViewModel.holder.search_term = "";
+
+        // Get Price
+        homeSearchProductViewModel.holder.min_price = "";
+        homeSearchProductViewModel.holder.max_price = "";
+
+        homeSearchProductViewModel.holder.overall_rating = "";
+
+        // Get Feature Switch Data
+            homeSearchProductViewModel.holder.isFeatured = "";
+
+        // Get Discount Switch Data
+            homeSearchProductViewModel.holder.isDiscount = "";
+
+
+        navigationController.navigateToProductSearchActivity(this, homeSearchProductViewModel.holder, null);
+
+//        setToolbarText(binding.toolbar, getString(R.string.menu__search));
+//        hideBottomNavigation();
     }
 }

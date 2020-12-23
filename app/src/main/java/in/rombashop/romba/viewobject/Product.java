@@ -1,13 +1,13 @@
 package in.rombashop.romba.viewobject;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by Panacea-Soft on 9/17/18.
@@ -56,6 +56,15 @@ public class Product {
 
     @SerializedName("added_date")
     public final String addedDate;
+
+    @SerializedName("same_day_deliver")
+    public final String sameDayDelivery;
+
+    @SerializedName("base_price")
+    public final float basePrice;
+
+    @SerializedName("tax_amount")
+    public final float taxPrice;
 
     @SerializedName("added_user_id")
     public final String addedUserId;
@@ -127,6 +136,9 @@ public class Product {
     @SerializedName("unit_price")
     public final float unitPrice;
 
+    @SerializedName("gst_tax")
+    public final String gstTax;
+
     @SerializedName("discount_amount")
     public final float discountAmount;
 
@@ -166,7 +178,7 @@ public class Product {
     @Ignore
     public List<ProductSpecs> productSpecsList;
 
-    public Product(@NonNull String id, String catId, String subCatId, String isDiscount, String isFeatured, String isAvailable, String code, String name, String description, String searchTag, String highlightInformation, String status, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String deletedFlag, String addedDateStr, String shippingCost, String minimumOrder, String productUnit, String productMeasurement, Image defaultPhoto, Category category, SubCategory subCategory, RatingDetail ratingDetails, int likeCount, int imageCount, int favouriteCount, int touchCount, String featuredDate, int commentHeaderCount, float originalPrice, float unitPrice, float discountAmount, String currencyShortForm, String currencySymbol, float discountPercent, float discountValue, String isLiked, String isFavourited, String overallRating, String transStatus) {
+    public Product(@NonNull String id, String catId, String subCatId, String isDiscount, String isFeatured, String isAvailable, String code, String name, String description, String searchTag, String highlightInformation, String status, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String deletedFlag, String addedDateStr, String shippingCost, String minimumOrder, String productUnit, String productMeasurement, Image defaultPhoto, Category category, SubCategory subCategory, RatingDetail ratingDetails, int likeCount, int imageCount, int favouriteCount, int touchCount, String featuredDate, int commentHeaderCount, float originalPrice, float unitPrice, float discountAmount, String currencyShortForm, String currencySymbol, float discountPercent, float discountValue, String isLiked, String isFavourited, String overallRating, String transStatus, String gstTax, String sameDayDelivery, float basePrice, float taxPrice) {
         this.id = id;
         this.catId = catId;
         this.subCatId = subCatId;
@@ -211,5 +223,9 @@ public class Product {
         this.isFavourited = isFavourited;
         this.overallRating = overallRating;
         this.transStatus = transStatus;
+        this.gstTax = gstTax;
+        this.sameDayDelivery = sameDayDelivery;
+        this.basePrice = basePrice;
+        this.taxPrice = taxPrice;
     }
 }

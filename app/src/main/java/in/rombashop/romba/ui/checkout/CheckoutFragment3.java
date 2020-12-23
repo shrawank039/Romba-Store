@@ -710,7 +710,11 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
                             String.valueOf(basket.product.discountValue),
                             String.valueOf(basket.product.discountPercent),
                             basket.product.currencyShortForm,
-                            basket.product.currencySymbol);
+                            basket.product.currencySymbol,
+                            basket.product.gstTax,
+                            basket.product.sameDayDelivery,
+                            basket.product.basePrice,
+                            basket.product.taxPrice);
 
                     basketProductListToServerContainer.productList.add(basketProductToServer);
                 }

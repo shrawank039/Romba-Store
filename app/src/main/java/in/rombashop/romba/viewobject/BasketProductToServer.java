@@ -1,8 +1,8 @@
 package in.rombashop.romba.viewobject;
 
-import com.google.gson.annotations.SerializedName;
-
 import androidx.room.Entity;
+
+import com.google.gson.annotations.SerializedName;
 
 @Entity
 public class BasketProductToServer {
@@ -37,6 +37,12 @@ public class BasketProductToServer {
     @SerializedName("product_measurement")
     public String productMeasurement;
 
+    @SerializedName("base_price")
+    public final float basePrice;
+
+    @SerializedName("tax_amount")
+    public final float taxPrice;
+
     @SerializedName("shipping_cost")
     public String shippingCost;
 
@@ -46,6 +52,9 @@ public class BasketProductToServer {
     @SerializedName("original_price")
     public String originalPrice;
 
+    @SerializedName("same_day_deliver")
+    public final String sameDayDelivery;
+
     @SerializedName("discount_price")
     public String discount_price;
 
@@ -54,6 +63,9 @@ public class BasketProductToServer {
 
     @SerializedName("qty")
     public String qty;
+
+    @SerializedName("gst_tax")
+    public String gstTax;
 
     @SerializedName("discount_value")
     public String discountValue;
@@ -67,7 +79,7 @@ public class BasketProductToServer {
     @SerializedName("currency_symbol")
     public String currencySymbol;
 
-    public BasketProductToServer(String shopId, String productId, String productName, String productAttributeId, String productAttributeName, String product_attribute_price, String product_color_id, String product_color_code, String product_unit, String productMeasurement, String shippingCost, String price, String originalPrice, String discount_price, String discountAmount, String qty, String discountValue, String discountPercent, String currencyShortForm, String currencySymbol) {
+    public BasketProductToServer(String shopId, String productId, String productName, String productAttributeId, String productAttributeName, String product_attribute_price, String product_color_id, String product_color_code, String product_unit, String productMeasurement, String shippingCost, String price, String originalPrice, String discount_price, String discountAmount, String qty, String discountValue, String discountPercent, String currencyShortForm, String currencySymbol, String gstTax, String sameDayDelivery, float basePrice, float taxPrice) {
         this.shopId = shopId;
         this.productId = productId;
         this.productName = productName;
@@ -88,5 +100,9 @@ public class BasketProductToServer {
         this.discountPercent = discountPercent;
         this.currencyShortForm = currencyShortForm;
         this.currencySymbol = currencySymbol;
+        this.gstTax = gstTax;
+        this.sameDayDelivery = sameDayDelivery;
+        this.basePrice = basePrice;
+        this.taxPrice = taxPrice;
     }
 }

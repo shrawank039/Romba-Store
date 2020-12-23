@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.ActivityBasketListBinding;
+import in.rombashop.romba.net.PrefManager;
 import in.rombashop.romba.ui.common.PSAppCompactActivity;
 import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.MyContextWrapper;
@@ -22,11 +25,13 @@ import in.rombashop.romba.utils.MyContextWrapper;
  * Website : http://www.panacea-soft.com
  */
 public class BasketListActivity extends PSAppCompactActivity {
+    PrefManager prf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityBasketListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_basket_list);
 
+        prf = new PrefManager(this);
         // Init all UI
         initUI(binding);
     }
@@ -39,6 +44,24 @@ public class BasketListActivity extends PSAppCompactActivity {
         String CURRENT_LANG_COUNTRY_CODE = preferences.getString(Constants.LANGUAGE_COUNTRY_CODE, Config.DEFAULT_LANGUAGE_COUNTRY_CODE);
 
         super.attachBaseContext(MyContextWrapper.wrap(newBase, CURRENT_LANG_CODE, CURRENT_LANG_COUNTRY_CODE, true));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.pincode_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_pincode);
+        if (prf.getString("pincode").equals("")) {
+            item.setTitle("PINCODE");
+        } else {
+            item.setTitle(prf.getString("pincode"));
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

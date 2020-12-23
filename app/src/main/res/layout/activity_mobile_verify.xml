@@ -120,8 +120,8 @@
                                 android:minWidth="250dp"
                                 android:hint="Enter OTP"
                                 android:imeOptions="actionNext"
-                                android:inputType="textCapWords"
-                                android:maxLength="20"
+                                android:inputType="number"
+                                android:maxLength="6"
                                 android:paddingLeft="7.0dip"
                                 android:textSize="17.0sp"
                                 android:visibility="gone"/>
