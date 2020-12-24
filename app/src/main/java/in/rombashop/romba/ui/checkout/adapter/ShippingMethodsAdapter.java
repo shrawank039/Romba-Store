@@ -62,12 +62,14 @@ public class ShippingMethodsAdapter extends DataBoundListAdapter<ShippingMethod,
                 ShippingMethodsAdapter.this.changeToOrange(newItem);
             }
         });
+
         return binding;
     }
 
     // For general animation
     @Override
     public void bindView(DataBoundViewHolder<ItemShippingMethodBinding> holder, int position) {
+
         super.bindView(holder, position);
 
         // setAnimation(holder.itemView, position);

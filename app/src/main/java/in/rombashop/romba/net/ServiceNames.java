@@ -43,6 +43,8 @@ public class ServiceNames {
     public static final String TRANSACTION_HEADER = API +"transactionheaders/get?shop_id=shopd8b59013d41510b0b78483e477286803&user_id=";
 
     public static AddressList addressList;
+    public static boolean sameDayDeliver = false;
+    public static String pincodeSelected = "";
 
     // http://adminarea8199.rombashop.in/uploads/51nsuV9Kh7L._SL1500_.jpg
 }

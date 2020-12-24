@@ -10,15 +10,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ellipsize="end"-->
-<!--            android:maxLines="1"-->
-<!--            android:text="Select Address"-->
-<!--            android:textColor="@color/gray"-->
-<!--            android:textSize="15sp" />-->
+        <TextView
+            android:id="@+id/addAddress"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="+ ADD ADDRESS"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
 
 <!--        <View-->
 <!--            android:layout_width="match_parent"-->

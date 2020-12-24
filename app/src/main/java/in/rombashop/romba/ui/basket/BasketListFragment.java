@@ -24,6 +24,7 @@ import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.FragmentBasketListBinding;
 import in.rombashop.romba.net.PrefManager;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.basket.adapter.BasketAdapter;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
@@ -206,8 +207,11 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
                 if (listResource != null) {
                     if (listResource.size() > 0) {
 
-                        String a = listResource.get(0).sameDayDelivery;
-                        Toast.makeText(getContext(), a, Toast.LENGTH_SHORT).show();
+                        for (int i=0; i<listResource.size(); i++){
+                            String a = listResource.get(i).sameDayDelivery;
+                            if (a.equalsIgnoreCase("no"))
+                                ServiceNames.sameDayDeliver = true;
+                        }
 
                         binding.get().noItemConstraintLayout.setVisibility(View.GONE);
                         binding.get().checkoutConstraintLayout.setVisibility(View.VISIBLE);

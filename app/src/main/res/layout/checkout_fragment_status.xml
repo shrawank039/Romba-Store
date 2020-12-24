@@ -515,6 +515,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="12dp"
                             app:font='@{"normal"}'
+                            android:text="Tax (18%)"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -530,6 +531,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/textView24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -573,6 +575,7 @@
                             app:layout_constraintTop_toTopOf="@+id/textView23" />
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/shippingTaxValueTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -360,7 +360,7 @@ public class Utils {
 
     public static void psLog(String log) {
         if (Config.IS_DEVELOPMENT) {
-            Log.d("TEAMPS", log);
+            Log.d("MATRIXDEV", log);
         }
     }
 

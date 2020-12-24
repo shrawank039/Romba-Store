@@ -1,11 +1,13 @@
 package in.rombashop.romba.ui.checkout;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -26,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.rombashop.romba.AddressActivity;
 import in.rombashop.romba.AddressList;
 import in.rombashop.romba.R;
 import in.rombashop.romba.cartAddressListAdapter;
@@ -58,7 +61,7 @@ public class AddressSelectionFragment extends PSFragment {
     private List<AddressList> payAddressLists;
     private RecyclerView rv_shipping,rv_payment;
     private cartAddressListAdapter mAdapter;
-    private cartPayAddressListAdapter payAdapter;
+    private TextView addAddress;
     private UserViewModel userViewModel;
 
     public AddressSelectionFragment() {
@@ -100,7 +103,15 @@ public class AddressSelectionFragment extends PSFragment {
         prf = new PrefManager(getContext());
         addressLists = new ArrayList<>();
         rv_shipping = (RecyclerView) root.findViewById(R.id.rv_shipping);
+        addAddress = root.findViewById(R.id.addAddress);
+        addAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(new Intent(getActivity(), AddressActivity.class));
+            }
+        });
 
+        Utils.psLog("onCreate Address");
         mAdapter = new cartAddressListAdapter(getContext(), addressLists);
 
         rv_shipping.setHasFixedSize(true);
@@ -109,7 +120,7 @@ public class AddressSelectionFragment extends PSFragment {
         rv_shipping.setLayoutManager(mLayoutManager);
         rv_shipping.setItemAnimator(new DefaultItemAnimator());
         rv_shipping.setAdapter(mAdapter);
-        loadAddress();
+      //  loadAddress();
         return root;
     }
 
@@ -180,9 +191,18 @@ public class AddressSelectionFragment extends PSFragment {
         userViewModel.setUpdateUserObj(user);
     }
 
-        private void loadAddress() {
+    @Override
+    public void onResume() {
+        super.onResume();
+        Utils.psLog("onResume Address");
+    //    addressLists = new ArrayList<>();
+        addressLists.clear();
+        loadAddress();
+    }
 
-        Utils.psLog("user : "+pref.getString(Constants.USER_ID,""));
+    private void loadAddress() {
+
+     //   Utils.psLog("user : "+pref.getString(Constants.USER_ID,""));
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Loading Please wait...");
         pDialog.setIndeterminate(false);

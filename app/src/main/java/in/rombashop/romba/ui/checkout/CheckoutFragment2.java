@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -11,12 +12,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.CheckoutFragment2Binding;
 import in.rombashop.romba.net.PrefManager;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.basket.BasketListActivity;
 import in.rombashop.romba.ui.checkout.adapter.CheckoutBasketAdapter;
 import in.rombashop.romba.ui.checkout.adapter.ShippingMethodsAdapter;
@@ -125,20 +128,22 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
             }, shippingId, ((CheckoutActivity) CheckoutFragment2.this.getActivity()).transactionValueHolder.selectedShippingId);
 
             adapter = new AutoClearedValue<>(this, nvAdapter);
+
             binding.get().shippingMethodsRecyclerView.setAdapter(adapter.get());
+
 
         }
 
         CheckoutBasketAdapter basketAdapter1 = new CheckoutBasketAdapter(dataBindingComponent, new CheckoutBasketAdapter.BasketClickCallBack() {
             @Override
             public void onMinusClick(Basket basket) {
-              //  basketViewModel.setUpdateToBasketListObj(basket.id, basket.count);
+                //  basketViewModel.setUpdateToBasketListObj(basket.id, basket.count);
 
             }
 
             @Override
             public void onAddClick(Basket basket) {
-              //  basketViewModel.setUpdateToBasketListObj(basket.id, basket.count);
+                //  basketViewModel.setUpdateToBasketListObj(basket.id, basket.count);
             }
 
             @Override
@@ -158,7 +163,7 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
 
             @Override
             public void onClick(Basket basket) {
-               // navigationController.navigateToProductDetailActivity(getActivity(), basket);
+                // navigationController.navigateToProductDetailActivity(getActivity(), basket);
             }
 
         }, this);
@@ -198,7 +203,7 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
 
                     if (result.data != null) {
 
-                        Utils.psLog("shippingMethods"+result.data);
+                        Utils.psLog("shippingMethods" + result.data);
 
                         if (CheckoutFragment2.this.getActivity() != null) {
                             ((CheckoutActivity) CheckoutFragment2.this.getActivity()).transactionValueHolder.shippingMethodName = result.data.shippingZone.shippingZonePackageName;
@@ -223,13 +228,17 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                 switch (result.status) {
 
                     case SUCCESS:
-                        CheckoutFragment2.this.replaceShippingMethods(result.data);
 
+                        CheckoutFragment2.this.replaceShippingMethods(result.data);
 
                         for (ShippingMethod shippingMethod : result.data) {
 
                             if ((CheckoutFragment2.this.getActivity()) != null) {
                                 if (!shippingId.isEmpty()) {
+
+//                                    if (ServiceNames.sameDayDeliver && shippingMethod.days.equalsIgnoreCase("1")){
+//                                        Utils.psLog(shippingMethod.days);
+//                                    } else {
                                     if (shippingMethod.id.equals(shippingId) && ((CheckoutActivity) CheckoutFragment2.this.getActivity()).transactionValueHolder.selectedShippingId.isEmpty()) {
                                         if (CheckoutFragment2.this.getActivity() != null) {
                                             if (shopNoShippingEnable.equals(Constants.ONE)) {
@@ -396,7 +405,7 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                     replaceProductSpecsData(listResource);
 
                 } else {
-                    if(basketViewModel.getAllBasketWithProductList() != null) {
+                    if (basketViewModel.getAllBasketWithProductList() != null) {
                         if (basketViewModel.getAllBasketWithProductList().getValue() != null) {
                             if (basketViewModel.getAllBasketWithProductList().getValue().size() == 0) {
 //                                binding.get().checkoutConstraintLayout.setVisibility(View.GONE);
@@ -478,7 +487,19 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
     }
 
     private void replaceShippingMethods(List<ShippingMethod> shippingMethods) {
-        this.adapter.get().replace(shippingMethods);
+
+        List<ShippingMethod> shippingMethodsList = new ArrayList<>();
+
+        for (ShippingMethod shippingMethod : shippingMethods) {
+            if (ServiceNames.sameDayDeliver && shippingMethod.days.equalsIgnoreCase("1")) {
+                Utils.psLog(shippingMethod.days);
+            } else {
+                    shippingMethodsList.add(shippingMethod);
+            }
+
+        }
+
+        this.adapter.get().replace(shippingMethodsList);
         this.binding.get().executePendingBindings();
     }
 
@@ -548,7 +569,7 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
 
             if (!shippingTax.equals("0.0") && !shippingTax.equals(Constants.RATING_ZERO)) {
                 String shippingTaxValueString = ((CheckoutActivity) getActivity()).transactionValueHolder.currencySymbol + " " + Utils.format(Utils.round((((CheckoutActivity) getActivity()).transactionValueHolder.shipping_tax), 2));
-                binding.get().shippingTaxValueTextView.setText(shippingTaxValueString);
+                binding.get().shippingTaxValueTextView.setText(shippingTaxValueString); //shippingTaxValueString
             }
 
             if (((CheckoutActivity) getActivity()).transactionValueHolder.final_total > 0.0) {
@@ -560,9 +581,9 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                 String shippingCostValueString = ((CheckoutActivity) getActivity()).transactionValueHolder.currencySymbol + " " + Utils.format(((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost);
                 binding.get().shippingCostValueTextView.setText(shippingCostValueString);
 
-                Utils.psLog("shippingMethods"+((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost);
+                Utils.psLog("shippingMethods" + ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost);
 
-                clicked =true;
+                clicked = true;
             }
 
         }

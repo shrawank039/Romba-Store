@@ -6,20 +6,39 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import in.rombashop.romba.Config;
 import in.rombashop.romba.MainActivity;
+import in.rombashop.romba.PincodeActivity;
 import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.ActivityCheckoutBinding;
+import in.rombashop.romba.net.MySingleton;
+import in.rombashop.romba.net.PrefManager;
+import in.rombashop.romba.net.ServiceNames;
+import in.rombashop.romba.ui.basket.BasketListActivity;
 import in.rombashop.romba.ui.common.PSAppCompactActivity;
 import in.rombashop.romba.ui.common.PSFragment;
 import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.MyContextWrapper;
 import in.rombashop.romba.utils.PSDialogMsg;
+import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewobject.TransactionObject;
 import in.rombashop.romba.viewobject.User;
 import in.rombashop.romba.viewobject.holder.TransactionValueHolder;
@@ -36,13 +55,14 @@ public class CheckoutActivity extends PSAppCompactActivity {
     private PSDialogMsg psDialogMsg;
     public TransactionValueHolder transactionValueHolder;
     public TransactionObject transactionObject;
+    private static PrefManager prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
-
+        prf = new PrefManager(CheckoutActivity.this);
         // Init all UI
         initUI(binding);
 
@@ -127,8 +147,57 @@ public class CheckoutActivity extends PSAppCompactActivity {
 //                        number--;
 //                    }
 //                    else {
-                        ((AddressSelectionFragment) fragment).updateUserProfile();
-                 //   }
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, ServiceNames.PINCODE,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        JSONObject jsonObject = null;
+                                        try {
+                                            jsonObject = new JSONObject(response);
+                                            if (jsonObject.optString("status").equalsIgnoreCase("success")) {
+
+                                                JSONObject msgObject = jsonObject.optJSONObject("message");
+                                                JSONObject shippingObj = msgObject.optJSONObject("shipping");
+                                                prf.setString("pincode", ServiceNames.addressList.getPincode());
+                                                assert shippingObj != null;
+                                                prf.setInt("shipping_cost",Integer.parseInt(shippingObj.optString("shipping_cost")));
+
+                                                ((AddressSelectionFragment) fragment).updateUserProfile();
+
+                                            } else {
+                                                Utils.psLog("pincode not available");
+                                                psDialogMsg.showErrorDialog("This pincode area is not serviceable.", getString(R.string.app__ok));
+                                                psDialogMsg.show();
+                                                number --;
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                psDialogMsg.showErrorDialog("This pincode area is not serviceable.", getString(R.string.app__ok));
+                                psDialogMsg.show();
+                                number --;
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("pincode", ServiceNames.addressList.getPincode());
+                                params.put("shop_id", "shopd8b59013d41510b0b78483e477286803");
+                                return params;
+                            }
+                        };
+                        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                                15000,
+                                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                        stringRequest.setShouldCache(false);
+                        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
 
 
                 } else if (number == 4) {
