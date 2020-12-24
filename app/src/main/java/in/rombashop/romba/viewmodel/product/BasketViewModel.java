@@ -150,11 +150,11 @@ public class BasketViewModel extends PSViewModel {
         tmpDataHolder.basketOriginalPrice = basketOriginalPrice;
         tmpDataHolder.taxPrice = taxPrice;
         tmpDataHolder.basePrice = basePrice;
+        tmpDataHolder.sameDayDelivery = sameDayDelivery;
         tmpDataHolder.shopId = shopId;
         tmpDataHolder.selectedAttributeTotalPrice = selectedAttributeTotalPrice;
         tmpDataHolder.selectedAttributesPrice = priceStr;
         basketSavedStateObj.setValue(tmpDataHolder);
-        tmpDataHolder.sameDayDelivery = sameDayDelivery;
 
     }
 
@@ -204,8 +204,8 @@ public class BasketViewModel extends PSViewModel {
         public String selectedColorId = "";
         public String selectedColorValue ="";
         public float basketPrice = 0;
-        public float basePrice = 0;
         public float taxPrice = 0;
+        public float basePrice = 0;
         public String sameDayDelivery ="";
         private float basketOriginalPrice = 0;
         public Boolean isConnected = false;

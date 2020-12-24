@@ -208,10 +208,10 @@ public class BasketListFragment extends PSFragment implements DataBoundListAdapt
                     if (listResource.size() > 0) {
 
                         for (int i=0; i<listResource.size(); i++){
-                            String a = listResource.get(i).sameDayDelivery;
 
-                            if (a.equalsIgnoreCase("no"))
-                                Utils.psLog("sdd "+ServiceNames.sameDayDeliver+ listResource.get(i).sameDayDelivery);
+                            String a = listResource.get(i).basePrice+listResource.get(i).sameDayDelivery;
+                            Utils.psLog("sdd "+ServiceNames.sameDayDeliver+ a);
+                            if (a.equalsIgnoreCase("no") || a.isEmpty())
                                 ServiceNames.sameDayDeliver = false;
                             }
 

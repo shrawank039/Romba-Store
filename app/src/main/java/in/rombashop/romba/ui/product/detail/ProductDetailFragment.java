@@ -46,6 +46,7 @@ import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.BottomBoxBasketAndBuyBinding;
 import in.rombashop.romba.databinding.FragmentProductDetailBinding;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
 import in.rombashop.romba.ui.product.adapter.ProductHorizontalListAdapter;
@@ -1459,6 +1460,8 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
     }
 
     private void setSaveToBasket() {
+
+        Utils.psLog("basket "+ productAttributeHeaderViewModel.sameDayDelivery);
 
         // convert map to JSON String
         Gson gsonObj = new Gson();

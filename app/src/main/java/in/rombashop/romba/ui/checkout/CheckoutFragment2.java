@@ -518,8 +518,14 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                 ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_tax = Utils.round(((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost * Float.parseFloat(shippingTax), 2);
             }
 
-            ((CheckoutActivity) getActivity()).transactionValueHolder.final_total = Utils.round(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total + ((CheckoutActivity) getActivity()).transactionValueHolder.tax +
-                    ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_tax + ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost, 2);
+            if (((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost > -1) {
+                ((CheckoutActivity) getActivity()).transactionValueHolder.final_total = Utils.round(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total + ((CheckoutActivity) getActivity()).transactionValueHolder.tax +
+                        ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_tax + ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_cost, 2);
+            }else {
+
+                ((CheckoutActivity) getActivity()).transactionValueHolder.final_total = Utils.round(((CheckoutActivity) getActivity()).transactionValueHolder.sub_total + ((CheckoutActivity) getActivity()).transactionValueHolder.tax +
+                        ((CheckoutActivity) getActivity()).transactionValueHolder.shipping_tax + 0, 2);
+            }
             updateUI();
         }
 
