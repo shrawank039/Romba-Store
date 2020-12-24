@@ -31,6 +31,7 @@ public class ProductAttributeHeaderViewModel extends PSViewModel {
     public float originalPrice = 0;
     public float taxPrice = 0;
     public float basePrice = 0;
+    public String sameDayDelivery ="";
 
     public List<String> headerIdList = new ArrayList<>();
 

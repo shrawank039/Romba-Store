@@ -236,9 +236,6 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
                             if ((CheckoutFragment2.this.getActivity()) != null) {
                                 if (!shippingId.isEmpty()) {
 
-//                                    if (ServiceNames.sameDayDeliver && shippingMethod.days.equalsIgnoreCase("1")){
-//                                        Utils.psLog(shippingMethod.days);
-//                                    } else {
                                     if (shippingMethod.id.equals(shippingId) && ((CheckoutActivity) CheckoutFragment2.this.getActivity()).transactionValueHolder.selectedShippingId.isEmpty()) {
                                         if (CheckoutFragment2.this.getActivity() != null) {
                                             if (shopNoShippingEnable.equals(Constants.ONE)) {
@@ -491,7 +488,7 @@ public class CheckoutFragment2 extends PSFragment implements DataBoundListAdapte
         List<ShippingMethod> shippingMethodsList = new ArrayList<>();
 
         for (ShippingMethod shippingMethod : shippingMethods) {
-            if (ServiceNames.sameDayDeliver && shippingMethod.days.equalsIgnoreCase("1")) {
+            if (!ServiceNames.sameDayDeliver && shippingMethod.days.equalsIgnoreCase("1")) {
                 Utils.psLog(shippingMethod.days);
             } else {
                     shippingMethodsList.add(shippingMethod);

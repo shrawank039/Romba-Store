@@ -1292,6 +1292,7 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
         productAttributeHeaderViewModel.price = product.unitPrice;
         productAttributeHeaderViewModel.taxPrice = product.taxPrice;
         productAttributeHeaderViewModel.basePrice = product.basePrice;
+        productAttributeHeaderViewModel.sameDayDelivery = product.sameDayDelivery;
         productAttributeHeaderViewModel.originalPrice = product.originalPrice;
 
 
@@ -1484,7 +1485,8 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
                         "",
                         priceStr,
                         productAttributeHeaderViewModel.taxPrice,
-                        productAttributeHeaderViewModel.basePrice
+                        productAttributeHeaderViewModel.basePrice,
+                        productAttributeHeaderViewModel.sameDayDelivery
                 );
             } else {
                 basketViewModel.setSaveToBasketListObj(
@@ -1500,7 +1502,8 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
                         "",
                         priceStr,
                         productAttributeHeaderViewModel.taxPrice,
-                        productAttributeHeaderViewModel.basePrice
+                        productAttributeHeaderViewModel.basePrice,
+                        productAttributeHeaderViewModel.sameDayDelivery
                 );
             }
 

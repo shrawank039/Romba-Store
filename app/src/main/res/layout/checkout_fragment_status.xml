@@ -435,6 +435,7 @@
 
                         <TextView
                             android:id="@+id/textView15"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -478,6 +479,7 @@
                             app:layout_constraintTop_toTopOf="@+id/textView13" />
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/couponDiscountValueTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -515,7 +517,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="12dp"
                             app:font='@{"normal"}'
-                            android:text="Tax (18%)"
+                            android:text="Tax incl (18%)"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 

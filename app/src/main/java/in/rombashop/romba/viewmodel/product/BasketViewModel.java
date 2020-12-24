@@ -137,7 +137,7 @@ public class BasketViewModel extends PSViewModel {
     //endregion
 
     //save basket
-    public void setSaveToBasketListObj(int id, String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributeTotalPrice, float basketPrice, float basketOriginalPrice, String shopId, String priceStr, float taxPrice, float basePrice) {
+    public void setSaveToBasketListObj(int id, String productId, int count, String selectedAttributes, String selectedColorId, String selectedColorValue, String selectedAttributeTotalPrice, float basketPrice, float basketOriginalPrice, String shopId, String priceStr, float taxPrice, float basePrice, String sameDayDelivery) {
 
         BasketViewModel.TmpDataHolder tmpDataHolder = new BasketViewModel.TmpDataHolder();
         tmpDataHolder.id = id;
@@ -154,6 +154,7 @@ public class BasketViewModel extends PSViewModel {
         tmpDataHolder.selectedAttributeTotalPrice = selectedAttributeTotalPrice;
         tmpDataHolder.selectedAttributesPrice = priceStr;
         basketSavedStateObj.setValue(tmpDataHolder);
+        tmpDataHolder.sameDayDelivery = sameDayDelivery;
 
     }
 
@@ -205,7 +206,7 @@ public class BasketViewModel extends PSViewModel {
         public float basketPrice = 0;
         public float basePrice = 0;
         public float taxPrice = 0;
-        public String sameDayDelivery ="no";
+        public String sameDayDelivery ="";
         private float basketOriginalPrice = 0;
         public Boolean isConnected = false;
         private String selectedAttributeTotalPrice = "";
