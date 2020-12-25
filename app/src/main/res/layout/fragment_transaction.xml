@@ -308,7 +308,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="not available"
+                        android:text="-"
                         android:textIsSelectable="true"
                         android:textColorLink="@color/md_blue_500"
                         android:textColor="@color/md_blue_500"
@@ -789,7 +789,6 @@
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/image_default__image"
                         android:layout_marginStart="16dp"
-                        android:tint="@color/md_grey_800"
                         app:layout_constraintBottom_toBottomOf="@+id/shippingToTextView"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/shippingToTextView"
@@ -800,7 +799,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:tint="@color/md_grey_800"
                         android:contentDescription="@string/image_default__image"
                         app:layout_constraintBottom_toBottomOf="@+id/textView18"
                         app:layout_constraintStart_toStartOf="parent"
@@ -825,7 +823,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/shoppingToCardView" />
 
             <Button
-                android:id="@+id/btn_cancel"
+                android:id="@+id/btnCancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cancel Order"

@@ -11,7 +11,7 @@ public class Config {
      * AppVersion
      * For your app, you need to change according based on your app version
      */
-    public static String APP_VERSION = "1.0.15";
+    public static String APP_VERSION = "1.0.16";
 
     /**
      * APP Setting

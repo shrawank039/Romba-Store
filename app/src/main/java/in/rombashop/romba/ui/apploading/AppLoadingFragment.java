@@ -185,6 +185,7 @@ public class AppLoadingFragment extends PSFragment {
     }
 
     private void checkVersionNumber(PSAppInfo psAppInfo) {
+
         if (!Config.APP_VERSION.equals(psAppInfo.psAppVersion.versionNo)) {
 
             if (psAppInfo.psAppVersion.versionNeedClearData.equals(Constants.ONE)) {

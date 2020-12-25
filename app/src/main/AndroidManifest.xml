@@ -195,6 +195,8 @@
         <activity android:name=".AddressSelectionActivity" />
         <activity android:name=".AddressActivity" />
         <activity android:name=".AddAdress" />
+        <activity android:name=".CancelActivity" />
+        <activity android:name=".ReturnActivity" />
 
         <activity
             android:name=".MainActivity"

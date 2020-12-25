@@ -3,13 +3,17 @@ package in.rombashop.romba.ui.transaction.detail;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 
+import in.rombashop.romba.CancelActivity;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 
@@ -42,6 +46,7 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
     private TransactionOrderViewModel transactionOrderViewModel;
     private String transactionId,transactionIsZoneShipping;
     public PSDialogMsg psDialogMsg;
+    String invoiceValueString, orderId, orderStatus;
 
     @VisibleForTesting
     private AutoClearedValue<FragmentTransactionBinding> binding;
@@ -77,6 +82,20 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
                 }
             }
 
+        });
+
+        binding.get().invoiceUrl.setOnClickListener(view -> {
+            if (!invoiceValueString.isEmpty()) {
+                Uri uri = Uri.parse(invoiceValueString); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        binding.get().btnCancel.setOnClickListener(view -> {
+            getActivity().startActivity(new Intent(getContext(), CancelActivity.class)
+            .putExtra("order_id", orderId)
+            .putExtra("user_id", pref.getString(Constants.USER_ID,"")));
         });
 
     }
@@ -256,6 +275,13 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
 
         binding.get().transactionNumberTextView.setText(transactionObject.transCode);
 
+        orderId = transactionObject.id;
+        Utils.psLog(orderId);
+
+        if (!transactionObject.transStatusTitle.equalsIgnoreCase("Pending")){
+            binding.get().btnCancel.setVisibility(View.GONE);
+        }
+
         if (!transactionObject.totalItemCount.equals(Constants.ZERO)) {
             binding.get().totalItemCountValueTextView.setText(( transactionObject.totalItemCount ));
         }
@@ -279,8 +305,8 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
         }
 
         if (!transactionObject.invoiceUrl.equals(Constants.EMPTY_STRING)) {
-            String invoiceValueString = transactionObject.invoiceUrl;
-            binding.get().invoiceUrl.setText(invoiceValueString);
+            invoiceValueString = transactionObject.invoiceUrl;
+            binding.get().invoiceUrl.setText("- click here to download pdf invoice.");
         }
 
         if (!transactionObject.taxAmount.equals(Constants.ZERO)) {

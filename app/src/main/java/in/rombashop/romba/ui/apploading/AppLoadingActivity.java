@@ -156,9 +156,7 @@ public class AppLoadingActivity extends PSAppCompactActivity {
 
     private void checkVersionNumber(PSAppInfo psAppInfo) {
 
-//        if (!Config.APP_VERSION.equals(psAppInfo.psAppVersion.versionNo)) {
-
-        if (!Config.APP_VERSION.equals("1.0.15")) {
+        if (!Config.APP_VERSION.equals(psAppInfo.psAppVersion.versionNo)) {
 
             if (psAppInfo.psAppVersion.versionNeedClearData.equals(Constants.ONE)) {
                 psDialogMsg.cancel();
