@@ -307,6 +307,8 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
         if (!transactionObject.invoiceUrl.equals(Constants.EMPTY_STRING)) {
             invoiceValueString = transactionObject.invoiceUrl;
             binding.get().invoiceUrl.setText("- click here to download pdf invoice.");
+        } else {
+            binding.get().invoiceUrl.setVisibility(View.GONE);
         }
 
         if (!transactionObject.taxAmount.equals(Constants.ZERO)) {
