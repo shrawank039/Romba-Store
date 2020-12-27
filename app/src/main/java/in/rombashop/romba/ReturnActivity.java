@@ -25,6 +25,8 @@ import java.util.Map;
 
 import in.rombashop.romba.net.MySingleton;
 import in.rombashop.romba.net.PrefManager;
+import in.rombashop.romba.net.ServiceNames;
+import in.rombashop.romba.ui.transaction.list.TransactionListActivity;
 
 public class ReturnActivity extends AppCompatActivity {
 
@@ -39,6 +41,7 @@ public class ReturnActivity extends AppCompatActivity {
     private static final String TAG_USERNAME = "firstname";
     private static final String TAG_EMAIL = "email";
     private static final String TAG_MOBILE = "telephone";
+    String orderId, userId, productId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,9 @@ public class ReturnActivity extends AppCompatActivity {
         setContentView(R.layout.activity_return);
 
         prf = new PrefManager(this);
+        orderId = getIntent().getStringExtra("order_id");
+        userId = getIntent().getStringExtra("user_id");
+        productId = getIntent().getStringExtra("product_id");
         edtMessage = findViewById(R.id.edt_message);
 
     }
@@ -100,8 +106,7 @@ public class ReturnActivity extends AppCompatActivity {
     public void makeReturnReq(View view) {
         if (pactStatus){
             if (returnReason){
-               // submitRequest();
-                Toast.makeText(this, "Currently not available", Toast.LENGTH_LONG).show();
+                submitRequest();
             }else {
                 Toast.makeText(this, "Please select any reason to return", Toast.LENGTH_LONG).show();
             }
@@ -120,44 +125,39 @@ public class ReturnActivity extends AppCompatActivity {
 
         JSONObject data= new JSONObject();
         try {
-            data.put("order_id", "");
-            data.put("product_id", "");
+            data.put("order_id", orderId);
+            data.put("product_id", productId);
             data.put("return_reason", returnReasonId);
             data.put("opened", packetOpened);
             data.put("comment", edtMessage.getText());
-            data.put("user_id", prf.getString("user_id"));
+            data.put("user_id", userId);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, "ServiceNames.RETURN", data,
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, ServiceNames.RETURN, data,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         pDialog.dismiss();
-                        String success = jsonObject.optString("success");
-                        if (success.equals("1")) {
-                            Toast.makeText(ReturnActivity.this, "Submitted Successfully", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }else {
-                            Toast.makeText(ReturnActivity.this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
-                        }
+
+                        Toast.makeText(ReturnActivity.this, "Submitted Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), TransactionListActivity.class));
+                        finish();
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 pDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "error : "+error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReturnActivity.this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("X-Oc-Merchant-Id", prf.getString("s_key"));
-                headers.put("X-Oc-Session", prf.getString("session"));
                 return headers;
             }
         };

@@ -120,18 +120,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/subTotalTextView"
                     tools:text="Shipping Cost" />
 
+
                 <TextView
                     android:id="@+id/shippingCostValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="@dimen/space_16"
                     android:textColor="@color/text__primary"
                     android:textSize="@dimen/font_body_size"
                     app:font='@{"normal"}'
                     tools:text="0.00"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/subTotalValueTextView" />
 
@@ -252,13 +251,30 @@
                     app:layout_constraintStart_toEndOf="@+id/color1BgImageView"
                     app:layout_constraintTop_toBottomOf="@+id/view10" />
 
+                <TextView
+                    android:id="@+id/txt_return"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Return"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_body_size"
+                    app:font='@{"normal"}'
+                    android:textAllCaps="true"
+                    android:padding="7dp"
+                    android:background="@drawable/button_border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shippingCostTextView" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/space_12"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/shippingCostTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_return" />
 
                 <View
                     android:id="@+id/attributesView"

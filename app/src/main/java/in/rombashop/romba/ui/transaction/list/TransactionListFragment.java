@@ -20,6 +20,7 @@ import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 
 import in.rombashop.romba.databinding.FragmentTransactionListBinding;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
 import in.rombashop.romba.ui.transaction.list.adapter.TransactionListAdapter;
@@ -137,6 +138,7 @@ public class TransactionListFragment extends PSFragment implements DataBoundList
             @Override
             public void onClick(TransactionObject transaction) {
                 navigationController.navigateToTransactionDetail(getActivity(), transaction);
+                ServiceNames.order_status = transaction.transStatusTitle;
             }
 
             @Override

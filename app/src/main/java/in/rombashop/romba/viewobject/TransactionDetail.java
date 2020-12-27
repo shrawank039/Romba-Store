@@ -96,7 +96,16 @@ public class TransactionDetail {
     @SerializedName("tax_percent")
     public String taxPercent;
 
-    public TransactionDetail(@NonNull String id, String transactionsHeaderId, String productId, String productName, String productUnit, String productMeasurement, String shippingCost, String productAttributeId, String productAttributeName, float originalPrice, float price, float discountAvailableAmount, String qty, String colorId, float discountValue, float discountPercent, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String currencySymbol, String currencyShortForm, String addedDateStr, String updatedDateStr, String productColorId, String productColorCode, String taxAmount, String taxPercent) {
+    @SerializedName("default_image")
+    public String imageDefault;
+
+    @SerializedName("return_status")
+    public String returnStatus;
+
+    @SerializedName("return_policy_title")
+    public String returnTitle;
+
+    public TransactionDetail(@NonNull String id, String transactionsHeaderId, String productId, String productName, String productUnit, String productMeasurement, String shippingCost, String productAttributeId, String productAttributeName, float originalPrice, float price, float discountAvailableAmount, String qty, String colorId, float discountValue, float discountPercent, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String currencySymbol, String currencyShortForm, String addedDateStr, String updatedDateStr, String productColorId, String productColorCode, String taxAmount, String taxPercent, String imageDefault, String returnStatus, String returnTitle) {
         this.id = id;
         this.transactionsHeaderId = transactionsHeaderId;
         this.productId = productId;
@@ -126,5 +135,8 @@ public class TransactionDetail {
         this.productColorCode = productColorCode;
         this.taxAmount = taxAmount;
         this.taxPercent = taxPercent;
+        this.imageDefault = imageDefault;
+        this.returnStatus = returnStatus;
+        this.returnTitle = returnTitle;
     }
 }

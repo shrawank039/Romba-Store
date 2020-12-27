@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
@@ -10,8 +9,8 @@ android {
         applicationId "in.rombashop.romba"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 8
-        versionName "1.0.16"
+        versionCode 11
+        versionName "1.0.17"
         multiDexEnabled true
     }
 
@@ -72,7 +71,7 @@ dependencies {
 
     // Firebase
     implementation "com.google.firebase:firebase-core:18.0.0"
-    implementation "com.google.firebase:firebase-messaging:21.0.0"
+    implementation "com.google.firebase:firebase-messaging:21.0.1"
 
     // Dagger 2
     implementation "com.google.dagger:dagger:2.27"
@@ -81,8 +80,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:2.16"
 
     // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:2.4.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    implementation "com.squareup.retrofit2:retrofit:2.6.2"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.2"
 
     // Lifecycle Arch
     implementation "androidx.lifecycle:lifecycle-runtime:2.2.0"

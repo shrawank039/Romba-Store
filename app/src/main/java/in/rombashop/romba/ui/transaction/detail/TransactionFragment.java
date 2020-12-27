@@ -18,6 +18,7 @@ import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 
 import in.rombashop.romba.databinding.FragmentTransactionBinding;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
 import in.rombashop.romba.ui.transaction.detail.adapter.TransactionAdapter;
@@ -57,6 +58,7 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
                              Bundle savedInstanceState) {
         FragmentTransactionBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_transaction, container, false, dataBindingComponent);
 
+        ServiceNames.user_id = pref.getString(Constants.USER_ID,"");
         binding = new AutoClearedValue<>(this, dataBinding);
         return binding.get().getRoot();
     }
@@ -285,6 +287,8 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
         if (!transactionObject.totalItemCount.equals(Constants.ZERO)) {
             binding.get().totalItemCountValueTextView.setText(( transactionObject.totalItemCount ));
         }
+
+        binding.get().date.setText(transactionObject.addedDate);
 
         if (!transactionObject.totalItemAmount.equals(Constants.ZERO)) {
 

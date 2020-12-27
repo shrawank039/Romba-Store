@@ -174,7 +174,16 @@ public class TransactionObject {
     @SerializedName("trans_status_title")
     public String transStatusTitle;
 
-    public TransactionObject(@NonNull String id, String userId, String invoiceUrl, String subTotalAmount, String discountAmount, String couponDiscountAmount, String taxAmount, String taxPercent, String shippingAmount, String shippingTaxPercent, String shippingMethodAmount, String shippingMethodName, String balanceAmount, String totalItemAmount, String totalItemCount, String contactName, String contactPhone, String paymentMethod, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String transStatusId, String currencySymbol, String currencyShortForm, String transCode, String billingFirstName, String billingLastName, String billingCompany, String billingAddress1, String billingAddress2, String billingCountry, String billingState, String billingCity, String billingPostalCode, String billingEmail, String billingPhone, String shippingFirstName, String shippingLastName, String shippingCompany, String shippingAddress1, String shippingAddress2, String shippingCountry, String shippingState, String shippingCity, String shippingPostalCode, String shippingEmail, String shippingPhone, String productUnit, String productMeasurement, String memo, String isZoneShipping, String addedDateStr, String transStatusTitle) {
+    @SerializedName("default_image")
+    public String imageDefault;
+
+    @SerializedName("return_policy_title")
+    public String returnPolicyTitle;
+
+    @SerializedName("return_status")
+    public String returnStatus;
+
+    public TransactionObject(@NonNull String id, String userId, String invoiceUrl, String subTotalAmount, String discountAmount, String couponDiscountAmount, String taxAmount, String taxPercent, String shippingAmount, String shippingTaxPercent, String shippingMethodAmount, String shippingMethodName, String balanceAmount, String totalItemAmount, String totalItemCount, String contactName, String contactPhone, String paymentMethod, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String transStatusId, String currencySymbol, String currencyShortForm, String transCode, String billingFirstName, String billingLastName, String billingCompany, String billingAddress1, String billingAddress2, String billingCountry, String billingState, String billingCity, String billingPostalCode, String billingEmail, String billingPhone, String shippingFirstName, String shippingLastName, String shippingCompany, String shippingAddress1, String shippingAddress2, String shippingCountry, String shippingState, String shippingCity, String shippingPostalCode, String shippingEmail, String shippingPhone, String productUnit, String productMeasurement, String memo, String isZoneShipping, String addedDateStr, String transStatusTitle, String imageDefault, String returnPolicyTitle, String returnStatus) {
         this.id = id;
         this.userId = userId;
         this.invoiceUrl = invoiceUrl;
@@ -230,6 +239,9 @@ public class TransactionObject {
         this.isZoneShipping = isZoneShipping;
         this.addedDateStr = addedDateStr;
         this.transStatusTitle = transStatusTitle;
+        this.imageDefault = imageDefault;
+        this.returnPolicyTitle = returnPolicyTitle;
+        this.returnStatus = returnStatus;
     }
 }
 

@@ -44,7 +44,8 @@ public class ServiceNames {
 
     public static AddressList addressList;
     public static boolean sameDayDeliver = true;
-    public static String pincodeSelected = "";
+    public static String user_id;
+    public static String order_status = "Pending";
 
     // http://adminarea8199.rombashop.in/uploads/51nsuV9Kh7L._SL1500_.jpg
 }

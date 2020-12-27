@@ -1,5 +1,7 @@
 package in.rombashop.romba.ui.transaction.detail.adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,9 +11,17 @@ import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
+import in.rombashop.romba.ReturnActivity;
 import in.rombashop.romba.databinding.ItemTransactionAdapterBinding;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.NavigationController;
 import in.rombashop.romba.utils.Constants;
@@ -76,6 +86,44 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
 
         }
 
+        int days=0;
+        int daysdiff = 0;
+        if (!item.returnTitle.isEmpty()) {
+            days = Integer.parseInt(item.returnTitle.replaceAll("[\\D]", ""));
+        }
+
+
+
+       SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date6=formatter6.parse(item.addedDate);
+            Date date = new Timestamp(System.currentTimeMillis());
+            assert date6 != null;
+            long diff = date.getTime() - date6.getTime();
+            long aa = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            daysdiff = (int) aa;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (!ServiceNames.order_status.equalsIgnoreCase("Pending")){
+            int isReturnValid = days - daysdiff;
+            Utils.psLog("date : " + isReturnValid);
+            if (isReturnValid>0){
+                binding.txtReturn.setVisibility(View.VISIBLE);
+            }
+
+            if (item.returnStatus.equalsIgnoreCase("yes")){
+                binding.txtReturn.setText("Returned");
+            }
+        }
+
+
+        binding.txtReturn.setOnClickListener(view -> view.getContext().startActivity(new Intent(view.getContext(), ReturnActivity.class)
+                .putExtra("order_id", item.id)
+                .putExtra("product_id", item.productId)
+                .putExtra("user_id", ServiceNames.user_id)));
+
         if (item.productAttributeName.equals("")) {
             binding.attributesTextView.setVisibility(View.GONE);
         } else {
@@ -94,7 +142,7 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
         if (item.taxAmount != null) {
             if (transactionIsZoneShipping.equals(Constants.ONE)) {
                 binding.shippingCostTextView.setVisibility(View.VISIBLE);
-                String a = item.currencySymbol + " " +item.taxAmount;
+                String a = item.currencySymbol + " " + item.taxAmount;
                 if (item.shippingCost.equals("")) {
                     binding.shippingCostValueText.setText(a);
                 } else {
@@ -134,11 +182,11 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
         if (item.originalPrice != 0 && item.discountAvailableAmount != 0) {
             int originalPrice = (int) item.originalPrice - (int) item.discountAvailableAmount;
             String balanceString = item.currencySymbol + " " + originalPrice;
-            binding.balanceValueTextView.setText(item.taxPercent+"%");
+            binding.balanceValueTextView.setText(item.taxPercent + "%");
             subTotal = originalPrice * qty;
         } else {
             String balanceString = item.currencySymbol + " " + Utils.format(item.originalPrice);
-            binding.balanceValueTextView.setText(item.taxPercent+"%");
+            binding.balanceValueTextView.setText(item.taxPercent + "%");
 
             subTotal = item.originalPrice * qty;
         }
