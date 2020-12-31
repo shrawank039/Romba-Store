@@ -127,7 +127,7 @@ public class AddressSelectionFragment extends PSFragment {
     void updateUserProfile() {
         String user_name;
         if (userViewModel.user.userName.isEmpty())
-            user_name = "username";
+            user_name = "user";
         else
             user_name = userViewModel.user.userName;
       //  checkUserShippingEmailAndBillingEmail();

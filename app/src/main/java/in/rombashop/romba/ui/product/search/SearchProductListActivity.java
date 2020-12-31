@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.ActivityProductListBinding;
+import in.rombashop.romba.databinding.ActivitySearchProductListBinding;
 import in.rombashop.romba.ui.common.PSAppCompactActivity;
 import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.MyContextWrapper;
@@ -22,7 +23,7 @@ public class SearchProductListActivity extends PSAppCompactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityProductListBinding activityFilteringBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_list);
+        ActivitySearchProductListBinding activityFilteringBinding = DataBindingUtil.setContentView(this, R.layout.activity_search_product_list);
 
         initUI(activityFilteringBinding);
 
@@ -47,14 +48,14 @@ public class SearchProductListActivity extends PSAppCompactActivity {
         }
     }
 
-    private void initUI(ActivityProductListBinding binding) {
+    private void initUI(ActivitySearchProductListBinding binding) {
 
         String title = getIntent().getStringExtra(Constants.SHOP_TITLE);
 
         if (title != null) {
             initToolbar(binding.toolbar, title);
         } else {
-            initToolbar(binding.toolbar, getString(R.string.product_list_title));
+            initToolbar(binding.toolbar, getString(R.string.search_list_title));
         }
 
         setupFragment(new SearchProductListFragment());

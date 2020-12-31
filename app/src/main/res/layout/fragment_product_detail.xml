@@ -646,15 +646,11 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:visibility="gone"
                         android:id="@+id/forthCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:layout_marginEnd="@dimen/space_8"
                         android:clipToPadding="false"
                         app:cardCornerRadius="@dimen/space_4"
-                        app:cardUseCompatPadding="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -665,6 +661,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:visibility="gone"
                                 android:id="@+id/textview51"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -692,6 +689,7 @@
                                 tools:ignore="MissingConstraints" />
 
                             <ImageView
+                                android:visibility="gone"
                                 android:id="@+id/strictUpDownImageView"
                                 android:layout_width="50dp"
                                 android:layout_height="36dp"
@@ -706,6 +704,7 @@
                                 tools:ignore="MissingConstraints" />
 
                             <Button
+                                android:visibility="gone"
                                 android:id="@+id/seeAllFactButton"
                                 style="@style/PSButton.Default.Borderless"
                                 android:layout_width="0dp"
@@ -756,6 +755,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:visibility="gone"
                         android:id="@+id/fifthCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -797,6 +797,7 @@
                                 app:layout_constraintTop_toBottomOf="@id/textview54"
                                 tools:ignore="MissingConstraints" />
 
+
                             <ImageView
                                 android:id="@+id/seeMoreImageView"
                                 android:layout_width="50dp"
@@ -808,9 +809,9 @@
                                 app:layout_constraintBottom_toBottomOf="@+id/textview54"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/textview54"
+                                app:layout_constraintVertical_bias="1.0"
                                 app:srcCompat="@drawable/baseline_down_arrow_black_24"
                                 tools:ignore="MissingConstraints" />
-
 
                             <Button
                                 android:id="@+id/seeCommentButton"

@@ -1063,6 +1063,14 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
             binding.get().productMinOrderValueTextView.setText(product.minimumOrder);
         }
 
+        if (product.returnPolicyTitle.isEmpty() || product.returnPolicyTitle == null){
+            binding.get().forthCardView.setVisibility(View.GONE);
+        } else {
+            binding.get().refundPolicyButton.setText(product.returnPolicyTitle);
+            ServiceNames.returnDesc = product.returnPolicyDesc;
+            ServiceNames.returnTitle = product.returnPolicyTitle;
+        }
+
         if (product.productUnit == null || product.productUnit.equals("0") || product.productUnit.isEmpty()) {
             binding.get().productUnitValueTextView.setVisibility(View.GONE);
             binding.get().productUnitTextView.setVisibility(View.GONE);

@@ -106,7 +106,7 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
             e.printStackTrace();
         }
 
-        if (!ServiceNames.order_status.equalsIgnoreCase("Pending")){
+        if (ServiceNames.order_status.equalsIgnoreCase("Delivered")){
             int isReturnValid = days - daysdiff;
             Utils.psLog("date : " + isReturnValid);
             if (isReturnValid>0){
@@ -114,7 +114,7 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
             }
 
             if (item.returnStatus.equalsIgnoreCase("yes")){
-                binding.txtReturn.setText("Returned");
+                binding.txtReturn.setText("Returned Successful");
             }
         }
 

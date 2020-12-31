@@ -140,7 +140,7 @@ public class CheckoutStatusFragment extends PSFragment implements DataBoundListA
         if (this.getActivity() != null) {
 
             User user = ((CheckoutActivity) this.getActivity()).getCurrentUser();
-            String text = getString(R.string.checkout_status__thank_you) + Constants.SPACE_STRING + user.userName;
+            String text = getString(R.string.checkout_status__thank_you); // + Constants.SPACE_STRING + user.userName;
 
             binding.get().nameTitleTextView.setText(text);
 

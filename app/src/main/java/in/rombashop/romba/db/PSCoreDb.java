@@ -96,7 +96,7 @@ import androidx.room.TypeConverters;
         Country.class,
         City.class
 
-}, version = 7, exportSchema = false)
+}, version = 8, exportSchema = false)
 //V2.4 = DBV 7
 //V2.3 = DBV 7
 //V2.2 = DBV 7

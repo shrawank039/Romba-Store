@@ -341,9 +341,27 @@ public class MainActivity extends PSAppCompactActivity {
 
                 case R.id.search_menu:
 
-                    navigationController.navigateToSearch(this);
-                    setToolbarText(binding.toolbar, getString(R.string.menu__search));
-                    ll_search.setVisibility(View.GONE);
+                    // Get Name
+                    homeSearchProductViewModel.holder.search_term = "";
+
+                    // Get Price
+                    homeSearchProductViewModel.holder.min_price = "";
+                    homeSearchProductViewModel.holder.max_price = "";
+
+                    homeSearchProductViewModel.holder.overall_rating = "";
+
+                    // Get Feature Switch Data
+                    homeSearchProductViewModel.holder.isFeatured = "";
+
+                    // Get Discount Switch Data
+                    homeSearchProductViewModel.holder.isDiscount = "";
+
+
+                    navigationController.navigateToProductSearchActivity(this, homeSearchProductViewModel.holder, null);
+
+//                    navigationController.navigateToSearch(this);
+//                    setToolbarText(binding.toolbar, getString(R.string.menu__search));
+//                    ll_search.setVisibility(View.GONE);
                     break;
 
                 default:

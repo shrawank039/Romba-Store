@@ -14,6 +14,7 @@ import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.FragmentTermsAndConditionsBinding;
+import in.rombashop.romba.net.ServiceNames;
 import in.rombashop.romba.ui.common.PSFragment;
 import in.rombashop.romba.utils.AutoClearedValue;
 import in.rombashop.romba.utils.Constants;
@@ -147,7 +148,7 @@ public class TermsAndConditionsFragment extends PSFragment {
         if (shopViewModel.flag.equals(Constants.SHOP_TERMS)) {
             binding.get().termsAndConditionTextView.setText(shop.terms);
         } else {
-            binding.get().termsAndConditionTextView.setText(shop.refundPolicy);
+            binding.get().termsAndConditionTextView.setText(ServiceNames.returnDesc);
         }
 
     }

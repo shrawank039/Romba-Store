@@ -2,6 +2,8 @@ package in.rombashop.romba.ui.product.search;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +18,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -28,10 +31,10 @@ import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.BottomBoxLayoutBinding;
-import in.rombashop.romba.databinding.FragmentProductListBinding;
+import in.rombashop.romba.databinding.FragmentSearchProductListBinding;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
-import in.rombashop.romba.ui.product.adapter.ProductVerticalListAdapter;
+import in.rombashop.romba.ui.product.adapter.ProductSearchListAdapter;
 import in.rombashop.romba.utils.AutoClearedValue;
 import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.PSDialogMsg;
@@ -61,8 +64,8 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
     private PSDialogMsg psDialogMsg;
 
     @VisibleForTesting
-    private AutoClearedValue<FragmentProductListBinding> binding;
-    private AutoClearedValue<ProductVerticalListAdapter> adapter;
+    private AutoClearedValue<FragmentSearchProductListBinding> binding;
+    private AutoClearedValue<ProductSearchListAdapter> adapter;
     private AutoClearedValue<BottomBoxLayoutBinding> bottomBoxLayoutBinding;
     private AutoClearedValue<BottomSheetDialog> mBottomSheetDialog;
     private AutoClearedValue<MenuItem> basketMenuItem;
@@ -74,7 +77,7 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
 
 
         // Inflate the layout for this fragment
-        FragmentProductListBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_list, container, false, dataBindingComponent);
+        FragmentSearchProductListBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_product_list, container, false, dataBindingComponent);
 
         binding = new AutoClearedValue<>(this, dataBinding);
         setHasOptionsMenu(true);
@@ -187,6 +190,35 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
 
         binding.get().typeButton.setOnClickListener(this::ButtonClick);
 
+        binding.get().inputSearch.setOnClickListener(this::ButtonClick);
+
+        binding.get().backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+
+        binding.get().inputSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                searchProduct(String.valueOf(cs));
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
         binding.get().tuneButton.setOnClickListener(this::ButtonClick);
 
         binding.get().sortButton.setOnClickListener(this::ButtonClick);
@@ -194,7 +226,7 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
         binding.get().newsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                GridLayoutManager layoutManager = (GridLayoutManager)
+                LinearLayoutManager layoutManager = (LinearLayoutManager)
                         recyclerView.getLayoutManager();
 
                 if (layoutManager != null) {
@@ -247,7 +279,7 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
     @Override
     protected void initAdapters() {
 
-        ProductVerticalListAdapter nvAdapter = new ProductVerticalListAdapter(dataBindingComponent, new ProductVerticalListAdapter.NewsClickCallback() {
+        ProductSearchListAdapter nvAdapter = new ProductSearchListAdapter(dataBindingComponent, new ProductSearchListAdapter.NewsClickCallback() {
             @Override
             public void onClick(Product product) {
                 navigationController.navigateToDetailActivity(SearchProductListFragment.this.getActivity(), product);
@@ -357,7 +389,7 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
 
     private void initProductData() {
 
-        loadProductList();
+      //  loadProductList();
 
         LiveData<Resource<List<Product>>> news = homeSearchProductViewModel.getGetProductListByKeyData();
 
@@ -655,7 +687,7 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
         if (homeSearchProductViewModel.loadingDirection == Utils.LoadingDirection.top) {
 
             if (binding.get() != null) {
-                GridLayoutManager layoutManager = (GridLayoutManager)
+                LinearLayoutManager layoutManager = (LinearLayoutManager)
                         binding.get().newsList.getLayoutManager();
 
                 if (layoutManager != null) {
@@ -717,6 +749,23 @@ public class SearchProductListFragment extends PSFragment implements DataBoundLi
                 likeButton.setLikeDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.heart_on, null));
             }
         });
+    }
+
+    private void searchProduct(String key){
+        homeSearchProductViewModel.holder.search_term =key;
+
+        filterClicked = !homeSearchProductViewModel.holder.search_term.equals(Constants.FILTERING_INACTIVE) ||
+                !homeSearchProductViewModel.holder.min_price.equals(Constants.FILTERING_INACTIVE) ||
+                !homeSearchProductViewModel.holder.max_price.equals(Constants.FILTERING_INACTIVE) ||
+                !homeSearchProductViewModel.holder.isFeatured.equals(Constants.FILTERING_INACTIVE) ||
+                !homeSearchProductViewModel.holder.isDiscount.equals(Constants.FILTERING_INACTIVE) ||
+                !homeSearchProductViewModel.holder.overall_rating.equals(Constants.FILTERING_INACTIVE);
+
+        tuneButtonClicked(filterClicked);
+
+        replaceData(clearRecyclerView);
+
+        loadProductList();
     }
 
     @Override

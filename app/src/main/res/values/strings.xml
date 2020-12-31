@@ -591,6 +591,8 @@
     <!--product list-->
     <string name="product_list_title">Product List</string>
 
+    <string name="search_list_title">Product Search</string>
+
     <!--force update-->
     <string name="force_update_true">Update is available</string>
     <string name="force_update__button_update"> Update </string>
