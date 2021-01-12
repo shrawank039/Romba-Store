@@ -16,8 +16,8 @@ import javax.inject.Inject;
 
 /**
  * Parent Class of All Repository Class in this project
- * Created by Panacea-Soft on 12/5/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/5/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 public abstract class PSRepository {
@@ -39,9 +39,9 @@ public abstract class PSRepository {
 
     /**
      * Constructor of PSRepository
-     * @param psApiService Panacea-Soft API Service Instance
+     * @param psApiService matrixdeveloper API Service Instance
      * @param appExecutors Executors Instance
-     * @param db Panacea-Soft DB
+     * @param db matrixdeveloper DB
      */
     protected PSRepository(PSApiService psApiService, AppExecutors appExecutors, PSCoreDb db) {
         Utils.psLog("Inside NewsRepository");

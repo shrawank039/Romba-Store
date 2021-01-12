@@ -8,8 +8,8 @@ import in.rombashop.romba.repository.common.PSRepository;
 import in.rombashop.romba.viewobject.common.Resource;
 
 /**
- * Created by Panacea-Soft on 12/5/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/5/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 public class BackgroundTaskHandler implements Observer<Resource<Boolean>> {

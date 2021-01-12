@@ -14,9 +14,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 /**
- * Created by Panacea-Soft on 6/2/18.
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper on 6/2/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 
 public class ContactUsViewModel extends PSViewModel {

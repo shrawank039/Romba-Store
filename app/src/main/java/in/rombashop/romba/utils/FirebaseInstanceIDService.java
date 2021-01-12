@@ -3,8 +3,8 @@ package in.rombashop.romba.utils;
 import android.content.Intent;
 
 /**
- * Created by Panacea-Soft on 8/11/16.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 8/11/16.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 public class FirebaseInstanceIDService extends FirebaseMessagingService {
 

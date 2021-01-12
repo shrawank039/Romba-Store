@@ -63,10 +63,10 @@ import in.rombashop.romba.viewobject.common.Resource;
 import in.rombashop.romba.viewobject.holder.ProductParameterHolder;
 
 /**
- * MainActivity of Panacea-Soft
- * Contact Email : teamps.is.cool@gmail.com
+ * MainActivity of matrixdeveloper
+ * Contact Email : matrixdeveloper.business@gmail.com
  *
- * @author Panacea-soft
+ * @author matrixdeveloper
  * @version 1.0
  * @since 11/15/17.
  */

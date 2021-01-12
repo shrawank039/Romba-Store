@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by Panacea-Soft on 7/15/15.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 7/15/15.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 public class ExtendedViewPager extends ViewPager {

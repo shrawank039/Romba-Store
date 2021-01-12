@@ -17,9 +17,9 @@ import androidx.lifecycle.MutableLiveData;
 import retrofit2.Response;
 
 /**
- * Created by Panacea-Soft on 7/2/18.
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper on 7/2/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 
 public class ContactUsRepository extends PSRepository {

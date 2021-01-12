@@ -7,8 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**
- * Created by Panacea-Soft on 6/13/18.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 6/13/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 
@@ -24,7 +24,7 @@ public class ViewAnimationUtils {
             targetHeight = v.getMeasuredHeight();
         }
 
-        Log.d("TEAMPS", "expand: " + targetHeight);
+        Log.d("MATRIXDEV", "expand: " + targetHeight);
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
@@ -43,7 +43,7 @@ public class ViewAnimationUtils {
             }
         };
 
-        Log.d("TEAMPS", "expand: " + v.getContext().getResources().getDisplayMetrics().density);
+        Log.d("MATRIXDEV", "expand: " + v.getContext().getResources().getDisplayMetrics().density);
         a.setDuration((int) (targetHeight / v.getContext().getResources().getDisplayMetrics().density));
         v.startAnimation(a);
     }
@@ -68,7 +68,7 @@ public class ViewAnimationUtils {
             }
         };
 
-        Log.d("TEAMPS", "collapse: " + (initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        Log.d("MATRIXDEV", "collapse: " + (initialHeight / v.getContext().getResources().getDisplayMetrics().density));
         // 1dp/ms
         a.setDuration((int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density));
         v.startAnimation(a);

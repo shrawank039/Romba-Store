@@ -160,8 +160,6 @@
         tools:replace="android:label"
         tools:targetApi="m">
 
-        <activity android:name=".MainActivity2"></activity>
-
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />

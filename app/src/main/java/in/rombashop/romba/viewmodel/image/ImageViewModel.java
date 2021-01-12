@@ -15,8 +15,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 /**
- * Created by Panacea-Soft on 12/8/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/8/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

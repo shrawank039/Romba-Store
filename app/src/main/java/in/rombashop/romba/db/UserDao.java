@@ -13,8 +13,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 /**
- * Created by Panacea-Soft on 12/6/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/6/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 @Dao

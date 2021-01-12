@@ -37,9 +37,9 @@ import in.rombashop.romba.viewobject.Basket;
 import in.rombashop.romba.viewobject.common.Status;
 
 /**
- * Created by Panacea-Soft
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 public class BasketListFragment extends PSFragment implements DataBoundListAdapter.DiffUtilDispatchedInterface {
 

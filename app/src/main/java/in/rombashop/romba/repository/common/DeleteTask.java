@@ -11,8 +11,8 @@ import in.rombashop.romba.viewobject.common.Resource;
 
 /**
  * General Delete Task Sample
- * Created by Panacea-Soft on 12/14/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/14/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 public class DeleteTask implements Runnable {
 

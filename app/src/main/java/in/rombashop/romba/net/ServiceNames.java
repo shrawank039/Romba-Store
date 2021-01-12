@@ -17,7 +17,7 @@ public class ServiceNames {
     public static final String USER_REGISTRATION = API +"users/add";
     public static final String USER_LOGIN = API +"users/login";
     public static final String CANCEL = API +"transactionheaders/cancelorder";
-    public static final String RETURN = API +"transactionheaders/return";
+    public static final String RETURN = API +"transactionheaders/returnorder";
     public static final String FAVORITE = API +"products/get_favourite/api_key/teampsisthebest/limit/0/offset/0/login_user_id/";
     public static final String ADD_FAVORITE = API +"products/get/api_key/teampsisthebest/id/prd00fbd886d946e00c7a792b98aa834df6/shop_id/shopd8b59013d41510b0b78483e477286803/login_user_id/c4ca4238a0b923820dcc509a6f75849b";
     public static final String SUB_CATEGORY_PRODUCTS = API +"products/get?sub_cat_id=";

@@ -20,8 +20,8 @@ import in.rombashop.romba.R;
 import static com.bumptech.glide.load.DecodeFormat.PREFER_ARGB_8888;
 
 /**
- * Created by Panacea-Soft on 4/2/19.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 4/2/19.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

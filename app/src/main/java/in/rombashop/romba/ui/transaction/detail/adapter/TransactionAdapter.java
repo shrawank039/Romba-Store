@@ -119,10 +119,13 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
         }
 
 
-        binding.txtReturn.setOnClickListener(view -> view.getContext().startActivity(new Intent(view.getContext(), ReturnActivity.class)
-                .putExtra("order_id", item.id)
-                .putExtra("product_id", item.productId)
-                .putExtra("user_id", ServiceNames.user_id)));
+        binding.txtReturn.setOnClickListener(view ->
+
+                view.getContext().startActivity(new Intent(view.getContext(), ReturnActivity.class)
+                .putExtra("order_id", item.transactionsHeaderId)
+                .putExtra("product_id", item.id)
+                .putExtra("user_id", ServiceNames.user_id))
+        );
 
         if (item.productAttributeName.equals("")) {
             binding.attributesTextView.setVisibility(View.GONE);

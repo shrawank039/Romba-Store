@@ -1,9 +1,9 @@
 package in.rombashop.romba.utils;
 
 /**
- * Created by Panacea-Soft on 3/4/18.
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper on 3/4/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 
 import android.content.Context;
@@ -38,12 +38,12 @@ import in.rombashop.romba.R;
  * @param <T>
  * The Number type of the range values. One of Long, Double, Integer, Float, Short, Byte or BigDecimal.
  * <p>
- * Panacea-Soft on 10/17/15.
- * Contact Email : teamps.is.cool@gmail.com
+ * matrixdeveloper on 10/17/15.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 /**
- * Panacea-Soft on 10/17/15.
- * Contact Email : teamps.is.cool@gmail.com
+ * matrixdeveloper on 10/17/15.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

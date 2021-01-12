@@ -42,8 +42,8 @@ import javax.inject.Singleton;
 import retrofit2.Response;
 
 /**
- * Created by Panacea-Soft on 9/18/18.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 9/18/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

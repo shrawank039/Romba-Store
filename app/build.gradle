@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 30
@@ -9,15 +9,19 @@ android {
         applicationId "in.rombashop.romba"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 11
-        versionName "1.0.17"
+        versionCode 22
+        versionName "1.0.19"
         multiDexEnabled true
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -34,8 +38,7 @@ android {
 dependencies {
 
     implementation 'androidx.multidex:multidex:2.0.1'
-
-
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.navigation:navigation-fragment:2.3.2'
@@ -53,6 +56,8 @@ dependencies {
     implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
 
     implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
     // Google Support Lib
     implementation "androidx.cardview:cardview:1.0.0"

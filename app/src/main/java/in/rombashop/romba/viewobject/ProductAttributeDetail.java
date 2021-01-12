@@ -49,6 +49,9 @@ public class ProductAttributeDetail {
     @Ignore
     public String additionalPriceWithCurrency = "";
 
+    @Ignore
+    public boolean isColorSelect = false;
+
     public ProductAttributeDetail(@NonNull String id, String shopId, String headerId, String productId, String name, String additionalPrice, String addedDate, String addedUserId, String updatedDate, String updatedUserId, String updatedFlag, String isEmptyObject) {
         this.id = id;
         this.shopId = shopId;

@@ -16,9 +16,9 @@ import in.rombashop.romba.utils.MyContextWrapper;
 import androidx.databinding.DataBindingUtil;
 
 /**
- * Created by Panacea-Soft
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 public class CommentDetailActivity extends PSAppCompactActivity {
 

@@ -33,10 +33,11 @@
 
                 <ImageView
                     android:id="@+id/historyIconImageView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="5dp"
                     android:contentDescription="@string/image_default__image"
+                    app:imageUrl="@{transactionDetail.imageDefault}"
                     app:layout_constraintBottom_toBottomOf="@+id/transactionOrderProductNameTextView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/transactionOrderProductNameTextView"
@@ -46,14 +47,16 @@
                     android:id="@+id/transactionOrderProductNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@{transactionDetail.productName}"
                     android:textColor="@color/text__primary_dark"
                     android:textSize="@dimen/font_body_size"
                     app:font='@{"normal"}'
                     app:layout_constraintStart_toEndOf="@+id/historyIconImageView"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <View
                     android:id="@+id/view10"

@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ import java.util.concurrent.TimeUnit;
 import in.rombashop.romba.Config;
 import in.rombashop.romba.MainActivity;
 import in.rombashop.romba.R;
+import in.rombashop.romba.helper.GenericTextWatcher;
 import in.rombashop.romba.net.MySingleton;
 import in.rombashop.romba.net.PrefManager;
 import in.rombashop.romba.net.ServiceNames;
@@ -115,6 +117,10 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
     private UserViewModel userViewModel;
     private PSDialogMsg psDialogMsg;
 
+    EditText otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six;
+    LinearLayout root_otp_layout;
+    String code="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +129,25 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
         prf = new PrefManager(this);
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
         phoneed = (TextInputEditText) this.findViewById(R.id.numbered);
+
+        otp_textbox_one = findViewById(R.id.otp_edit_box1);
+        otp_textbox_two = findViewById(R.id.otp_edit_box2);
+        otp_textbox_three = findViewById(R.id.otp_edit_box3);
+        otp_textbox_four = findViewById(R.id.otp_edit_box4);
+        otp_textbox_five = findViewById(R.id.otp_edit_box5);
+        otp_textbox_six = findViewById(R.id.otp_edit_box6);
+        root_otp_layout = findViewById(R.id.root_otp_layout);
+
+
+        EditText[] edit = {otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six};
+
+        otp_textbox_one.addTextChangedListener(new GenericTextWatcher(otp_textbox_one, edit));
+        otp_textbox_two.addTextChangedListener(new GenericTextWatcher(otp_textbox_two, edit));
+        otp_textbox_three.addTextChangedListener(new GenericTextWatcher(otp_textbox_three, edit));
+        otp_textbox_four.addTextChangedListener(new GenericTextWatcher(otp_textbox_four, edit));
+        otp_textbox_five.addTextChangedListener(new GenericTextWatcher(otp_textbox_five, edit));
+        otp_textbox_six.addTextChangedListener(new GenericTextWatcher(otp_textbox_six, edit));
+
 
         codeed = (TextInputEditText) this.findViewById(R.id.verificationed);
         fabbutton = (FloatingActionButton) findViewById(R.id.sendverifybt);
@@ -137,6 +162,8 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
         newPass = (TextInputEditText) findViewById(R.id.newpass);
         retypeNewPass = (TextInputEditText) findViewById(R.id.retypeNewPass);
         resetPassButton = (Button) findViewById(R.id.changePassBtn);
+
+
 
         psDialogMsg = new PSDialogMsg(this, false);
 
@@ -216,18 +243,18 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
         fabbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          //      Toast.makeText(MobileVerifyActivity.this, fabbutton.getTag().toString(), Toast.LENGTH_SHORT).show();
                 if (fabbutton.getTag().equals("send")) {
                     if (!phoneed.getText().toString().trim().isEmpty() && phoneed.getText().toString().trim().length() >= 10) {
-                      //  Toast.makeText(MobileVerifyActivity.this, ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim(), Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(MobileVerifyActivity.this, ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim(), Toast.LENGTH_SHORT).show();
                         startPhoneNumberVerification(ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim());
                         mVerified = false;
                         starttimer();
                         codeed.setVisibility(View.VISIBLE);
+                        root_otp_layout.setVisibility(View.VISIBLE);
                         fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
                         fabbutton.setTag("verify");
 
-                      //  checkNumber();
+                        //  checkNumber();
                     }
                     else {
                         phoneed.setError("Please enter valid mobile number");
@@ -244,19 +271,20 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                 }
 
                 if (fabbutton.getTag().equals("verify")) {
-                    if (!Objects.requireNonNull(codeed.getText()).toString().trim().isEmpty() && !mVerified) {
+                    code = edit[0].getText().toString()+edit[1].getText().toString()+edit[2].getText().toString()+edit[3].getText().toString()+edit[4].getText().toString()+edit[5].getText().toString();
+                   // Toast.makeText(MobileVerifyActivity.this, code, Toast.LENGTH_SHORT).show();
+                    if (!code.equals("") && !mVerified) {
                         Snackbar snackbar = Snackbar
                                 .make((ConstraintLayout) findViewById(R.id.parentlayout), "Please wait...", Snackbar.LENGTH_LONG);
-
                         snackbar.show();
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, codeed.getText().toString().trim());
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
                         signInWithPhoneAuthCredential(credential);
                     }
                     if (mVerified) {
                         if(!ispass) {
-                           // new OneLoadAllProducts().execute();
+                            // new OneLoadAllProducts().execute();
                             Log.d(TAG,"Verified : registerSubmit()");
-                         //   registerSubmit();
+                            //   registerSubmit();
                             registerUser();
                         } else {
                             ((LinearLayout) findViewById(R.id.entermobile)).setVisibility(View.GONE);
@@ -294,6 +322,7 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                     mVerified = false;
                     starttimer();
                     codeed.setVisibility(View.VISIBLE);
+                    root_otp_layout.setVisibility(View.VISIBLE);
                     fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
                     fabbutton.setTag("verify");
                     Snackbar snackbar = Snackbar
@@ -476,6 +505,7 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                                     mVerified = false;
                                     starttimer();
                                     codeed.setVisibility(View.VISIBLE);
+                                    root_otp_layout.setVisibility(View.VISIBLE);
                                     fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
                                     fabbutton.setTag("verify");
 
@@ -511,51 +541,52 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
     private void checkNumber() {
         pDialog.show();
 
-    StringRequest stringRequest = new StringRequest(Request.Method.POST, ServiceNames.USER_CHECK,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    pDialog.dismiss();
-                    Log.d(TAG, "response : " + response);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ServiceNames.USER_CHECK,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        pDialog.dismiss();
+                        Log.d(TAG, "response : " + response);
 
-                    JSONObject jsonObject = null;
-                    try {
-                        jsonObject = new JSONObject(response);
-                        if (jsonObject.optString("msg").equalsIgnoreCase("Phone Number is valid")) {
-                            Toast.makeText(MobileVerifyActivity.this, "This number already exists. Please user different phone.", Toast.LENGTH_LONG).show();
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            if (jsonObject.optString("msg").equalsIgnoreCase("Phone Number is valid")) {
+                                Toast.makeText(MobileVerifyActivity.this, "This number already exists. Please user different phone.", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
-                }
-            }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            pDialog.dismiss();
-            startPhoneNumberVerification(ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim());
-            mVerified = false;
-            starttimer();
-            codeed.setVisibility(View.VISIBLE);
-            fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
-            fabbutton.setTag("verify");
-          //  Toast.makeText(getApplicationContext(), "This user is not registered!", Toast.LENGTH_SHORT).show();
-        }
-    }) {
-        @Override
-        protected Map<String, String> getParams() {
-            Map<String, String> params = new HashMap<String, String>();
-            params.put("phone", phoneed.getText().toString().trim());
-            return params;
-        }
-    };
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.dismiss();
+                startPhoneNumberVerification(ccp.getSelectedCountryCodeWithPlus()+phoneed.getText().toString().trim());
+                mVerified = false;
+                starttimer();
+                codeed.setVisibility(View.VISIBLE);
+                root_otp_layout.setVisibility(View.VISIBLE);
+                fabbutton.setImageResource(R.drawable.ic_arrow_forward_white_24dp);
+                fabbutton.setTag("verify");
+                //  Toast.makeText(getApplicationContext(), "This user is not registered!", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("phone", phoneed.getText().toString().trim());
+                return params;
+            }
+        };
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 15000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         stringRequest.setShouldCache(false);
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
-}
+    }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
@@ -574,6 +605,7 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                             phoneed.setEnabled(false);
                             ((TextInputLayout) findViewById(R.id.enterotp)).setVisibility(View.GONE);
                             codeed.setVisibility(View.INVISIBLE);
+                            root_otp_layout.setVisibility(View.GONE);
                             Snackbar snackbar = Snackbar
                                     .make((ConstraintLayout) findViewById(R.id.parentlayout), "Successfully Verified", Snackbar.LENGTH_LONG);
 
@@ -581,7 +613,7 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                             if (mVerified) {
                                 if(!ispass) {
                                     Log.d(TAG,"Verified : registerSubmit()");
-                                 //   registerSubmit();
+                                    //   registerSubmit();
                                     registerUser();
                                 } else {
                                     ((LinearLayout) findViewById(R.id.entermobile)).setVisibility(View.GONE);
@@ -672,16 +704,16 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
 //                            success = jsonObject.optString("status");
 //                            if (success.equals("success")) {
 //                                JSONObject data = jsonObject.optJSONObject("message");
-                                // preference and set username for session
+                            // preference and set username for session
 
-                                prf.setString(TAG_USERID, data.optString(TAG_USERID));
-                                prf.setString(TAG_USERNAME, data.optString(TAG_USERNAME));
-                                prf.setString(TAG_EMAIL, data.optString(TAG_EMAIL));
-                                prf.setString(TAG_PHONE, data.optString("user_phone"));
+                            prf.setString(TAG_USERID, data.optString(TAG_USERID));
+                            prf.setString(TAG_USERNAME, data.optString(TAG_USERNAME));
+                            prf.setString(TAG_EMAIL, data.optString(TAG_EMAIL));
+                            prf.setString(TAG_PHONE, data.optString("user_phone"));
 
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class)
-                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                            finish();
 
 
                         } catch (JSONException e) {

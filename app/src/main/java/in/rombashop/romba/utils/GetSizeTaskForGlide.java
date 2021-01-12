@@ -10,8 +10,8 @@ import java.io.File;
 import java.util.Arrays;
 
 /**
- * Created by Panacea-Soft on 4/3/19.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 4/3/19.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 //https://github.com/bumptech/glide/issues/789

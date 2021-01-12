@@ -11,8 +11,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 /**
- * Created by Panacea-Soft on 12/30/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/30/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 @Dao

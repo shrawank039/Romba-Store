@@ -1,8 +1,8 @@
 package in.rombashop.romba;
 
 /**
- * Created by Panacea-Soft on 2019.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 2019.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 public class Config {
@@ -11,7 +11,7 @@ public class Config {
      * AppVersion
      * For your app, you need to change according based on your app version
      */
-    public static String APP_VERSION = "1.0.16";
+    public static String APP_VERSION = "";
 
     /**
      * APP Setting
@@ -27,7 +27,7 @@ public class Config {
 
     // http://adminarea8199.rombashop.in/index.php/
     // https://www.matrixdeveloper.com/romba/index.php/
-    // http://www.panacea-soft.com/ps-store-admin/index.php/
+    // http://www.matrixdeveloper.com/ps-store-admin/index.php/
     // http://www.zaykapoint.com/flutter-multi-store-admin/index.php/
 
     public static final String APP_API_URL = "http://adminarea8199.rombashop.in/index.php/";
@@ -129,7 +129,7 @@ public class Config {
     /**
      * Admob Setting
      */
-    public static final Boolean SHOW_ADMOB = true;
+    public static final Boolean SHOW_ADMOB = false;
 
     /**
      * GDPR Configs
@@ -143,7 +143,7 @@ public class Config {
     /**
      * Policy Url
      */
-    public static String POLICY_URL = "http://www.panacea-soft.com/policy/policy.html";
+    public static String POLICY_URL = "http://www.matrixdeveloper.com/policy/policy.html";
 
     /**
      * Facebook login Config

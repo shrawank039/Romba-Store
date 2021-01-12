@@ -33,8 +33,8 @@ import okhttp3.RequestBody;
 import retrofit2.Response;
 
 /**
- * Created by Panacea-Soft on 11/17/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 11/17/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 @Singleton

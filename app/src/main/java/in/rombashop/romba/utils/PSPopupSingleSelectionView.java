@@ -19,8 +19,8 @@ import in.rombashop.romba.R;
 import in.rombashop.romba.viewobject.Category;
 
 /**
- * Created by Panacea-Soft on 7/25/15.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 7/25/15.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 public class PSPopupSingleSelectionView extends LinearLayout {
 

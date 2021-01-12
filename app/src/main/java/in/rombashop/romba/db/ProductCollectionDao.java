@@ -13,8 +13,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 /**
- * Created by Panacea-Soft on 10/27/18.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 10/27/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

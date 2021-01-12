@@ -25,8 +25,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Created by Panacea-Soft on 11/25/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 11/25/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 @Singleton

@@ -33,6 +33,7 @@
                 tools:text="Title" />
 
             <Spinner
+                android:visibility="visible"
                 android:id="@+id/spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -46,6 +47,22 @@
                 app:layout_constraintStart_toStartOf="@+id/size_textview"
                 app:layout_constraintTop_toBottomOf="@+id/size_textview"
                 app:srcCompat="@drawable/baseline_down_arrow_black_24" />
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/attributeList"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingStart="@dimen/space_20"-->
+<!--                android:paddingEnd="0dp"-->
+<!--                android:paddingBottom="@dimen/space_16"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/size_textview"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/size_textview" />-->
 
             <View
                 android:layout_width="0dp"

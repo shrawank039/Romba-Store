@@ -57,7 +57,7 @@
             app:layout_constraintStart_toEndOf="@+id/emailImage"
             app:layout_constraintTop_toBottomOf="@+id/phoneTextView"
             app:textSize='@{"font_body_size"}'
-            tools:text="teamps.is.cool@gmail.com" />
+            tools:text="matrixdeveloper.business@gmail.com" />
 
         <TextView
             android:id="@+id/titleTextView"

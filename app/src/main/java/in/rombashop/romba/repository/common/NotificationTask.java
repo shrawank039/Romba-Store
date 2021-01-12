@@ -22,8 +22,8 @@ import retrofit2.Response;
 
 /**
  * For register/un-register token to server to able to send notification
- * Created by Panacea-Soft on 12/12/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/12/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 public class NotificationTask implements Runnable {
 

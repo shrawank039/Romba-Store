@@ -13,9 +13,9 @@ import in.rombashop.romba.viewobject.CommentDetail;
 import androidx.databinding.DataBindingUtil;
 
 /**
- * Created by Panacea-Soft
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 public class CommentDetailAdapter extends DataBoundListAdapter<CommentDetail, ItemCommentDetailAdapterBinding> {
     private final androidx.databinding.DataBindingComponent dataBindingComponent;

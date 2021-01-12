@@ -3,6 +3,7 @@ package in.rombashop.romba;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -52,6 +53,8 @@ public class ReturnActivity extends AppCompatActivity {
         orderId = getIntent().getStringExtra("order_id");
         userId = getIntent().getStringExtra("user_id");
         productId = getIntent().getStringExtra("product_id");
+
+        Log.d("MATRIXDEV", orderId+" - "+ userId +" - "+ productId);
         edtMessage = findViewById(R.id.edt_message);
 
     }

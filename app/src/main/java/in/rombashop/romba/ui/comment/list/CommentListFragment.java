@@ -36,9 +36,9 @@ import in.rombashop.romba.viewobject.common.Status;
 import java.util.List;
 
 /**
- * Created by Panacea-Soft
- * Contact Email : teamps.is.cool@gmail.com
- * Website : http://www.panacea-soft.com
+ * Created by matrixdeveloper
+ * Contact Email : matrixdeveloper.business@gmail.com
+ * Website : http://www.matrixdeveloper.com
  */
 public class CommentListFragment extends PSFragment implements DataBoundListAdapter.DiffUtilDispatchedInterface {
 

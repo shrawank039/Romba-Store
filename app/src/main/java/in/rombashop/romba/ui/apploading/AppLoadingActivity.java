@@ -2,9 +2,12 @@ package in.rombashop.romba.ui.apploading;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -49,6 +52,13 @@ public class AppLoadingActivity extends PSAppCompactActivity {
     }
 
     private void initData() {
+
+        try {
+            PackageInfo pInfo = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0);
+            Config.APP_VERSION = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         if (connectivity.isConnected()) {
             if (startDate.equals(Constants.ZERO)) {
@@ -108,6 +118,7 @@ public class AppLoadingActivity extends PSAppCompactActivity {
     }
 
     private void checkForceUpdate(PSAppInfo psAppInfo) {
+
         if (psAppInfo.psAppVersion.versionForceUpdate.equals(Constants.ONE)) {
 
             pref.edit().putString(Constants.APPINFO_PREF_VERSION_NO, psAppInfo.psAppVersion.versionNo).apply();

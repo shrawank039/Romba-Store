@@ -70,8 +70,8 @@ import in.rombashop.romba.viewobject.User;
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
- * Created by Panacea-Soft on 7/15/15.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 7/15/15.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 
@@ -347,7 +347,7 @@ public class Utils {
         String version = Build.VERSION.RELEASE;
         if (version != null && !version.equals("")) {
             String[] versionDetail = version.split("\\.");
-            Log.d("TEAMPS", "0 : " + versionDetail[0] + " 1 : " + versionDetail[1]);
+            Log.d("MATRIXDEV", "0 : " + versionDetail[0] + " 1 : " + versionDetail[1]);
             if (versionDetail[0].equals("5")) {
                 if (versionDetail[1].equals("0") || versionDetail[1].equals("00")) {
                     return true;
@@ -413,10 +413,10 @@ public class Utils {
             b.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d("TEAMPS", "file not found");
+            Log.d("MATRIXDEV", "file not found");
             e.printStackTrace();
         } catch (IOException e) {
-            Log.d("TEAMPS", "io exception");
+            Log.d("MATRIXDEV", "io exception");
             e.printStackTrace();
         }
 
@@ -431,10 +431,10 @@ public class Utils {
             fis.close();
 
         } catch (FileNotFoundException e) {
-            Log.d("TEAMPS", "file not found");
+            Log.d("MATRIXDEV", "file not found");
             e.printStackTrace();
         } catch (IOException e) {
-            Log.d("TEAMPS", "io exception");
+            Log.d("MATRIXDEV", "io exception");
             e.printStackTrace();
         }
         return b;
@@ -540,23 +540,23 @@ public class Utils {
 
     public static void psErrorLog(String log, Object obj) {
         try {
-            Log.d("TEAMPS", log);
-            Log.d("TEAMPS", "Line : " + getLineNumber());
-            Log.d("TEAMPS", "Class : " + getClassName(obj));
+            Log.d("MATRIXDEV", log);
+            Log.d("MATRIXDEV", "Line : " + getLineNumber());
+            Log.d("MATRIXDEV", "Class : " + getClassName(obj));
         } catch (Exception ee) {
-            Log.d("TEAMPS", "Error in psErrorLog");
+            Log.d("MATRIXDEV", "Error in psErrorLog");
         }
     }
 
     public static void psErrorLog(String log, Exception e) {
         try {
             StackTraceElement l = e.getStackTrace()[0];
-            Log.d("TEAMPS", log);
-            Log.d("TEAMPS", "Line : " + l.getLineNumber());
-            Log.d("TEAMPS", "Method : " + l.getMethodName());
-            Log.d("TEAMPS", "Class : " + l.getClassName());
+            Log.d("MATRIXDEV", log);
+            Log.d("MATRIXDEV", "Line : " + l.getLineNumber());
+            Log.d("MATRIXDEV", "Method : " + l.getMethodName());
+            Log.d("MATRIXDEV", "Class : " + l.getClassName());
         } catch (Exception ee) {
-            Log.d("TEAMPS", "Error in psErrorLogE");
+            Log.d("MATRIXDEV", "Error in psErrorLogE");
         }
 
     }

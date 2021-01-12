@@ -134,7 +134,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/websiteTitleTextView"
                     app:textSize='@{"font_body_size"}'
-                    tools:text="http://www.panacea-soft.com" />
+                    tools:text="http://www.matrixdeveloper.com" />
 
                 <ImageView
                     android:id="@+id/emailImage"
@@ -163,7 +163,7 @@
                     app:layout_constraintStart_toEndOf="@+id/emailImage"
                     app:layout_constraintTop_toBottomOf="@+id/phoneTextView"
                     app:textSize='@{"font_body_size"}'
-                    tools:text="teamps.is.cool@gmail.com" />
+                    tools:text="matrixdeveloper.business@gmail.com" />
 
 
                 <ImageView

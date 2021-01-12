@@ -5,8 +5,8 @@ import androidx.room.Entity;
 import androidx.annotation.NonNull;
 
 /**
- * Created by Panacea-Soft on 12/12/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/12/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

@@ -13,8 +13,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 /**
- * Created by Panacea-Soft on 3/19/19.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 3/19/19.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 

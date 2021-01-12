@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData;
 
 /**
  * General Save Task Sample
- * Created by Panacea-Soft on 12/6/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/6/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 public class SaveTask implements Runnable {
@@ -32,8 +32,8 @@ public class SaveTask implements Runnable {
 
     /**
      * Constructor of SaveTask.
-     * @param service Panacea-Soft API Service Instance
-     * @param db Panacea-Soft DB Instance
+     * @param service matrixdeveloper API Service Instance
+     * @param db matrixdeveloper DB Instance
      * @param obj Object to Save
      *
      */

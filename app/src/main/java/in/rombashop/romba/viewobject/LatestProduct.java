@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Panacea-Soft on 9/18/18.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 9/18/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 @Entity(primaryKeys = "id")

@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 /**
- * Created by Panacea-Soft on 11/21/18.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 11/21/18.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 public class BottomSheetDialogExpanded extends BottomSheetDialog {
 

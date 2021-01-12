@@ -33,9 +33,9 @@ public class ShippingMethodRepository extends PSRepository {
     /**
      * Constructor of PSRepository
      *
-     * @param psApiService Panacea-Soft API Service Instance
+     * @param psApiService matrixdeveloper API Service Instance
      * @param appExecutors Executors Instance
-     * @param db           Panacea-Soft DB
+     * @param db           matrixdeveloper DB
      */
     @Inject
     ShippingMethodRepository(PSApiService psApiService, AppExecutors appExecutors, PSCoreDb db, ShippingMethodDao shippingMethodDao) {

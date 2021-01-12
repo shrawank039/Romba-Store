@@ -16,6 +16,16 @@
 #   public *;
 #}
 
+-keep class * extends androidx.room.RoomDatabase
+-dontwarn androidx.room.paging.**
+
+-keep class in.rombashop.romba.viewobject.*
+-keep class in.rombashop.romba.db.*
+
+-dontwarn androidx.databinding.**
+-keep class androidx.databinding.** { *; }
+-keep class * extends androidx.databinding.DataBinderMapper
+
 # keep youtube / google
 -keep class com.google.api.services.** { *; }
 -keep class com.google.android.youtube.player.** { *; }

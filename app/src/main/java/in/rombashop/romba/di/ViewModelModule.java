@@ -50,8 +50,8 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 
 /**
- * Created by Panacea-Soft on 11/16/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 11/16/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 @Module

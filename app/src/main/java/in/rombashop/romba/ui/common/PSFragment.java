@@ -20,8 +20,8 @@ import in.rombashop.romba.utils.Utils;
 
 /**
  * Parent class for all fragment in this project.
- * Created by Panacea-Soft on 12/2/17.
- * Contact Email : teamps.is.cool@gmail.com
+ * Created by matrixdeveloper on 12/2/17.
+ * Contact Email : matrixdeveloper.business@gmail.com
  */
 
 public abstract class PSFragment extends Fragment implements Injectable {
