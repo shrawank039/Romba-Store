@@ -9,7 +9,7 @@ android {
         applicationId "in.rombashop.romba"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 22
+        versionCode 23
         versionName "1.0.19"
         multiDexEnabled true
     }

@@ -13,6 +13,7 @@ import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.ItemProductColorAdapterBinding;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.utils.Objects;
+import in.rombashop.romba.utils.Utils;
 import in.rombashop.romba.viewobject.ProductColor;
 
 public class ProductColorAdapter extends DataBoundListAdapter<ProductColor, ItemProductColorAdapterBinding> {
@@ -36,7 +37,6 @@ public class ProductColorAdapter extends DataBoundListAdapter<ProductColor, Item
         binding.getRoot().setOnClickListener((View v) -> {
             ProductColor productColor = binding.getProductColor();
             if (productColor != null && callback != null) {
-
                 callback.onClick(productColor, productColor.id,productColor.colorValue);
             }
         });

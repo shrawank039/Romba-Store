@@ -433,6 +433,7 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
         ProductColorAdapter nvcolorAdapter = new ProductColorAdapter(dataBindingComponent,
                 (productColor, seletedColorId, selectetColorValue) -> {
 
+                    Utils.psLog("click : "+ selectetColorValue);
                     productColorViewModel.colorSelectId = seletedColorId;
                     productColorViewModel.colorSelectValue = selectetColorValue;
 

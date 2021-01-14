@@ -8,6 +8,11 @@ import android.widget.AdapterView;
 
 import androidx.databinding.DataBindingUtil;
 
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+import com.like.LikeButton;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +20,14 @@ import java.util.Map;
 import in.rombashop.romba.R;
 import in.rombashop.romba.databinding.CardviewHeaderBinding;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
+import in.rombashop.romba.ui.product.adapter.ProductCollectionRowAdapter;
+import in.rombashop.romba.ui.product.adapter.ProductHorizontalListAdapter;
+import in.rombashop.romba.ui.product.detail.ProductDetailFragment;
+import in.rombashop.romba.utils.AutoClearedValue;
 import in.rombashop.romba.utils.Constants;
 import in.rombashop.romba.utils.Objects;
 import in.rombashop.romba.utils.Utils;
+import in.rombashop.romba.viewobject.Product;
 import in.rombashop.romba.viewobject.ProductAttributeDetail;
 import in.rombashop.romba.viewobject.ProductAttributeHeader;
 
@@ -25,6 +35,7 @@ public abstract class ProductAttributeHeaderAdapter extends DataBoundListAdapter
 
     private final androidx.databinding.DataBindingComponent dataBindingComponent;
     private HeaderProductClickCallBack callback;
+    private AutoClearedValue<newProductColorAdapter> colorAdapter;
     private DataBoundListAdapter.DiffUtilDispatchedInterface diffUtilDispatchedInterface = null;
     public Map<String, String> basketItemHolderHashMap;
     public String currencySymbol;
@@ -62,6 +73,7 @@ public abstract class ProductAttributeHeaderAdapter extends DataBoundListAdapter
     protected void bind(CardviewHeaderBinding binding, ProductAttributeHeader item) {
 
         if (item != null) {
+
             binding.setHeaderproduct(item);
 
             Context context = binding.getRoot().getContext();
@@ -88,9 +100,7 @@ public abstract class ProductAttributeHeaderAdapter extends DataBoundListAdapter
             String selectedAttr = "";
 
             if (this.basketItemHolderHashMap.containsKey(item.id)) {
-
                 selectedAttr = basketItemHolderHashMap.get(item.id);
-
             }
 
             for (int i = 0; i < item.attributesDetailList.size(); i++) {
@@ -116,6 +126,7 @@ public abstract class ProductAttributeHeaderAdapter extends DataBoundListAdapter
 
             }
 
+
             //Creating the ArrayAdapter instance having the list
             ProductHeaderDetailAdapter adapter = new ProductHeaderDetailAdapter(binding.getRoot().getContext(),
                     R.layout.spinner_header_detail, detail, dataBindingComponent);
@@ -124,6 +135,18 @@ public abstract class ProductAttributeHeaderAdapter extends DataBoundListAdapter
             binding.spinner.setAdapter(adapter);
 
             binding.spinner.setSelection(selectedIndex);
+
+            newProductColorAdapter nvcolorAdapter = new newProductColorAdapter(dataBindingComponent,item.attributesDetailList,
+            (productColor, selectedColorId, selectedColorValue) -> {
+                callback.onClick(productColor);
+            });
+
+            FlexboxLayoutManager layoutManager2 = new FlexboxLayoutManager(context);
+            layoutManager2.setFlexDirection(FlexDirection.ROW);
+            layoutManager2.setJustifyContent(JustifyContent.FLEX_START);
+            binding.attributeList.setLayoutManager(layoutManager2);
+            binding.attributeList.setAdapter(nvcolorAdapter);
+
         }
 
     }
@@ -148,7 +171,7 @@ public abstract class ProductAttributeHeaderAdapter extends DataBoundListAdapter
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         ProductAttributeDetail productAttributeDetail = (ProductAttributeDetail) adapterView.getItemAtPosition(i);
-
+        Utils.psLog("click : "+ productAttributeDetail.name);
         callback.onClick(productAttributeDetail);
 
     }
