@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -89,9 +90,12 @@ public class TransactionAdapter extends DataBoundListAdapter<TransactionDetail, 
         int days=0;
         int daysdiff = 0;
         if (!item.returnTitle.isEmpty()) {
-            days = Integer.parseInt(item.returnTitle.replaceAll("[\\D]", ""));
+            try {
+                days = Integer.parseInt(item.returnTitle.replaceAll("[\\D]", ""));
+            }catch (Exception ignored){
+                Utils.psLog("error: No days found in return title!");
+            }
         }
-
 
 
        SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

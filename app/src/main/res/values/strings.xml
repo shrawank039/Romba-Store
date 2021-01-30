@@ -356,7 +356,7 @@
     <string name="profile__see_all">See all</string>
     <string name="profile__verified">Verified</string>]
     <string name="profile__status">Status</string>
-    <string name="profile__transaction">Transactions</string>
+    <string name="profile__transaction">My Orders</string>
 
     <!-- Edit Profile -->
     <string name="edit_profile__title">Edit Profile</string>
@@ -377,7 +377,7 @@
     <string name="menu__profile">Profile</string>
     <string name="menu__like">Like</string>
     <string name="menu__favourite_items">Favourite</string>
-    <string name="menu__transaction">Transaction</string>
+    <string name="menu__transaction">My Orders</string>
     <string name="menu__user_history">User History</string>
     <string name="menu__logout">Logout</string>
     <string name="menu__about_app">About Us</string>
