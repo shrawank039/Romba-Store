@@ -34,6 +34,12 @@ public class Config {
     public static final String APP_IMAGES_URL = "http://adminarea8199.rombashop.in/uploads/";
     public static final String APP_IMAGES_THUMB_URL = "http://adminarea8199.rombashop.in/uploads/thumbnail/";
 
+    public static final long API_CONNECTION_TIMEOUT = 1201;
+    public static final long API_READ_TIMEOUT = 901;
+
+    public static final String BASE_URL =   "http://adminarea8199.rombashop.in/";
+    public static final String SERVER_main_folder = "PayU/";
+
     /**
      * API Key
      * If you change here, you need to update in server.

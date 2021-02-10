@@ -63,7 +63,8 @@ public class ViewPagerAdapter extends PagerAdapter {
             binding.oldDiscountPriceTextView.setPaintFlags(binding.oldDiscountPriceTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
             int discountValue = (int) featuredProducts.get(position).discountPercent;
-            String discountValueStr = "-" + discountValue + "%";
+           // String discountValueStr = "-" + discountValue + "%";
+            String discountValueStr = "-" + featuredProducts.get(position).discountAmount;
             binding.discountPercentTextView.setText(discountValueStr);
 
 

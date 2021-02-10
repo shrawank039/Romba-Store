@@ -154,11 +154,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app__app_name"
         android:largeHeap="true"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@drawable/ic_launcher_circle"
         android:theme="@style/Base.PSTheme"
-        android:usesCleartextTraffic="true"
-        tools:replace="android:label"
+        tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
+
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
@@ -184,6 +185,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".payu.StartPaymentActivity"/>
         <activity android:name=".ui.user.phonelogin.LoginActivity" />
         <activity android:name=".ui.user.RegisterActivity" />
         <activity android:name=".ui.user.MobileVerifyActivity" />

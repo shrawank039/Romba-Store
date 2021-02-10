@@ -3,6 +3,7 @@ package in.rombashop.romba.ui.checkout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,9 @@ import com.braintreepayments.api.dropin.DropInResult;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.payumoney.core.PayUmoneySdkInitializer;
+import com.payumoney.core.entity.TransactionResponse;
+import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,6 +33,8 @@ import in.rombashop.romba.Config;
 import in.rombashop.romba.R;
 import in.rombashop.romba.binding.FragmentDataBindingComponent;
 import in.rombashop.romba.databinding.CheckoutFragment3Binding;
+import in.rombashop.romba.payu.ServiceWrapper;
+import in.rombashop.romba.payu.StartPaymentActivity;
 import in.rombashop.romba.ui.common.DataBoundListAdapter;
 import in.rombashop.romba.ui.common.PSFragment;
 import in.rombashop.romba.utils.AutoClearedValue;
@@ -45,6 +51,11 @@ import in.rombashop.romba.viewobject.BasketProductToServer;
 import in.rombashop.romba.viewobject.TransactionHeaderUpload;
 import in.rombashop.romba.viewobject.User;
 import in.rombashop.romba.viewobject.common.Status;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static in.rombashop.romba.utils.Constants.RESULT_OK;
 
 public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapter.DiffUtilDispatchedInterface {
 
@@ -61,6 +72,7 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
     private BasketProductListToServerContainer basketProductListToServerContainer = new BasketProductListToServerContainer();
     private String clientTokenString;
     String paymentMethod = Constants.PAYMENT_CASH_ON_DELIVERY;
+    String amount, phone;
     private String payment_method_nonce;
     private CardView oldCardView;
     private TextView oldTextView;
@@ -69,6 +81,14 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
     boolean clicked = false;
 
     private PSDialogMsg psDialogMsg;
+
+    PayUmoneySdkInitializer.PaymentParam.Builder builder = new PayUmoneySdkInitializer.PaymentParam.Builder();
+    //declare paymentParam object
+    PayUmoneySdkInitializer.PaymentParam paymentParam = null;
+
+    String TAG ="mainActivity", txnid ="txt12346",
+            prodname ="Romba Shop", firstname ="user", email ="example@gmail.com",
+            merchantId ="5884494", merchantkey="dDeX6Sd6";  //   first test key only
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -505,9 +525,113 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
         }
     }
 
+    void payU(){
+        if (getActivity() != null) {
+            user = ((CheckoutActivity) CheckoutFragment3.this.getActivity()).getCurrentUser();
+            amount = String.valueOf(((CheckoutActivity) getActivity()).transactionValueHolder.final_total);
+            phone = user.userPhone;
+        }
+//        Intent intent=new Intent(getContext(), StartPaymentActivity.class);
+//        intent.putExtra("phone", phone);
+//        intent.putExtra("amount", amount);
+//        startActivityForResult(intent, 2);
+        startpay(amount,phone);
+    }
+
+    private void startpay(String amount, String phone) {
+        builder.setAmount(amount)                          // Payment amount
+                .setTxnId(txnid)                     // Transaction ID
+                .setPhone(phone)                   // User Phone number
+                .setProductName(prodname)                   // Product Name or description
+                .setFirstName(firstname)                              // User First name
+                .setEmail(email)              // User Email ID
+                .setsUrl("https://www.payumoney.com/mobileapp/payumoney/success.php")     // Success URL (surl)
+                .setfUrl("https://www.payumoney.com/mobileapp/payumoney/failure.php")     //Failure URL (furl)
+                .setUdf1("")
+                .setUdf2("")
+                .setUdf3("")
+                .setUdf4("")
+                .setUdf5("")
+                .setUdf6("")
+                .setUdf7("")
+                .setUdf8("")
+                .setUdf9("")
+                .setUdf10("")
+                .setIsDebug(false)                              // Integration environment - true (Debug)/ false(Production)
+                .setKey(merchantkey)                        // Merchant key
+                .setMerchantId(merchantId);
+
+
+        try {
+            paymentParam = builder.build();
+            getHashkey();
+
+        } catch (Exception e) {
+            Log.e(TAG, " error s "+e.toString());
+        }
+    }
+
+    public void getHashkey(){
+        ServiceWrapper service = new ServiceWrapper(null);
+        Call<String> call = service.newHashCall(merchantkey, txnid, amount, prodname,
+                firstname, email);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.e(TAG, "hash res "+response.body());
+                String merchantHash= response.body();
+                if (merchantHash.isEmpty() || merchantHash.equals("")) {
+                    Toast.makeText(getContext(), "Could not generate hash", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "hash empty");
+                } else {
+                    // mPaymentParams.setMerchantHash(merchantHash);
+                    paymentParam.setMerchantHash(merchantHash);
+                    // Invoke the following function to open the checkout page.
+
+                    PayUmoneyFlowManager.startPayUMoneyFlow(paymentParam, getActivity(), R.style.AppTheme_default, true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e(TAG, "hash error "+ t.toString());
+            }
+        });
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_CODE__PAYPAL) {
+
+        Log.e("StartPaymentActivity", "request code " + requestCode + " resultcode " + resultCode);
+        if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == RESULT_OK && data != null) {
+
+            TransactionResponse transactionResponse = data.getParcelableExtra( PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE );
+
+            if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
+
+                if(transactionResponse.getTransactionStatus().equals( TransactionResponse.TransactionStatus.SUCCESSFUL )){
+                    //Success Transaction
+                    sendData();
+                } else{
+                    Toast.makeText(getContext(), "Transaction Failed!", Toast.LENGTH_SHORT).show();
+                    //Failure Transaction
+                }
+
+                // Response from Payumoney
+                String payuResponse = transactionResponse.getPayuResponse();
+
+                // Response from SURl and FURL
+                String merchantResponse = transactionResponse.getTransactionDetails();
+                Log.e(TAG, "tran "+payuResponse+"---"+ merchantResponse);
+            } /* else if (resultModel != null && resultModel.getError() != null) {
+                Log.d(TAG, "Error response : " + resultModel.getError().getTransactionResponse());
+            } else {
+                Log.d(TAG, "Both objects are null!");
+            }*/
+        }
+        else if (requestCode == Constants.REQUEST_CODE__PAYPAL) {
             if (resultCode == Activity.RESULT_OK) {
                 DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
 
@@ -565,11 +689,11 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
                                 binding.get().cardCardView.setVisibility(View.GONE);
                             }
 
-                            if (result.data.banktransferEnabled.equals(Constants.ONE)) {
-                                binding.get().bankCardView.setVisibility(View.VISIBLE);
-                            } else {
-                                binding.get().bankCardView.setVisibility(View.GONE);
-                            }
+//                            if (result.data.banktransferEnabled.equals(Constants.ONE)) {
+//                                binding.get().bankCardView.setVisibility(View.VISIBLE);
+//                            } else {
+//                                binding.get().bankCardView.setVisibility(View.GONE);
+//                            }
                         }
 
                         break;
@@ -595,11 +719,11 @@ public class CheckoutFragment3 extends PSFragment implements DataBoundListAdapte
                                 binding.get().cardCardView.setVisibility(View.GONE);
                             }
 
-                            if (result.data.banktransferEnabled.equals(Constants.ONE)) {
-                                binding.get().bankCardView.setVisibility(View.VISIBLE);
-                            } else {
-                                binding.get().bankCardView.setVisibility(View.GONE);
-                            }
+//                            if (result.data.banktransferEnabled.equals(Constants.ONE)) {
+//                                binding.get().bankCardView.setVisibility(View.VISIBLE);
+//                            } else {
+//                                binding.get().bankCardView.setVisibility(View.GONE);
+//                            }
                         }
 
                         break;

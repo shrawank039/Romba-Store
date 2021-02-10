@@ -32,6 +32,7 @@ import in.rombashop.romba.databinding.ActivityCheckoutBinding;
 import in.rombashop.romba.net.MySingleton;
 import in.rombashop.romba.net.PrefManager;
 import in.rombashop.romba.net.ServiceNames;
+import in.rombashop.romba.payu.StartPaymentActivity;
 import in.rombashop.romba.ui.basket.BasketListActivity;
 import in.rombashop.romba.ui.common.PSAppCompactActivity;
 import in.rombashop.romba.ui.common.PSFragment;
@@ -75,6 +76,7 @@ public class CheckoutActivity extends PSAppCompactActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == Constants.REQUEST_CODE__MAIN_ACTIVITY
                 && resultCode == Constants.RESULT_CODE__RESTART_MAIN_ACTIVITY) {
 
@@ -235,7 +237,7 @@ public class CheckoutActivity extends PSAppCompactActivity {
                                         break;
 
                                     case Constants.PAYMENT_BANK:
-                                        ((CheckoutFragment3) fragment).sendData();
+                                        ((CheckoutFragment3) fragment).payU();
                                         break;
                                 }
 
@@ -283,6 +285,7 @@ public class CheckoutActivity extends PSAppCompactActivity {
         });
 
     }
+
 
     public void navigateFragment(ActivityCheckoutBinding binding, int position) {
         updateCheckoutUI(binding);

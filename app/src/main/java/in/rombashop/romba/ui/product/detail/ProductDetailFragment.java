@@ -1345,7 +1345,8 @@ public class ProductDetailFragment extends PSFragment implements DataBoundListAd
             binding.get().originalPriceTextView.setVisibility(View.VISIBLE);
             binding.get().discountPercentButton.setVisibility(View.VISIBLE);
             int discountValue = (int) product.discountPercent;
-            String discountValueStr = "-" + discountValue + "%";
+           // String discountValueStr = "-" + discountValue + "%";
+            String discountValueStr = "-" + product.discountAmount;
             binding.get().discountPercentTextView.setText(discountValueStr);
             binding.get().originalPriceTextView.setPaintFlags(binding.get().originalPriceTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }

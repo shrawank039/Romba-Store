@@ -194,7 +194,6 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="16dp"
-                            android:visibility="visible"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/cardCardView"
@@ -223,7 +222,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="16dp"
-                                    android:text="@string/checkout__bank_transfer"
+                                    android:text="Online Payment"
                                     android:textColor="@color/text__primary"
                                     android:textSize="@dimen/font_body_size"
                                     app:font='@{"normal"}'

@@ -136,7 +136,8 @@ public class DiscountListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     ((MyViewHolder) holder).binding.discountTextView.setVisibility(View.VISIBLE);
 
                     int discountValue = (int) product.discountPercent;
-                    String discountValueStr = "-" + discountValue + "%";
+                 //   String discountValueStr = "-" + discountValue + "%";
+                    String discountValueStr = "-" + product.discountAmount;
                     ((MyViewHolder) holder).binding.discountTextView.setText(discountValueStr);
 
 //                    if (product.isFavourited.equals(Constants.RATING_ONE)) {

@@ -3,9 +3,11 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ff5a2b484ad6249af61e53f850e6817d/jetified-paypal-one-touch-2.18.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/559fddee567c541ca29253c03bf2e38b/jetified-paypal-one-touch-2.18.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/efdfe80114b0e95264068ec4bf3c0870/jetified-paypal-one-touch-2.18.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/efdfe80114b0e95264068ec4bf3c0870/jetified-paypal-one-touch-2.18.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/efdfe80114b0e95264068ec4bf3c0870/jetified-paypal-one-touch-2.18.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3f1ddea14eed2ed6cc7a0d29972d9b73/jetified-paypal-one-touch-2.18.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/718a3e6462ebaeb742cf733176e5f003/jetified-paypal-one-touch-2.18.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/718a3e6462ebaeb742cf733176e5f003/jetified-paypal-one-touch-2.18.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/718a3e6462ebaeb742cf733176e5f003/jetified-paypal-one-touch-2.18.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.paypal.android.sdk/paypal-one-touch/2.18.1/ae036b8abc4b3d769ca46c9a09a29a6da6c9b4e/paypal-one-touch-2.18.1-javadoc.jar!/" />
