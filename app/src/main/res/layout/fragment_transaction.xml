@@ -325,6 +325,17 @@
                         android:text="Order Date"
                         app:font='@{"normal"}'
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textPayMethod" />
+
+                    <TextView
+                        android:id="@+id/textPayMethod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Payment Method"
+                        app:font='@{"normal"}'
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/invoiceUrl" />
 
                     <TextView
@@ -386,13 +397,24 @@
                     <TextView
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="15dp"
                         android:layout_marginEnd="16dp"
                         android:text="@string/checkout__dash"
                         app:font='@{"normal"}'
                         app:layout_constraintBottom_toBottomOf="@+id/textDate"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textDate" />
+
+                    <TextView
+                        android:id="@+id/payment_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/checkout__dash"
+                        app:font='@{"normal"}'
+                        app:layout_constraintBottom_toBottomOf="@+id/textPayMethod"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textPayMethod" />
 
                     <TextView
                         android:id="@+id/totalValueTextView"

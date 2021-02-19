@@ -240,6 +240,8 @@ public class MobileVerifyActivity extends RombaAppCompactActivity {
                 mResendToken = token;
             }
         };
+
+
         fabbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

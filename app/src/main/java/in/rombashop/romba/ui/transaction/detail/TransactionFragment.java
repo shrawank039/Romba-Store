@@ -289,6 +289,7 @@ public class TransactionFragment extends PSFragment implements DataBoundListAdap
         }
 
         binding.get().date.setText(transactionObject.addedDate);
+        binding.get().paymentMethod.setText(transactionObject.paymentMethod);
 
         if (!transactionObject.totalItemAmount.equals(Constants.ZERO)) {
 

@@ -343,6 +343,7 @@
             android:name=".ui.stripe.StripeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />
+
         <activity
             android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
             android:launchMode="singleTask">
@@ -356,6 +357,7 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".ui.collection.CollectionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Base.PSTheme" />

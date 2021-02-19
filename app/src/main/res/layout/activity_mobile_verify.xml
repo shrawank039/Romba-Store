@@ -19,13 +19,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".3"
-                android:background="@color/colorPrimary"></View>
+                android:background="@color/colorPrimary" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/bt_very_light_gray"></View>
+                android:background="@color/bt_very_light_gray" />
 
         </LinearLayout>
 
