@@ -5,9 +5,10 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fe373deeffc6f7e362da179b56ea6049/jetified-visa-checkout-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b86e91362f63a8cc8e741098172d978/jetified-visa-checkout-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/825fb75ab456361a1deba5b9d4b8908b/jetified-visa-checkout-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6a8bfb6c9d7e5672e6b4cdcda72b0fd/jetified-visa-checkout-1.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6a8bfb6c9d7e5672e6b4cdcda72b0fd/jetified-visa-checkout-1.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6a8bfb6c9d7e5672e6b4cdcda72b0fd/jetified-visa-checkout-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8f0cc0773abd32d53f304381e02815d/jetified-visa-checkout-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8f0cc0773abd32d53f304381e02815d/jetified-visa-checkout-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8f0cc0773abd32d53f304381e02815d/jetified-visa-checkout-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.braintreepayments.api/visa-checkout/1.0.0/1044f00d502b2aff3a56450dc1e6b82e2332ecfc/visa-checkout-1.0.0-javadoc.jar!/" />

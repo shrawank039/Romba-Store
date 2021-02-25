@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.firdausmaulan:GlideSlider:1.5.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5e161df8dcc2b53d6796c7bdd34ae36e/jetified-GlideSlider-1.5.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5e161df8dcc2b53d6796c7bdd34ae36e/jetified-GlideSlider-1.5.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5e161df8dcc2b53d6796c7bdd34ae36e/jetified-GlideSlider-1.5.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/59857ebcf09191514a2c034342cf491e/jetified-GlideSlider-1.5.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/59857ebcf09191514a2c034342cf491e/jetified-GlideSlider-1.5.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/59857ebcf09191514a2c034342cf491e/jetified-GlideSlider-1.5.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

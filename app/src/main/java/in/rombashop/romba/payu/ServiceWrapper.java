@@ -5,18 +5,14 @@ import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
-import in.rombashop.romba.BuildConfig;
 import in.rombashop.romba.Config;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-
 
 public class ServiceWrapper {
 
@@ -27,28 +23,22 @@ public class ServiceWrapper {
     }
 
     public Retrofit getRetrofit(Interceptor mInterceptorheader) {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient mOkHttpClient = null;
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(Config.API_CONNECTION_TIMEOUT, TimeUnit.SECONDS);
-        builder.readTimeout(Config.API_READ_TIMEOUT, TimeUnit.SECONDS);
 
 
-        if (BuildConfig.DEBUG) {
-//            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            builder.addInterceptor(loggingInterceptor);
-        }
-
-
-        mOkHttpClient = builder.build();
         Gson gson = new GsonBuilder().setLenient().create();
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(Config.API_CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.BASE_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(mOkHttpClient)
                 .build();
+
         return retrofit;
     }
 
@@ -61,7 +51,7 @@ public class ServiceWrapper {
 
       // convert aa param into plain text
     public RequestBody convertPlainString(String data){
-        RequestBody plainString = RequestBody.create(MediaType.parse("text/plain"), data);
+        RequestBody plainString = RequestBody.create(data, MediaType.parse("text/plain"));//(MediaType.parse("text/plain"), data);
         return  plainString;
     }
 }

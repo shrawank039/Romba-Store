@@ -11,7 +11,6 @@ import static in.rombashop.romba.Config.SERVER_main_folder;
 
 public interface ServiceInterface {
 
-    // method,, return type ,, secondary url
     @Multipart
     @POST(SERVER_main_folder+"new_hash.php")
     Call<String> getHashCall(

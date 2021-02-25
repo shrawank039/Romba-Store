@@ -2,15 +2,15 @@
   <library name="Gradle: com.payu.custombrowser:payu-custom-browser:7.5.1@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/188e66cf7c0ab0d6ff92a98f72667120/jetified-payu-custom-browser-7.5.1/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d050c666f7385de65cc44ac903f399e/jetified-payu-custom-browser-7.5.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9b8d8e0934e0b3fc2429cb578dbbeb3/jetified-payu-custom-browser-7.5.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/188e66cf7c0ab0d6ff92a98f72667120/jetified-payu-custom-browser-7.5.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/188e66cf7c0ab0d6ff92a98f72667120/jetified-payu-custom-browser-7.5.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/188e66cf7c0ab0d6ff92a98f72667120/jetified-payu-custom-browser-7.5.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d050c666f7385de65cc44ac903f399e/jetified-payu-custom-browser-7.5.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d050c666f7385de65cc44ac903f399e/jetified-payu-custom-browser-7.5.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d050c666f7385de65cc44ac903f399e/jetified-payu-custom-browser-7.5.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9b8d8e0934e0b3fc2429cb578dbbeb3/jetified-payu-custom-browser-7.5.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9b8d8e0934e0b3fc2429cb578dbbeb3/jetified-payu-custom-browser-7.5.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9b8d8e0934e0b3fc2429cb578dbbeb3/jetified-payu-custom-browser-7.5.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
