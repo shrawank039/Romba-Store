@@ -7,6 +7,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b98c84bb3f290712698ff83b3eda405b/jetified-plug-n-play-1.6.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b98c84bb3f290712698ff83b3eda405b/jetified-plug-n-play-1.6.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b98c84bb3f290712698ff83b3eda405b/jetified-plug-n-play-1.6.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e8433ddab3daf2bf34df19b2cd15aa7/jetified-plug-n-play-1.6.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e8433ddab3daf2bf34df19b2cd15aa7/jetified-plug-n-play-1.6.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e8433ddab3daf2bf34df19b2cd15aa7/jetified-plug-n-play-1.6.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45ec3334df65de3b147e8db6f1318f9d/jetified-plug-n-play-1.6.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45ec3334df65de3b147e8db6f1318f9d/jetified-plug-n-play-1.6.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45ec3334df65de3b147e8db6f1318f9d/jetified-plug-n-play-1.6.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.payumoney.sdkui/plug-n-play/1.6.0/a291453a1d28f60ad82beeace09cbec22ba480b9/plug-n-play-1.6.0-javadoc.jar!/" />

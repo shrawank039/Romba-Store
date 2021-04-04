@@ -12,6 +12,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b03fb1c5855a014dbb7a5f5c01a793e/jetified-browser-switch-0.1.7/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b03fb1c5855a014dbb7a5f5c01a793e/jetified-browser-switch-0.1.7/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b03fb1c5855a014dbb7a5f5c01a793e/jetified-browser-switch-0.1.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9ab3344fdb09c6c16cb9c044cfcbd16/jetified-browser-switch-0.1.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9ab3344fdb09c6c16cb9c044cfcbd16/jetified-browser-switch-0.1.7/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9ab3344fdb09c6c16cb9c044cfcbd16/jetified-browser-switch-0.1.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bdbb552e2ff083b83ac9b8a5eb6ef6af/jetified-browser-switch-0.1.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bdbb552e2ff083b83ac9b8a5eb6ef6af/jetified-browser-switch-0.1.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bdbb552e2ff083b83ac9b8a5eb6ef6af/jetified-browser-switch-0.1.7/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.braintreepayments/browser-switch/0.1.7/789de4c4450a4613a59a2b4fa8aa241df2df2902/browser-switch-0.1.7-javadoc.jar!/" />

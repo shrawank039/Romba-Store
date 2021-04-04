@@ -18,6 +18,7 @@ public class Config {
      * Set false, your app is production
      * It will turn off the logging Process
      */
+
     public static boolean IS_DEVELOPMENT = true;
 
     /**

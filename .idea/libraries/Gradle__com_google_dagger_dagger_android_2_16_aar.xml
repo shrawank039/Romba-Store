@@ -12,6 +12,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a707e5cbf862ef7290be09111e8b53b3/jetified-dagger-android-2.16/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a707e5cbf862ef7290be09111e8b53b3/jetified-dagger-android-2.16/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a707e5cbf862ef7290be09111e8b53b3/jetified-dagger-android-2.16/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/46d749df21506504dee9c1f2bf89824e/jetified-dagger-android-2.16/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/46d749df21506504dee9c1f2bf89824e/jetified-dagger-android-2.16/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/46d749df21506504dee9c1f2bf89824e/jetified-dagger-android-2.16/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9410a5496b106bfeb5df864ba0bda1e9/jetified-dagger-android-2.16/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9410a5496b106bfeb5df864ba0bda1e9/jetified-dagger-android-2.16/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9410a5496b106bfeb5df864ba0bda1e9/jetified-dagger-android-2.16/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android/2.16/3314d9c96290f9611115602c0dd930464d00f918/dagger-android-2.16-javadoc.jar!/" />
